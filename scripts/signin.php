@@ -3,7 +3,7 @@
 //$fail = 0;
 function signIn() { ?>
 	<script type="text/javascript">
-		window.location = "dashboard.html";
+		window.location = "../dashboard.html";
 	</script>  
 <?php 
 }
@@ -11,7 +11,7 @@ function signIn() { ?>
 function incorrectEmail() {
 	?>
 	<script type="text/javascript">
-		window.location = "index.html";
+		window.location = "../index.html";
 		alert("Incorrect email/password");
 	</script>  
 <?php
@@ -19,7 +19,7 @@ function incorrectEmail() {
 function goToSleep(){
 	?>
 	<script type="text/javascript">
-		window.location = "disable.html";
+		window.location = "../disable.html";
 		alert("Incorrect 4 times. Will time out for 1 minute");
 		//window.setTimeout(sleepB, 20000);
 	</script>
