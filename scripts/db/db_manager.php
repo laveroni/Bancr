@@ -3,7 +3,14 @@
 	//assuming that when this class and it's methods are called, that loggedIn session variable
 	//is already checked to ensure a user is logged in
 
-class dbManager {
+
+	//REMOVE BELOW UPON SUCCESSFUL IMPLEMENTATION
+    ini_set('display_errors', 'On');
+    error_reporting(E_ALL | E_STRICT);
+    //REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
+
+class dbManager 
+{
 
 	private $db_host;
 	private $db_username;
@@ -16,15 +23,13 @@ class dbManager {
 		$this->setVars();
 	}
 
-	//making this class automatically
+	
 	private function setVars() //$host, $user, $pass, $database
 	{
-		//TODO: Fill in variables with actual values
-
 		$this->db_host = "localhost";
 		$this->db_username = "root";
 		$this->db_password = "password";
-		$this->db_database = "CSCI310";
+		$this->db_database = "Bancr";
 	}
 
 	public function openConnection()
@@ -64,8 +69,5 @@ class dbManager {
 	}
 }
 
-
-//	TODO:
-//		hard code database values in setVals();
 
 ?>
