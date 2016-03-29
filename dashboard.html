@@ -1,33 +1,152 @@
-<html>
-  <head>
-  	<title>Tickr</title>
-    	<!-- Bootstrap core CSS -->
-      <link href="./css/bootstrap.min.css" rel="stylesheet">
+<?php
 
-      <!-- Custom styles for this template -->
-      <link href="./css/signin.css" rel="stylesheet">
-  </head>
-  <body>
-      
-    <body style="background-color:#222222;">
-  	<div class="container">
+session_start();
 
-        <form class="form-signin" method="POST" action="signin.php">
-          <h2 class="form-signin-heading"><font color="white">Sign Up</h2></font>
-          
-          <h4 class="form-signin-heading"><font color="white">Enter your
-                                <font color="purple">Email</font>
-                                and <font color="red">Password</font> to
-                                <font color="orange"> Sign Up</h2></font></font>
-          
-          <label for="inputEmail" class="sr-only">Email address</label>
-          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-          <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-          <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Sign Up</button>
-          <a href="index.html">Sign in</a></p>
+$user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 
-        </form>
-      </div> <!-- /container -->
-  </body>
+if (!$user)
+{
+    header('Location: ./signin.php');
+    exit();
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>    
+    <!-- Meta -->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible” content=”IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <title>Bancr</title>
+    
+    <!-- CSS -->
+    <link rel='stylesheet' href='css/bootstrap.min.css'>
+    <link rel='stylesheet' href='/css/dash.css'>
+    
+
+</head>
+<body>
+    <div class='container'>
+        <div class='row header'>
+            <div class='col col-xs-3 col-side name flex-ver'>
+                <h1 id='appname' class=''>Bancr</h1>
+            </div>
+            <div class='col col-xs-6 banner flex-ver'>
+                <p id='clock' class='time'>16:00</p>
+                <p class='timezone'>Eastern Standard</p>
+            </div>
+            <div class='col col-xs-3 col-side account flex-ver'>
+                <p id='username' class='label'>
+                    <?php echo $user; ?>
+                    </p>
+                <p id='balance' class='label'>
+                    <span class='sublabel'>balance</span>
+                    <span id="balance-amount">$<?php $user->get('balance'); ?></span>
+                    </p>
+                <p id='net-value' class='label'> 
+                    <span class='sublabel'>net value</span>
+                    <span id="netValue-amount">$<?php $user->get('netValue'); ?></span>
+                    </p>
+            </div>
+        </div>
+        
+        <div class='row toolbar'>
+            <div class='col col-xs-3 col-side toolbar-left flex-hor'>
+                <button id='csv' class='tool button' title='CSV Upload'>
+                    <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>
+                </button>
+                
+                <form id="csv-form" action="/action/uploadCSV.php" method="post" enctype="multipart/form-data">
+                    <input id='csv-file' type='file' name='csv-file'>
+                    <input type='submit' value='upload' name='submit'>
+                </form>
+                
+            </div>
+            <div class='col col-xs-6'>
+                <input id='search' class='tool textfield'
+                       type='text' placeholder='Search for a ticker or company' />
+            </div>
+            <div class='col col-xs-3 col-side toolbar-right flex-hor'>
+                <button id='help' class='tool button' title='User Manual'>
+                    <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span>
+                </button>
+                <button id='logout' class='tool button' title='Log out'>
+                    <span class='glyphicon glyphicon-log-out' aria-hidden='true'></span>
+                </button>
+            </div>
+        </div>
+        
+        <div class='row content'>
+            <div class='col col-xs-3 col-side'>
+                <ul id='portfolio' class='module stock-list'>
+                    
+                    
+                    
+                </ul>
+            </div>
+            <div class='col col-xs-6'>
+                <div id='graph-view' class='module graph-module flex-ver'>
+                    <ul class="nav nav-tabs graph-tabs">
+                        <li class='graph-tab active'><a href=''>Portfolio</a></li>
+                        <li class='graph-tab'><a href=''>Watchlist</a></li>
+                    </ul>
+                    <div id="gContainer">
+                    <canvas id='graph' width = 570 height = 300></canvas>
+                    </div>
+                    <ul id='interval-list' class='flex-hor'>
+                        <li id='1d' class='interval'><a>1d</a></li>
+                        <li id='5d' class='interval'><a>5d</a></li>
+                        <li id='1m' class='interval'><a>1m</a></li>
+                        <li id='3m' class='interval'><a>3m</a></li>
+                        <li id='6m' class='interval'><a>6m</a></li>
+                        <li id='all' class='interval'><a>All</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class='col col-xs-3 col-side'>
+                <div class='module'>
+                    <div id='legend'></div>
+                    <ul id='watchlist' class='stock-list'>
+                        
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class='row footer'>
+            <div class='col col-xs-3 col-side'>
+                <div id='transaction' class='module flex-ver'>
+                    <div id='' class='target-row flex-hor'>
+                        <input id='ticker-input' class='transaction-textfield'
+                               type='text' placeholder="Ticker">
+                        <input id='company-input' class='transaction-textfield'
+                               type='text' placeholder="Company">
+                    </div>
+                    <div id='' class='qty-row flex-hor'>
+                        <input id='qty-input' class='transaction-qty'
+                               type='number' min='1' step='1' placeholder='Quantity'>
+                    </div>
+                    <div id='' class='msg-row'>
+                        <p id='transaction-message' class='message'></p>
+                    </div>
+                    <div id='' class='confirm-row flex-hor'>
+                        <button id='buy' class='transaction-button'>Buy</button>
+                        <button id='sell' class='transaction-button'>Sell</button>
+                    </div>
+                </div>
+            </div>
+            <div class='col col-xs-6'>
+                <div id='details' class='module'></div>
+            </div>
+            <div class='col col-xs-3 col-side'>
+                <div id='recommendation' class='module'></div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

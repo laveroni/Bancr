@@ -7,6 +7,7 @@ function signIn() { ?>
 	</script>  
 <?php 
 }
+
 //function for incorrect sign in
 function incorrectEmail() {
 	?>
@@ -16,6 +17,7 @@ function incorrectEmail() {
 	</script>  
 <?php
 }
+
 function goToSleep(){
 	?>
 	<script type="text/javascript">
@@ -25,6 +27,9 @@ function goToSleep(){
 	</script>
 <?php
 }
+
+session_start();
+
 if(isset($_POST['submit']))
 {
 	//global $test;
@@ -32,7 +37,7 @@ if(isset($_POST['submit']))
 	$password = $_POST['password'];
 	
 	//connecting to the database
-	$db = new mysqli("127.0.0.1", "root", "#Ntgnixel15", "bancr_database");
+	$db = new mysqli("localhost", "root", "root", "bancr_database");
 	//checking for errors 
 	if($db->connect_errno > 0){
 		//error_log("ERROR!! DATABASE ERROR");
@@ -43,7 +48,7 @@ if(isset($_POST['submit']))
 	if (strpos($email, ";") == false && strpos($email, "'") == false && strpos($email, "-")==false && strpos($password, ";") == false && strpos($password, "'") == false ){
 		$result = $db->query("SELECT * FROM users WHERE email = '$email' AND password = '$password'");
 		//checking if any results 
-		if (mysqli_num_rows($result) == 0) {
+		if (mysqli_num_rows($result) != 1) {
 			//no results (incorrect login)
 			/*$fail++;
 			if($fail > 0)
@@ -51,6 +56,8 @@ if(isset($_POST['submit']))
 			incorrectEmail();
 		} else {
 			//yes results (correct login)...redirect them to the dashboard
+			//$_SESSION["user_id"] = $row[user_id];
+			$_SESSION['user'] =  $email;
 			signIn();
 		}
 	}
@@ -58,5 +65,7 @@ if(isset($_POST['submit']))
 		incorrectEmail();
 	}
 }
-
+if(isset($_SESSION['user'])) {
+	signIn();
+}
 ?>
