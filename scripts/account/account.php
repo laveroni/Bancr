@@ -7,7 +7,7 @@ class Account
 
 	function __construct ($name, $type, $balance){
 		$this -> $accountName = $name;
-		$this -> $accountType = $type;
+	//	$this -> $accountType = $type;
 		$this -> $accountBalance = $balance;
 	}
 
@@ -15,9 +15,9 @@ class Account
 		$this->$accountName = $name;
 	}
 
-	private function setType($type){
-		$this->accountType = $type;
-	}
+	// private function setType($type){
+	// 	$this->accountType = $type;
+	// }
 
 	private function setBalance($balance){
 		$this->setBalance = $balance;
@@ -27,9 +27,9 @@ class Account
 		return $this->$accountName;
 	}
 
-	public function getType(){
-		return this->$accountType;
-	}
+	// public function getType(){
+	// 	return this->$accountType;
+	// }
 
 	public function getBalance(){
 		return $this->$accountBalance;
