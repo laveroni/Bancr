@@ -5,11 +5,11 @@
     error_reporting(E_ALL | E_STRICT);
     //REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
 
-	class Transaction
+	class Account
 	{
 		private $date;
 		private $amount; 
-		private $type; 
+		private $type;  //e.g., credit cards, savings, loans
 		private $merchant;
 
 

@@ -15,13 +15,17 @@
 
 		private $email;
 		private $encryptedPassword;
+		private $accounts;
 
-		function __construct($email,$encryptedPassword) {
+		function __construct($email,$encryptedPassword) 
+		{
 			$this->email = $email;
 			$this->encryptedPassword = $encryptedPassword;
+			$this->accounts = array();
 		}
 
-		private function setEncryptedPassword($password){
+		private function setEncryptedPassword($password)
+		{
 			$this->encryptedPassword = $password;
 		}
 
@@ -29,6 +33,7 @@
 		{
 			return $this->encryptedPassword;
 		}
+
 		public function getEmail()
 		{
 			return $this->email;
