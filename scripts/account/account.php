@@ -2,10 +2,10 @@
 class Account
 {
 	private	 $accountName;
-	private $accountType;
+	//private $accountType;
 	private $accountBalance;
 
-	function __construct ($name, $type, $balance){
+	function __construct ($name, $balance){
 		$this -> $accountName = $name;
 	//	$this -> $accountType = $type;
 		$this -> $accountBalance = $balance;
