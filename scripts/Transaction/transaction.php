@@ -13,9 +13,9 @@
 		private $merchant;
 
 
-		function __construct ($data, $amount, $type, $merchant)
+		function __construct ($date, $amount, $type, $merchant)
 		{
-			$this->date = $data;
+			$this->date = $date;
 			$this->amount = $amount;
 			$this->type = $type;
 			$this->merchant = $merchant;
