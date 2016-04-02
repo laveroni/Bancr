@@ -29,7 +29,7 @@ class Account
 		$this->setBalance = $balance;
 	}
 
-	private function setNumber(){
+	private function getNumber(){
 		return $this->$accountNumber;
 	}
 
