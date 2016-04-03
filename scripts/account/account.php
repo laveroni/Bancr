@@ -1,5 +1,6 @@
 <?php
-require_once('../Transaction/transaction.php');
+include_once('../Transaction/transaction.php');
+
 class Account
 {
 	private $acountNumber;
@@ -38,7 +39,7 @@ class Account
 	}
 
 	 public function getHistory(){
-	 	return this->$transacationHistory;
+	 	return $this->$transacationHistory;
 	 }
 
 	public function getBalance(){

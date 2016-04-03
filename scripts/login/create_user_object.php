@@ -14,9 +14,11 @@
 
 	session_start();
 
+    require('../UserClass/User.php');
+
 	if($_SESSION['loggedIn'] == FALSE)
 	{
-		header('Location: ../../index.html');
+		header('Location: ../../signin.php');
 		exit();
 	}
 
@@ -48,7 +50,6 @@
     // $db->closeConnection();
 
 
-    header('Location: ../../dashboard.html');
+    header('Location: ../../dashboard.php');
     exit();
-
 ?>
