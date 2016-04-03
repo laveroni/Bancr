@@ -11,6 +11,8 @@
     error_reporting(E_ALL | E_STRICT);
     //REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
 
+    require_once('../UserClass/User.php');
+
 
 	session_start();
 

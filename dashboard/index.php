@@ -1,32 +1,18 @@
 <?php
 
+require_once('../scripts/UserClass/User.php');
+
 session_start();
 
-<<<<<<< HEAD
-$user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
-=======
-        <form class="form-signin" method="POST" action="/scripts/login/signin.php">
-          <h2 class="form-signin-heading"><font color="white">Sign Up</h2></font>
-          
-          <h4 class="form-signin-heading"><font color="white">Enter your
-                                <font color="purple">Email</font>
-                                and <font color="red">Password</font> to
-                                <font color="orange"> Sign Up</h2></font></font>
-          
-          <label for="inputEmail" class="sr-only">Email address</label>
-          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-          <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-          <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Sign Up</button>
-          <a href="index.html">Sign in</a></p>
->>>>>>> JL-userClass
-
-if (!$user)
+if (!isset($_SESSION['user']) || !isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
 {
-    header('Location: ./signin.php');
+    header('Location: ../index.html');
     exit();
 }
 
+$user = (object) $_SESSION['user'];
+
+file_put_contents('php://stderr', print_r($user, TRUE));
 ?>
 
 <!DOCTYPE html>
@@ -40,8 +26,8 @@ if (!$user)
     <title>Bancr</title>
     
     <!-- CSS -->
-    <link rel='stylesheet' href='css/bootstrap.min.css'>
-    <link rel='stylesheet' href='/css/dash.css'>
+    <link rel='stylesheet' href='../bootstrap/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='../css/dash.css'>
     
 
 </head>
@@ -57,27 +43,28 @@ if (!$user)
             </div>
             <div class='col col-xs-3 col-side account flex-ver'>
                 <p id='username' class='label'>
-                    <?php echo $user; ?>
+                    <?php echo $_SESSION['email']; ?>
                     </p>
                 <p id='balance' class='label'>
                     <span class='sublabel'>balance</span>
-                    <span id="balance-amount">$<?php $user->get('balance'); ?></span>
+                    <span id="balance-amount">$<?php echo '00'; ?></span>
                     </p>
                 <p id='net-value' class='label'> 
                     <span class='sublabel'>net value</span>
-                    <span id="netValue-amount">$<?php $user->get('netValue'); ?></span>
+                    <span id="netValue-amount">$<?php echo '00'; ?></span>
                     </p>
             </div>
         </div>
         
         <div class='row toolbar'>
             <div class='col col-xs-3 col-side toolbar-left flex-hor'>
+
                 <button id='csv' class='tool button' title='CSV Upload'>
                     <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>
                 </button>
                 
-                <form id="csv-form" action="/action/uploadCSV.php" method="post" enctype="multipart/form-data">
-                    <input id='csv-file' type='file' name='csv-file'>
+                <form id="csv-form" action="./uploadCSV.php" method="post" enctype="multipart/form-data">
+                    <input type='file' name='csv-file' id='csv-file'>
                     <input type='submit' value='upload' name='submit'>
                 </form>
                 
@@ -99,8 +86,6 @@ if (!$user)
         <div class='row content'>
             <div class='col col-xs-3 col-side'>
                 <ul id='portfolio' class='module stock-list'>
-                    
-                    
                     
                 </ul>
             </div>
@@ -165,5 +150,11 @@ if (!$user)
             </div>
         </div>
     </div>
+    <script>
+    $('#csv').click(function(e)
+    {
+        $('#csv-input').click();
+    });
+    </script>
 </body>
 </html>

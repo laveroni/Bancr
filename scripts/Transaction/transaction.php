@@ -8,18 +8,23 @@
 
 	class Transaction
 	{
+		private $account;
 		private $date;
 		private $amount; 
-		private $type; 
 		private $merchant;
 
 
-		function __construct ($data, $amount, $type, $merchant)
+		function __construct ($account, $date, $amount, $merchant)
 		{
-			$this->date = $data;
+			$this->account = $account;
+			$this->date = $date;
 			$this->amount = $amount;
-			$this->type = $type;
 			$this->merchant = $merchant;
+		}
+
+		private function setAccount($account)
+		{
+			$this->account = $account;
 		}
 
 		private function setDate($date)
@@ -32,14 +37,14 @@
 			$this->amount = $amount;
 		}
 
-		private function setType($type)
-		{
-			$this->type = $type;
-		}
-
 		private function setMerchant($merchant)
 		{
 			$this->merchant = $merchant;
+		}
+
+		public function getAccount()
+		{
+			return $this->account;
 		}
 
 		public function getDate()
@@ -52,16 +57,10 @@
 			return $this->amount;
 		}
 
-		public function getType()
-		{
-			return $this->type;
-		}
-
 		public function getMerchant()
 		{
 			return $this->merchant;
 		}
 
 	}
-
 ?>
