@@ -14,6 +14,7 @@
 		private $email;
 		private $encryptedPassword;
 		private $accounts;
+		private $numAccounts;
 
 		function __construct($email,$encryptedPassword) 
 		{
@@ -22,6 +23,7 @@
 
 			//key is account number, value is the account object
 			$this->accounts = array();
+			$this->numAccounts = 0;
 		}
 
 		private function setEncryptedPassword($password)
@@ -58,6 +60,9 @@
 
 		private function addAccount($accountObject)
 		{
+			$accountObject->setNumber($numAccounts);
+			$numAccounts++;
+
 			$accounts[$accountObject->getNumber()] = $accountObject;
 		}
 
