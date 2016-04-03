@@ -3,7 +3,7 @@
   <head>
   	<title>Bancr</title>
     	<!-- Bootstrap core CSS -->
-      <link href="./css/bootstrap.min.css" rel="stylesheet">
+      <link href="./vendors/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
 
       <!-- Custom styles for this template -->
       <link href="./css/signin.css" rel="stylesheet">
@@ -35,7 +35,11 @@
     <body background="money.jpg">
   	<div class="container">
 
+<<<<<<< Updated upstream
        <form class="form-signin" method="POST" action="/scripts/login/signin.php">
+=======
+       <form class="form-signin" method="POST" action="scripts/login/signin.php" id="logForm">
+>>>>>>> Stashed changes
        <!--<form class="form-signin">-->
           <h2 class="form-signin-heading"><font color="light green">Bancr</h2></font>
           

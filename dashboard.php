@@ -1,3 +1,13 @@
+<!-- if not log in, redirect to log in page -->
+<?php
+
+	if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == false)
+	{
+		header("Location: signin.php");
+		exit();
+	}
+?>
+
 <html>
 	<head>
 	    <script src="./vendors/jquery-1.12.1.min.js"></script>
@@ -73,14 +83,15 @@
 					<!-- Top -->
 					<tr>
 						<!-- Import csv -->
-						<td style ="width: 400px; height: 80px; text-align:center">
+						<td style ="width: 100px; height: 80px; text-align:center">
 							<h4>Import .csv File</h4>
 							<input style="    display: inline;border: 1px solid gainsboro;  padding: 5px;" type="file"  id="exampleInputFile">
 						</td>
 
 						<!-- Search -->
 						<td style="width:50%;     text-align: -webkit-center;">
-							<div>
+							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Bancr</h2>
+							<!--<div>
 							    <div class="input-group" style="width: 60%;border-collapse: collapse;">
 							    	<form action='' method='post'>
 									    <input name="searchQuery" type="text" class="form-control" id="stockSearch" placeholder="Search for...">
@@ -119,17 +130,17 @@
 						<!-- Portfolio of seven stocks -->
 						<td  style="height:480px; width:30%; background-color: white; padding-top:0px;">
 							<div style="">
-							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Portfolio</h2>
+							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Transactions</h2>
 							<div style="overflow-y: scroll; max-height: 321px">
 								
 								<table style="margin-bottom:0px" class="table table-striped table-hover table-bordered table-responsive  portfolioWidget">
 									<tbody>
 										<tr>
 											<th style="width: 90px">
-												Ticker
+												Name
 											</th>
 											<th style="width:200px">
-												Name
+												Type
 											</th>
 											<th style="width:70px">
 												<i class="fa fa-hashtag"></i>
@@ -145,35 +156,6 @@
 											</th>
 
 										</tr>
-
-									<?php 
-											$array = $_SESSION['userObject']->getStocks();
-											if(is_array($array)){
-												foreach($array as $key => $value ){
-												echo '
-												<tr>
-													<td>'
-													. $value->getTickerSymbol() .
-													'</td>
-													<td>'
-													. $value->getName() .
-													'</td>
-													<td>'
-													. $value->getQuantityOwned() .
-													'</td>
-													<td>'
-													. MarkitAPI::getCurrentPrice($value->getTickerSymbol()) .
-													'</td>
-													<td style="padding:0px">
-														<div class="checkbox">
-														    	<input type="checkbox" class="" style="margin-left: 0px !important; position: initial;"> 
-														</div>
-													</td>
-												</tr>';
-											}
-										}
-											
-										?>
 									</tbody>
 								</table>
 								</div>
@@ -189,16 +171,43 @@
 						<!-- Graph -->
 
 						<td class="graphTD" >
+							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Graph</h2>
 							<!-- Nav tabs -->
-							<ul class="nav nav-tabs" role="tablist" >
+							<!--<ul class="nav nav-tabs" role="tablist" >
 								<li role="presentation" class="active" style="width:50%; text-align:center"><a href="#portfolioGraph" aria-controls="portfolioGraph" role="tab" data-toggle="tab">Portfolio</a>
 								</li>
 								<li role="presentation"  style="width:50%; text-align:center"><a href="#watchlistGraph" aria-controls="watchlistGraph" role="tab" data-toggle="tab">Watchlist</a>
 								</li>
-							</ul>
+							</ul>-->
 							<div class="tab-content">
 								<div role="tabpanel" class="tab-pane active" id="portfolioGraph"></div>
-								<div role="tabpanel" class="tab-pane" id="whatlistGraph"></div>
+								<!--<div role="tabpanel" class="tab-pane" id="whatlistGraph"></div>-->
+						</td>
+
+						<!-- Account list -->
+						<td style="width:25%; text-align:center ">
+							<div style="">
+							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Accounts</h2>
+							<div style="overflow-y: scroll; max-height: 321px">
+								
+								<table style="margin-bottom:0px" class="table table-striped table-hover table-bordered table-responsive  portfolioWidget">
+									<tbody>
+										<tr>
+											<th style="width: 90px">
+												Account Name
+											</th>
+											<th style="width:10px">
+												<i class="fa fa-line-chart"></i>
+
+											</th>
+
+										</tr>
+									</tbody>
+								</table>
+								</div>
+							</div>
+
+
 						</td>
 
 						<!-- Watchlist -->
