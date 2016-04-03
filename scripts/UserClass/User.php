@@ -5,8 +5,8 @@
     error_reporting(E_ALL | E_STRICT);
     //REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
 
-    require_once('../account/account.php');
-    require_once('../Transaction/transaction.php');
+    require('../account/account.php');
+    require('../Transaction/transaction.php');
 
 	class User
 	{
