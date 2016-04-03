@@ -85,10 +85,7 @@
 						<!-- Import csv -->
 						<td style ="width: 100px; height: 80px; text-align:center">
 							<h4>Import .csv File</h4>
-							<form id="csv-form" action="./uploadCSV.php" method="post" enctype="multipart/form-data">
-							    <input id='csv-file' type='file' name='csv-file' accept='.csv,.CSV'>
-							    <input type='submit' value='upload' name='submit'>
-							</form>
+							<input style="    display: inline;border: 1px solid gainsboro;  padding: 5px;" type="file"  id="exampleInputFile">
 						</td>
 
 						<!-- Search -->
@@ -121,7 +118,7 @@
 							    <a  class="pointer"data-toggle="modal" id="userManual" data-target="#myModal">User Manual</a>
 
 							</div>
-							<a class="pointer" href="scripts/logout/logout.php">Log Out</a>
+							<a class="pointer" href="../logout/logout.php">Log Out</a>
 							
 
 
@@ -208,6 +205,9 @@
 									</tbody>
 								</table>
 								</div>
+							</div>
+							<div style="margin-top: 15px">
+								<button name="addAccount" type="submit" style="width:100px;" class="btn btn-default">Add account</button>
 							</div>
 
 
