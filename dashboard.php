@@ -120,7 +120,7 @@
 							    <a  class="pointer"data-toggle="modal" id="userManual" data-target="#myModal">User Manual</a>
 
 							</div>
-							<a class="pointer" href="./scripts/logout/logout.php">Log Out</a>
+							<a class="pointer" href="scripts/logout/logout.php">Log Out</a>
 							
 
 
