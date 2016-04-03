@@ -35,11 +35,8 @@
     <body background="money.jpg">
   	<div class="container">
 
-<<<<<<< Updated upstream
-       <form class="form-signin" method="POST" action="/scripts/login/signin.php">
-=======
        <form class="form-signin" method="POST" action="scripts/login/signin.php" id="logForm">
->>>>>>> Stashed changes
+
        <!--<form class="form-signin">-->
           <h2 class="form-signin-heading"><font color="light green">Bancr</h2></font>
           
