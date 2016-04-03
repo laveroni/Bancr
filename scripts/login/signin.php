@@ -4,7 +4,7 @@
 function incorrectEmail() {
 	?>
 	<script type="text/javascript">
-		window.location = "../index.html";
+		window.location = "../../signin.php";
 		alert("Incorrect email/password");
 	</script>  
 <?php
@@ -45,6 +45,7 @@ if(isset($_POST['submit']))
 	    //create a db class object, open connection
 	    $db = new dbManager();
 	    $db->openConnection();
+
 
 	    $password = test_input($db, $_POST["password"]);
 		$email = test_input($db, $_POST["email"]);
@@ -87,6 +88,8 @@ if(isset($_POST['submit']))
 	    	incorrectEmail();
 	    }
 
+}
+
 
 	function test_input($db, $data) 
 	{
@@ -98,17 +101,15 @@ if(isset($_POST['submit']))
 	}
 
 
-	// function hash($password) 
-	//{
-	//	return password_hash($password, PASSWORD_DEFAULT);
-	//}
+	function hashit($password) 
+	{
+		return password_hash($password, PASSWORD_DEFAULT);
+	}
 
 	function verify($password, $hash) 
 	{
     	return password_verify($password, $hash);
 	}
 
-
-}
 
 ?>
