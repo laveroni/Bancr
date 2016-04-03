@@ -208,6 +208,9 @@
 								</table>
 								</div>
 							</div>
+							<div style="margin-top: 15px">
+								<button name="addAccount" type="submit" style="width:100px;" class="btn btn-default">Add account</button>
+							</div>
 
 
 						</td>
