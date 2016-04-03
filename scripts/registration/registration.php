@@ -60,7 +60,7 @@
 			}
 
 			//determine if username is already taken
-			$user_log = "SELECT Email FROM Users WHERE Email = '$email' ";
+			$user_log = "SELECT Email FROM users WHERE Email = '$email' ";
 		
 			$unique_user = $db->queryRequest($user_log);
 		

@@ -110,6 +110,4 @@ if(isset($_POST['submit']))
 	{
     	return password_verify($password, $hash);
 	}
-
-
 ?>

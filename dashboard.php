@@ -75,7 +75,10 @@
 						<!-- Import csv -->
 						<td style ="width: 400px; height: 80px; text-align:center">
 							<h4>Import .csv File</h4>
-							<input style="    display: inline;border: 1px solid gainsboro;  padding: 5px;" type="file"  id="exampleInputFile">
+							<form id="csv-form" action="./uploadCSV.php" method="post" enctype="multipart/form-data">
+							    <input id='csv-file' type='file' name='csv-file' accept='.csv,.CSV'>
+							    <input type='submit' value='upload' name='submit'>
+							</form>
 						</td>
 
 						<!-- Search -->
