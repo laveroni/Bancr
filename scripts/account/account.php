@@ -5,52 +5,63 @@ class Account
 {
 	private $acountNumber;
 	private	$accountName;
-	private $transacationHistory = array();
+	private $transacationHistory;
 	private $accountBalance;
 
-	function __construct ($name, $balance, $transactions){
-		$this -> $accountName = $name;
-		$this -> $transacationHistory = $transacations;
-		$this -> $accountBalance = $balance;
+	function __construct ($name)
+	{
+		$this->$accountName = $name;
+		$this->$transacationHistory = array();
+		$this->$accountBalance = 0;
 	}
 
-	private function setNumber($number){
+	private function setNumber($number)
+	{
 		$this->$accountNumber = $number;
 	}
 
-	private function setName($name){
+	private function setName($name)
+	{
 		$this->$accountName = $name;
 	}
 
-	 private function setHistory($transactions){
+	 private function setHistory($transactions)
+	 {
 	 	$this->$transacationHistory = $transacations;
 	 }
 
-	private function setBalance($balance){
+	private function setBalance($balance)
+	{
 		$this->setBalance = $balance;
 	}
 
-	private function getNumber(){
+	private function getNumber()
+	{
 		return $this->$accountNumber;
 	}
 
-	public function getName(){
+	public function getName()
+	{
 		return $this->$accountName;
 	}
 
-	 public function getHistory(){
+	 public function getHistory()
+	 {
 	 	return $this->$transacationHistory;
 	 }
 
-	public function getBalance(){
+	public function getBalance()
+	{
 		return $this->$accountBalance;
 	}
 
-	public function getLastTransaction(){
+	public function getLastTransaction()
+	{
 		return $this-> $transacationHistory(count($transacationHistory)-1);
 	}
 
-	public function addTransaction($newTransaction){
+	public function addTransaction($newTransaction)
+	{
 		array_push($transacationHistory, $newTransaction);
 	}
 

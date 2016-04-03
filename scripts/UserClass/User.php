@@ -5,8 +5,8 @@
     error_reporting(E_ALL | E_STRICT);
     //REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
 
-    require_once('../account/account.php');
-    require_once('../Transaction/transaction.php');
+    require_once("../account/account.php");
+    require_once("../Transaction/transaction.php");
 
 	class User
 	{
@@ -54,17 +54,16 @@
 				echo "Account number: " . $accountNumber . " is invalid in user addTransaction";
 			}
 
-
 		}
 
 		private function addAccount($accountObject)
 		{
-			$arrays[$accountObject->getNumber()] = $accountObject;
+			$accounts[$accountObject->getNumber()] = $accountObject;
 		}
 
 		private function removeAccount($accountObject)
 		{
-			unset($arrays[$accountObject->getNumber()]);
+			unset($accounts[$accountObject->getNumber()]);
 		}
 
 	}

@@ -1,21 +1,19 @@
 <?php
+//file_put_contents('php://stderr', print_r('1', TRUE));
+require_once('../db/db_manager.php');
+require_once('../Transaction/transaction.php');
+require_once('../account/account.php');
+require_once('../UserClass/User.php');
 
-/*
-<button id='csv' class='tool button' title='CSV Upload'>
-    <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>
-</button>
-                
-<form id="csv-form" action="/uploadCSV.php" method="post" enctype="multipart/form-data">
-    <input id='csv-file' type='file' name='csv-file'>
-    <input type='submit' value='upload' name='submit'>
-</form>
-*/
-file_put_contents('php://stderr', print_r('1', TRUE));
-require_once('../scripts/db/db_manager.php');
-file_put_contents('php://stderr', print_r('2', TRUE));
-require_once('../scripts/UserClass/User.php');
-file_put_contents('php://stderr', print_r('3', TRUE));
-require_once('../scripts/Transaction/transaction.php');
+function is_valid_file($filename) {
+    $tmp = explode('.', $filename);
+    $ext = end($tmp);
+    if($ext != "csv") {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 function validate_input($db, $data) 
 {
@@ -26,15 +24,6 @@ function validate_input($db, $data)
     return $data;
 }
 
-function is_valid_file($filename) {
-    $ext = strtolower(end(explode('.', $filename)));
-    if($ext != "csv") {
-        return false;
-    } else {
-        return true;
-    }
-}
-
 function is_valid_transaction($account, $date, $amount, $merchant) {
 
     // Check whether fields are empty
@@ -42,12 +31,13 @@ function is_valid_transaction($account, $date, $amount, $merchant) {
         return false;
     }
     // Check whether date valid
-    $transaction_date = date_create_from_format("n/j/Y", $date);
-    $current_date = date("n/j/Y");
+    $date = new DateTime($date);
+    $transaction_date = $date->format('n/j/Y');
+    $current_date = date('n/j/Y');
     if($transaction_date > $current_date) {
         return false;
     }
-    // Other error checks?
+
     return true;
 }
 
@@ -61,25 +51,18 @@ if(isset($_POST['submit'])) {
     error_reporting(E_ALL | E_STRICT);
     //REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
 
-    if (!isset($_SESSION['user']) || !isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
+    if (!isset($_SESSION['userObject']) || !isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
     {
-        header('Location: ../index.html');
+        header('Location: ../../index.php');
         exit();
     }
 
     $user = $_SESSION['userObject'];
-    $email = $user.getEmail();
-    // OR, $email = $user['email'];
+    $email = $_SESSION['email'];
 
     // Connect to database
     $db = new dbManager();
     $db->openConnection();
-
-    // Get userID from database
-    $query = "SELECT * FROM Users WHERE Email = '$email' ";
-    $result = $db->queryRequest($query);
-    $row = mysqli_fetch_row($result);
-    $userID = $row[0];
 
     // Validate uploaded file type
     if(!is_valid_file($_FILES['csv-file']['name'])) {
@@ -105,20 +88,22 @@ if(isset($_POST['submit'])) {
             continue;
         }
 
+        file_put_contents('php://stderr', print_r('0', TRUE));
+
         // Create new Transaction object
         $transaction = new Transaction($account, $date, $amount, $merchant);
 
         // Add transaction to User
         // $user.addTransaction($transaction);
-
-        // CAN BE DONE IN addTransaction() ?
-        // Log transaction to database
-        $log = "INSERT INTO Transactions (user, account, date, amount, merchant)
-                VALUES ('$userID', '$account', '$date', '$amount', '$merchant')";
+        
+        // Log transaction 
+        $log = "INSERT INTO transactions (user, account, date, amount, merchant)
+                VALUES ('$email', '$account', '$date', '$amount', '$merchant')";
         $db->queryRequest($log);
-        // CAN BE DONE IN addTransaction() ?
+        
     }
 
     $db->closeConnection();
+    header('../../dashboard.php');
 }
 ?>

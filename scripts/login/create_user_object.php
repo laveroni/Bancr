@@ -14,11 +14,11 @@
 
 	session_start();
 
-    require('../UserClass/User.php');
+    require_once('../UserClass/User.php');
 
 	if($_SESSION['loggedIn'] == FALSE)
 	{
-		header('Location: ../../signin.php');
+		header('Location: ../../index.php');
 		exit();
 	}
 

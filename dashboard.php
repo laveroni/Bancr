@@ -13,7 +13,6 @@
 	    <script src="./vendors/jquery-1.12.1.min.js"></script>
 	    <script src="./vendors/moment.js"></script>
 	    <script src="script.js"></script>
-	    <script src="graph.js"></script>
 	    <script src="./vendors/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="./vendors/bootstrap-3.3.6-dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="./styles/portfolio.css">
@@ -85,7 +84,10 @@
 						<!-- Import csv -->
 						<td style ="width: 100px; height: 80px; text-align:center">
 							<h4>Import .csv File</h4>
-							<input style="    display: inline;border: 1px solid gainsboro;  padding: 5px;" type="file"  id="exampleInputFile">
+							<form id="csv-form" action="./scripts/uploadCSV/uploadCSV.php" method="post" enctype="multipart/form-data">
+							    <input id='csv-file' type='file' name='csv-file' accept='.csv,.CSV'>
+							    <input type='submit' value='upload' name='submit'>
+							</form>
 						</td>
 
 						<!-- Search -->
