@@ -59,12 +59,12 @@
 
 		private function addAccount($accountObject)
 		{
-			$arrays[$accountObject->getNumber()] = $accountObject;
+			$accounts[$accountObject->getNumber()] = $accountObject;
 		}
 
 		private function removeAccount($accountObject)
 		{
-			unset($arrays[$accountObject->getNumber()]);
+			unset($accounts[$accountObject->getNumber()]);
 		}
 
 	}
