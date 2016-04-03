@@ -38,7 +38,7 @@ class Account
 	}
 
 	 public function getHistory(){
-	 	return this->$transacationHistory;
+	 	return $this->$transacationHistory;
 	 }
 
 	public function getBalance(){
