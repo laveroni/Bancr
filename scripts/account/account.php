@@ -8,9 +8,9 @@ class Account
 	private $accountBalance;
 
 	function __construct ($name, $balance, $transactions){
-		$this -> $accountName = $name;
-		$this -> $transacationHistory = $transacations;
-		$this -> $accountBalance = $balance;
+		$this->$accountName = $name;
+		$this->$transacationHistory = $transacations;
+		$this->$accountBalance = $balance;
 	}
 
 	private function setNumber($number){
@@ -38,7 +38,7 @@ class Account
 	}
 
 	 public function getHistory(){
-	 	return this->$transacationHistory;
+	 	return $this->$transacationHistory;
 	 }
 
 	public function getBalance(){
