@@ -54,7 +54,6 @@
 				echo "Account number: " . $accountNumber . " is invalid in user addTransaction";
 			}
 
-
 		}
 
 		private function addAccount($accountObject)
