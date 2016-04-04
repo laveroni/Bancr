@@ -6,7 +6,7 @@ Given /^I am on the main page trying to add a new account$/ do
         fill_in 'email', :with => 'bancr@usc.edu'
         fill_in 'password', :with => 'password'
     end
-    click_button 'Login'
+    click_button 'signInButton'
 end
 #
 #
