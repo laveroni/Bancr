@@ -4,4 +4,4 @@ Scenario: Successful logout
 
 Given I am on the main application page
 When I try to logout
-Then I should be successful and now see the login page
+Then I should be successful to now see the login page
