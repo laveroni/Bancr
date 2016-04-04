@@ -32,7 +32,7 @@
   <body>
     
     <body style="background-color:#333333;">
-    <body background="money.jpg">
+    <!--<body background="money.jpg">-->
   	<div class="container">
 
        <form class="form-signin" method="POST" action="scripts/login/signin.php" id="logForm">
