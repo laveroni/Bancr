@@ -85,14 +85,14 @@
 
 
 
-	function test_input($db, $data) 
-	{
-	    $data = trim($data);
-	    $data = stripslashes($data);
-	    $data = htmlspecialchars($data);
-	    $data = mysqli_real_escape_string($db->getCon(), $data);
-	    return $data;
-	}
+//	function test_input($db, $data) 
+//	{
+//	    $data = trim($data);
+//	    $data = stripslashes($data);
+//	    $data = htmlspecialchars($data);
+//	    $data = mysqli_real_escape_string($db->getCon(), $data);
+//	    return $data;
+//	}
 
 
 	// function hash($password) 
@@ -100,10 +100,10 @@
 	//	return password_hash($password, PASSWORD_DEFAULT);
 	//}
 
-	function verify($password, $hash) 
-	{
-    	return password_verify($password, $hash);
-	}
+//	function verify($password, $hash) 
+//	{
+  //  	return password_verify($password, $hash);
+//	}
 
 
 ?>

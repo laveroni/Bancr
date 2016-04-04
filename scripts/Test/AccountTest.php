@@ -13,40 +13,22 @@ class AccountTest extends PHPUnit_Framework_TestCase{
 	private $trans;
 
 	protected function setUp(){
-		$this->trans = new array();
-		$this->account = new Account("Savings","5000",$this->trans);
-	}
-
-	protected function tearDown(){
-		unset($this->account);
+		$this->trans = array();
+		$this->account = new Account("Savings");
 	}
 
 	public function testSetNumber(){
 		$this->account->setNumber(50);
-		$this->assertEquals(50, $this->account->$accountNumber);
+		$this->assertEquals(50, $this->account->accountNumber);
 	}
 
-	public function testSetName(){
-		$this->account->setName("Test");
-		$this->assertEquals("Test", $this->account->$accountName);
+/*	public function testGetNumber(){
+		$this->account->number=50;
+		$expected = 50;
+		$actual = $this->getNumber();
+		$this->assertEquals($actual, $expected);
 	}
-
-	public function testSetHistory(){
-		array_push($trans, "hello");
-		$this->account->setHistory($this->trans);
-		$this->assertEquals(1, $this->account->count($transactionHistory));
-	}
-
-	public function testSetBalance(){
-		$this->account->setBalance(110);
-		$this->assertEquals(110, $this->account->$accountBalance);
-	}
-
-	public function testGetNumber(){
-		$this->method('getNumber')->willReturn(56);
-		$this->assertEquals(56, $this->user->getNumber());
-	}
-
+*/
 	public function testGetName(){
 		$actual = $this->account->getName();
 		$expected = "Savings";
@@ -54,28 +36,29 @@ class AccountTest extends PHPUnit_Framework_TestCase{
 	}
 
 	public function testGetHistory(){
-		$this->arr = new array();
-		$this->method('getHistory')->willReturn($this->arr);
-		$this->assertEquals($this->arr, $this->user->getHistory());
+		$actual = $this->account->getHistory();
+		$expected = $this->trans;
+		$this->assertEquals($actual, $expected);
 	}
 
 	public function testGetBalance(){
-		$this->method('getBalance')->willReturn(56);
-		$this->assertEquals(56, $this->user->getBalance());
+		$expected = 0;
+		$actual = $this->account->getBalance();
+		$this->assertEquals($actual, $expected);
 	}
 
-	public function testGetLastTransaction(){
+/*	public function testGetLastTransaction(){
 		$tran = new Transaction("savings", 2/31/23, 59, "tom");
 		$this->account->addTransaction($tran);
 		$this->assertEquals($tran, $this->account->getLastTransaction());
 	}
-
-	public function testAddTransaction(){
-		$prior = $this->account->count($transactionHistory);
+*/
+/*	public function testAddTransaction(){
+		$prior = count($this->account->transactionHistory);
 		$tran = new Transaction("savings", 2/31/23, 59, "tom");
 		$this->account->addTransaction($tran);
-		$now = $this->account->count($transactionHistory);
+		$now = count($this->account->transactionHistory);
 		$this->assertEquals($prior, $now + 1);
-	}
+	}*/
 }
 ?>

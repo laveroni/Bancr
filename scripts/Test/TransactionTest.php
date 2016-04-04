@@ -13,49 +13,49 @@ class TranactionTest extends PHPUnit_Framework_TestCase{
 		$this->transaction = new Transaction("Saves","01/01/16",100,"Ted");
 	}
 
-	public function testSetAccount(){
-		$this->transacction->setAccount($this->acc);
+	/*public function testSetAccount(){
+		$this->transaction->setAccount($this->acc);
 		$this->assertEquals($this->acc, $this->transaction->$account);
-	}
+	}*/
 
-	public function testSetDate(){
+/*	public function testSetDate(){
 		$this->transaction->setDate("03/23/10");
 		$this->assertEquals("03/23/10", $this->transaction->$date);
 	}
-
-	public function testSetMerchant(){
+*/
+/*	public function testSetMerchant(){
 		$this->transaction->setMerchant("John");
 		$this->assertEquals("John",$this->transaction->$merchant);
 	}
+*/
 
-
-	public function testSetAmount(){
+/*	public function testSetAmount(){
 		$this->transaction->setAmount(100);
 		$this->assertEquals(100, $this->transaction->$amount);
 	}
-
+*/
 	public function testGetAccount(){
-		$this->transaction->account = $this->acc;
+		$expected = "Saves";
 		$actual = $this->transaction->getAccount();
-		$this->assertEquals($this->acc, $actual);
+		$this->assertEquals($expected, $actual);
 	}
 
 	public function testGetDate(){
-		$this->transaction->$date = "01/12/13";
+		$expected = "01/01/16";
 		$actual = $this->transaction->getDate();
-		$this->assertEquals("01/12/13", $actual);
+		$this->assertEquals($expected, $actual);
 	}
 
 	public function testGetAmount(){
-		$this->transaction->$amount = 90;
+		$expected = 100;
 		$actual = $this->transaction->getAmount();
-		$this->assertEquals(90, $actual);
+		$this->assertEquals($expected, $actual);
 	}
 
 	public function testGetMerchant(){
-		$this->transaction->$merchant = "Don";
+		$expected = "Ted";
 		$actual = $this->transaction->getMerchant();
-		$this->assertEquals("Don", $actual);
+		$this->assertEquals($expected, $actual);
 	}
 }
 

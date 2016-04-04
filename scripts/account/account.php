@@ -59,7 +59,7 @@ class Account
 
 	public function getLastTransaction()
 	{
-		return $this->transacationHistory(count($this->transacationHistory)-1);
+		return end($this->transactionHistory);
 	}
 
 	public function addTransaction($newTransaction)

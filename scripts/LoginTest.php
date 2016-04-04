@@ -1,5 +1,5 @@
 <?php
-require_once("../login/ajaxCalls.php");
+//require_once("../../index.php");
 require_once("../login/signin.php"); 
 class LoginTest extends PHPUnit_Framework_TestCase
 {
@@ -8,7 +8,7 @@ class LoginTest extends PHPUnit_Framework_TestCase
 	public function testSignInValid() {
 		$this->assertEquals(
 			'success', 
-			signIn('bancr@usc.edu', 'password')
+			verify('bancr@usc.edu', 'password')
 		); 
 	}
     // TEST
@@ -16,7 +16,7 @@ class LoginTest extends PHPUnit_Framework_TestCase
 	public function testSignInInvalid() {
 		$this->assertEquals(
 			'error', 
-			signIn('julias@usc.edu', 'password')
+			verify('julias@usc.edu', 'password')
 		); 
 	}
 	
@@ -25,7 +25,7 @@ class LoginTest extends PHPUnit_Framework_TestCase
 	public function testSignInNoUsernameOrPassword() {
 		$this->assertEquals(
 			'error',
-			signIn('', '')
+			verify('', '')
 		);
 	}
     // TEST
@@ -33,7 +33,7 @@ class LoginTest extends PHPUnit_Framework_TestCase
 	public function testSignInNoUsername() {
 		$this->assertEquals(
 			'error',
-			signIn('', 'password')
+			verify('', 'password')
 		);
 	}
     // TEST
@@ -41,8 +41,8 @@ class LoginTest extends PHPUnit_Framework_TestCase
 	public function testSignInNoPassword() {
 		$this->assertEquals(
 			'error',
-			signIn('bancr@usc.edu', '')
+			verify('bancr@usc.edu', '')
 		);
 	}
 }
-?
+?>
