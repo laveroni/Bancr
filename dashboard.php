@@ -1,9 +1,8 @@
-<!-- if not log in, redirect to log in page -->
 <?php
-
-	if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == false)
+	session_start();
+	if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
 	{
-		header("Location: ./index.php");
+		header('Location: ./index.php');
 		exit();
 	}
 ?>
@@ -12,7 +11,6 @@
 	<head>
 	    <script src="./vendors/jquery-1.12.1.min.js"></script>
 	    <script src="./vendors/moment.js"></script>
-	    <script src="script.js"></script>
 	    <script src="./vendors/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="./vendors/bootstrap-3.3.6-dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="./styles/portfolio.css">

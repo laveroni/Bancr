@@ -29,6 +29,7 @@ class dbManager
 		$this->db_host = "localhost";
 		$this->db_username = "root";
 		$this->db_password = "password";
+		//$this->db_password = "root";
 		$this->db_database = "Bancr";
 	}
 
