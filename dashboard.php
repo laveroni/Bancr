@@ -3,7 +3,7 @@
 
 	if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == false)
 	{
-		header("Location: signin.php");
+		header("Location: ./index.php");
 		exit();
 	}
 ?>
@@ -84,7 +84,7 @@
 						<!-- Import csv -->
 						<td style ="width: 100px; height: 80px; text-align:center">
 							<h4>Import .csv File</h4>
-							<form id="csv-form" action="./scripts/uploadCSV/uploadCSV.php" method="post" enctype="multipart/form-data">
+							<form id="csv-form" action="scripts/uploadCSV/uploadCSV.php" method="post" enctype="multipart/form-data">
 							    <input id='csv-file' type='file' name='csv-file' accept='.csv,.CSV'>
 							    <input type='submit' value='upload' name='submit'>
 							</form>
