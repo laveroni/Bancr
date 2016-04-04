@@ -1,12 +1,23 @@
+#require 'capybara/rspec'
+#require 'capybara/cucumber'
+
+#include Capybara::DSL
+
+#Capybara.app_host = ""
+#Capybara.default_driver = :selenium
+
+#session = Capybara::Session.new :selenium
+#session.visit()
+
 #-------------------------------------------------------------------------------------------------
 
-Given /^I am buying a stock with a valid ticker symbol and valid quantity$/ do
+Given /^I am on the main page and trying to add a new account$/ do
     visit('http://localhost/Bancr/index.html')
-    within('#logForm') do
-        fill_in 'email', :with => 'a@a.com'
-        fill_in 'password', :with => 'a'
-    end
-    click_button 'Login'
+    #within('#logForm') do
+     #   fill_in 'email', :with => 'a@a.com'
+      #  fill_in 'password', :with => 'a'
+    #end
+    #click_button 'Login'
 end
 
 

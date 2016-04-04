@@ -1,6 +1,6 @@
 #-------------------------------------------------------------------------------------------------
 
-Given /^I am buying a stock with a valid ticker symbol and valid quantity$/ do
+Given (/^I am buying a stock with a valid ticker symbol and valid quantity$/) do
     visit('http://localhost/Bancr/index.html')
     within('#logForm') do
         fill_in 'email', :with => 'a@a.com'
@@ -28,9 +28,10 @@ When(/^I try to remove a new account with only a type or only a name$/) do
         fill_in 'accountName', :with => 'fakeaccount'
         fill_in 'accountType', :with => ''
         click_button 'sellAccount'
-        endend
+    end
+end
 
-Then(/^I should see another messahe with appropriate intructions$/) do
+Then(/^I should see another message with appropriate intructions$/) do
     expect(page).to have_content 'Please enter BOTH details'
 end
 
@@ -40,7 +41,8 @@ When(/^I try to remove a new account with a proper name and type$/) do
         fill_in 'accountName', :with => 'mynewaccount'
         fill_in 'accountType', :with => 'Checking'
         click_button 'sellAccount'
-        endend
+    end
+end
 
 Then(/^I should see a success message, and then no longer see the account in the list$/) do
     expect(page).to have_content 'Account has been updated'

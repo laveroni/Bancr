@@ -12,7 +12,7 @@ When(/^I try to login without credentials$/) do
     click_button 'Login'
 end
 
-Then(/^I should see an error message$/) do
+Then(/^I should see a login error message$/) do
     expect(page).to have_content 'Please enter Username and Password'
 end
 
@@ -44,11 +44,10 @@ Then(/^I should be successful to now see the main page$/) do
     visit('http://localhost/Bancr/dashboard.html')
 end
 
-
-When /^I click on the Registration Page Link$/ do
+When(/^I click on the Registration Page Link$/) do
     click_link("Register")
 end
 
-Then /^I should see the Registration Page$/ do
+Then (/^I should see the Registration Page$/) do
     expect(page).to have_content 'Register'
 end
