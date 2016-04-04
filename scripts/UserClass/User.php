@@ -5,8 +5,8 @@
     error_reporting(E_ALL | E_STRICT);
     //REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
 
-    require_once("../account/account.php");
-    require_once("../Transaction/transaction.php");
+    //need to actually use it but right now it is not necessary and giving an include error
+    //include_once('../account/account.php');
 
 	class User
 	{
@@ -14,6 +14,7 @@
 		private $email;
 		private $encryptedPassword;
 		private $accounts;
+		private $numAccounts;
 
 		function __construct($email,$encryptedPassword) 
 		{
@@ -22,6 +23,7 @@
 
 			//key is account number, value is the account object
 			$this->accounts = array();
+			$this->numAccounts = 0;
 		}
 
 		private function setEncryptedPassword($password)
@@ -56,14 +58,22 @@
 
 		}
 
-		private function addAccount($accountObject)
+		public function addAccount($accountObject)
 		{
-			$accounts[$accountObject->getNumber()] = $accountObject;
+			$accountObject->setNumber($this->numAccounts);
+			$this->numAccounts++;
+
+			$this->accounts[$accountObject->getNumber()] = $accountObject;
 		}
 
-		private function removeAccount($accountObject)
+		public function removeAccount($accountObject)
 		{
 			unset($accounts[$accountObject->getNumber()]);
+		}
+
+		public function getAccountsArray()
+		{
+			return $this->accounts;
 		}
 
 	}
