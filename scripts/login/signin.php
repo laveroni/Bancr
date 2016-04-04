@@ -4,7 +4,7 @@
 function incorrectEmail() {
 	?>
 	<script type="text/javascript">
-		window.location = "../../signin.php";
+		window.location = "../../index.php";
 		alert("Incorrect email/password");
 	</script>  
 <?php

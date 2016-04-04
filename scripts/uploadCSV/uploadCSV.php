@@ -88,7 +88,7 @@ if(isset($_POST['submit'])) {
             continue;
         }
 
-        file_put_contents('php://stderr', print_r('0', TRUE));
+        //file_put_contents('php://stderr', print_r('0', TRUE));
 
         // Create new Transaction object
         $transaction = new Transaction($account, $date, $amount, $merchant);
@@ -103,7 +103,7 @@ if(isset($_POST['submit'])) {
         
     }
 
-    $db->closeConnection();
-    header('../../dashboard.php');
+    $db->closeConnection(); 
+    header('Location: ../../dashboard.php');
 }
 ?>

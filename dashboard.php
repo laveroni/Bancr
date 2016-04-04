@@ -15,8 +15,8 @@
 
 
 	if($_SESSION['loggedIn'] == false || $_SESSION['loggedIn'] == null)
-	{
-		header("Location: signin.php");
+	{	
+		header('Location: ./index.php');
 		exit();
 	}
 
@@ -47,7 +47,6 @@
 	<head>
 	    <script src="./vendors/jquery-1.12.1.min.js"></script>
 	    <script src="./vendors/moment.js"></script>
-	    <script src="script.js"></script>
 	    <script src="./vendors/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="./vendors/bootstrap-3.3.6-dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="./styles/portfolio.css">
@@ -119,7 +118,7 @@
 						<!-- Import csv -->
 						<td style ="width: 100px; height: 80px; text-align:center">
 							<h4>Import .csv File</h4>
-							<form id="csv-form" action="./scripts/uploadCSV/uploadCSV.php" method="post" enctype="multipart/form-data">
+							<form id="csv-form" action="scripts/uploadCSV/uploadCSV.php" method="post" enctype="multipart/form-data">
 							    <input id='csv-file' type='file' name='csv-file' accept='.csv,.CSV'>
 							    <input type='submit' value='upload' name='submit'>
 							</form>

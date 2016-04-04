@@ -31,7 +31,7 @@
 
 	// $query = "UPDATE Users SET Balance = '$balance', Portfolio = '$serial' WHERE Email = '$email'";
 
-	$result = $db->queryRequest($query);
+	// $result = $db->queryRequest($query);
 
 	$db->closeConnection();
 
@@ -39,7 +39,7 @@
 
 	unset($_SESSION);
 	session_destroy();
-	header('Location: ../../signin.php');
+	header('Location: ../../index.php');
 	exit();
 
 ?>
