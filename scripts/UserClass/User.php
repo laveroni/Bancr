@@ -5,8 +5,8 @@
     error_reporting(E_ALL | E_STRICT);
     //REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
 
-    require_once("../account/account.php");
-    require_once("../Transaction/transaction.php");
+    //need to actually use it but right now it is not necessary and giving an include error
+    //include_once('../account/account.php');
 
 	class User
 	{
@@ -58,17 +58,22 @@
 
 		}
 
-		private function addAccount($accountObject)
+		public function addAccount($accountObject)
 		{
-			$accountObject->setNumber($numAccounts);
-			$numAccounts++;
+			$accountObject->setNumber($this->numAccounts);
+			$this->numAccounts++;
 
-			$accounts[$accountObject->getNumber()] = $accountObject;
+			$this->accounts[$accountObject->getNumber()] = $accountObject;
 		}
 
-		private function removeAccount($accountObject)
+		public function removeAccount($accountObject)
 		{
 			unset($accounts[$accountObject->getNumber()]);
+		}
+
+		public function getAccountsArray()
+		{
+			return $this->accounts;
 		}
 
 	}

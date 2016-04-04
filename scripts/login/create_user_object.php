@@ -47,6 +47,7 @@
     $_SESSION['userObject'] = $user;
 
 
+
     // $db->closeConnection();
 
 

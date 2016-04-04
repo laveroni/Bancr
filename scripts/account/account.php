@@ -1,5 +1,7 @@
 <?php
-include_once('../Transaction/transaction.php');
+
+//temporarily commented out for include errors
+// include_once('../Transaction/transaction.php');
 
 class Account
 {
@@ -10,24 +12,24 @@ class Account
 
 	function __construct ($name)
 	{
-		$this->$accountName = $name;
-		$this->$transacationHistory = array();
-		$this->$accountBalance = 0;
+		$this->accountName = $name;
+		$this->transacationHistory = array();
+		$this->accountBalance = 0;
 	}
 
-	private function setNumber($number)
+	public function setNumber($number)
 	{
-		$this->$accountNumber = $number;
+		$this->accountNumber = $number;
 	}
 
 	private function setName($name)
 	{
-		$this->$accountName = $name;
+		$this->accountName = $name;
 	}
 
 	 private function setHistory($transactions)
 	 {
-	 	$this->$transacationHistory = $transacations;
+	 	$this->transacationHistory = $transacations;
 	 }
 
 	private function setBalance($balance)
@@ -35,34 +37,34 @@ class Account
 		$this->setBalance = $balance;
 	}
 
-	private function getNumber()
+	public function getNumber()
 	{
-		return $this->$accountNumber;
+		return $this->accountNumber;
 	}
 
 	public function getName()
 	{
-		return $this->$accountName;
+		return $this->accountName;
 	}
 
 	 public function getHistory()
 	 {
-	 	return $this->$transacationHistory;
+	 	return $this->transacationHistory;
 	 }
 
 	public function getBalance()
 	{
-		return $this->$accountBalance;
+		return $this->accountBalance;
 	}
 
 	public function getLastTransaction()
 	{
-		return $this-> $transacationHistory(count($transacationHistory)-1);
+		return $this->transacationHistory(count($this->transacationHistory)-1);
 	}
 
 	public function addTransaction($newTransaction)
 	{
-		array_push($transacationHistory, $newTransaction);
+		array_push($this->transacationHistory, $newTransaction);
 	}
 
 }

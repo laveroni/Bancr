@@ -1,11 +1,46 @@
-<!-- if not log in, redirect to log in page -->
+<!-- if not logged in, redirect to log in page -->
 <?php
+	
+	//REMOVE BELOW UPON SUCCESSFUL IMPLEMENTATION
+    ini_set('display_errors', 'On');
+    error_reporting(E_ALL | E_STRICT);
+    //REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
 
-	if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == false)
+	
+
+	include_once("scripts/UserClass/User.php");
+	include_once("scripts/account/account.php");
+
+	session_start();
+
+
+	if($_SESSION['loggedIn'] == false || $_SESSION['loggedIn'] == null)
 	{
 		header("Location: signin.php");
 		exit();
 	}
+
+	if(isset($_POST['addAccount']))
+	{
+		$newAccount = new Account($_POST["accountName"]);
+
+		$_SESSION['userObject']->addAccount($newAccount);
+
+
+		$testAccounts = $_SESSION['userObject']->getAccountsArray();
+
+		// foreach ($testAccounts as $key => $value)
+		// {
+		// 	echo'<br>'; 
+		// 	echo $key . "   " . $value->getName();
+		// 	echo'<br>';
+		// }	
+		// exit();	
+
+		header("Location: dashboard.php");
+		exit();
+	}
+
 ?>
 
 <html>
@@ -204,13 +239,30 @@
 											</th>
 
 										</tr>
+
+										<?php 
+											$accountsArray = $_SESSION['userObject']->getAccountsArray();
+
+										    foreach ($accountsArray as $key => $value)
+										    {
+										        echo'<tr>'; 
+										        echo'<td>' . $value->getName() . "</td>";
+										        echo'<tr>';
+										    }
+										?>
+
 									</tbody>
 								</table>
 								</div>
 							</div>
-							<div style="margin-top: 15px">
-								<button name="addAccount" type="submit" style="width:100px;" class="btn btn-default">Add account</button>
-							</div>
+
+							<form action="" method="post">
+								Account Name:<br>
+								<input type="text" name="accountName" id="accountName"><br>
+								<div style="margin-top: 15px">
+									<button name="addAccount" type="submit" style="width:100px;" class="btn btn-default" id="addAccount">Add account</button>
+								</div>
+							</form>
 
 
 						</td>
