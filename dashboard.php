@@ -229,12 +229,14 @@
 								<table style="margin-bottom:0px" class="table table-striped table-hover table-bordered table-responsive  portfolioWidget">
 									<tbody>
 										<tr>
-											<th style="width: 90px">
+											<th style="width:90px">
 												Account Name
 											</th>
 											<th style="width:10px">
 												<i class="fa fa-line-chart"></i>
-
+											</th>
+											<th style="width:90px">
+												Action
 											</th>
 
 										</tr>
@@ -246,6 +248,17 @@
 										    {
 										        echo'<tr>'; 
 										        echo'<td>' . $value->getName() . "</td>";
+										        echo'<td> 
+										        		<form action="" method="post">
+										        			<input type="radio" name="display" unchecked>
+										        		</form>
+										        	</td>';
+										        echo'<td> 
+										        		<form action="" method="post">
+										        			<input type="button" name="removeAccount"
+										        				value="remove account">
+										        		</form>
+										        	</td>';
 										        echo'<tr>';
 										    }
 										?>
