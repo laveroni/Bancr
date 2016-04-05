@@ -273,7 +273,7 @@
 								</div>
 							</div>
 
-							<form action="" method="post">
+							<form id="addAccount" action="" method="post">
 								Account Name:<br>
 								<input type="text" name="accountName" id="accountName"><br>
 								<div style="margin-top: 15px">
