@@ -3,7 +3,11 @@ Given(/^I am on the login page$/) do
 end
 
 When(/^I try to login without credentials$/) do
+<<<<<<< HEAD
     within('#logForm') do
+=======
+    within('#loginform') do
+>>>>>>> de747988a121ae8ce8bfaaeffe0a926284cdeb01
         fill_in 'email', :with => ''
         fill_in 'password', :with => ''
     end
@@ -17,7 +21,11 @@ end
 
 
 When(/^I try to login with invalid credentials$/) do
+<<<<<<< HEAD
     within('#logForm') do
+=======
+    within('#loginform') do
+>>>>>>> de747988a121ae8ce8bfaaeffe0a926284cdeb01
         fill_in 'email', :with => 'test@test.com'
         fill_in 'password', :with => 'b'
     end
@@ -31,7 +39,11 @@ end
 
 
 When(/^I try to login with valid credentials$/) do
+<<<<<<< HEAD
     within('#logForm') do
+=======
+    within('#loginform') do
+>>>>>>> de747988a121ae8ce8bfaaeffe0a926284cdeb01
         fill_in 'email', :with => 'bancr@usc.edu'
         fill_in 'password', :with => 'password'
     end

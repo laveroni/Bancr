@@ -153,8 +153,13 @@
 							<!--<div class="userManual">
 							    <a  class="pointer"data-toggle="modal" id="userManual" data-target="#myModal">User Manual</a>
 
+<<<<<<< HEAD
 							</div>-->
 							<a class="pointer" href="scripts/logout/logout.php" id="logout">Log Out</a>
+=======
+							</div>
+							<a class="pointer" id="Log Out" href="scripts/logout/logout.php">Log Out</a>
+>>>>>>> de747988a121ae8ce8bfaaeffe0a926284cdeb01
 							
 
 

@@ -35,7 +35,11 @@
     <!--<body background="money.jpg">-->
   	<div class="container">
 
+<<<<<<< HEAD
        <form class="form-signin" method="POST" id="logForm" action="scripts/login/signin.php">
+=======
+       <form class="form-signin" id="loginform" method="POST" action="scripts/login/signin.php">
+>>>>>>> de747988a121ae8ce8bfaaeffe0a926284cdeb01
        <!--<form class="form-signin">-->
           <h2 class="form-signin-heading"><font color="light green">Bancr</h2></font>
           

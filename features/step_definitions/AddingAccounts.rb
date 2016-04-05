@@ -1,14 +1,16 @@
 #To get to the main page you HAVE to Login
 
-Given /^I am on the main page trying to add a new account$/ do
+Given (/^I am on the main page trying to add a new account$/) do
     visit('http://localhost/Bancr/index.php')
-    within('#logForm') do
+    within('#loginform') do
         fill_in 'email', :with => 'bancr@usc.edu'
         fill_in 'password', :with => 'password'
     end
     click_button 'signInButton'
 end
+#should be on dashboard.php after above step
 #
+#currently a user could make an account with a blank name, so this test is commented for now
 #
 #When(/^I try to add a new account with blank fields$/) do
 #    find('#addAccount') do
