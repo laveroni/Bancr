@@ -12,12 +12,12 @@
 #-------------------------------------------------------------------------------------------------
 
 Given /^I am on the main page and trying to add a new account$/ do
-    visit('http://localhost/Bancr/index.html')
-    #within('#logForm') do
-     #   fill_in 'email', :with => 'a@a.com'
-      #  fill_in 'password', :with => 'a'
-    #end
-    #click_button 'Login'
+    visit('http://localhost/Bancr/index.php')
+    within('#logForm') do
+         fill_in 'email', :with => 'bancr@usc.edu'
+        fill_in 'password', :with => 'password'
+    end
+    click_button 'signInButton'
 end
 
 

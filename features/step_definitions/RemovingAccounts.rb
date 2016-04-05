@@ -1,12 +1,12 @@
 #-------------------------------------------------------------------------------------------------
 
 Given (/^I am buying a stock with a valid ticker symbol and valid quantity$/) do
-    visit('http://localhost/Bancr/index.html')
+    visit('http://localhost/Bancr/index.php')
     within('#logForm') do
-        fill_in 'email', :with => 'a@a.com'
-        fill_in 'password', :with => 'a'
+        fill_in 'email', :with => 'bancr@usc.edu'
+        fill_in 'password', :with => 'password'
     end
-    click_button 'Login'
+    click_button 'signInButton'
 end
 
 When(/^I try to remove a new account without selecting a type or entering a name$/) do
