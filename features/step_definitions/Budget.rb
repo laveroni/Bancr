@@ -12,35 +12,21 @@
 #-------------------------------------------------------------------------------------------------
 
 Given /^I am on the main page and trying to add a new account$/ do
-    visit('http://localhost/Bancr/index.php')
-    within('#logForm') do
-         fill_in 'email', :with => 'bancr@usc.edu'
-        fill_in 'password', :with => 'password'
-    end
-    click_button 'signInButton'
+   
 end
 
 
 When(/^I try to add a new account without selecting a type or entering a name$/) do
-    find('#addAccount') do
-        fill_in 'accountName', :with => ''
-        fill_in 'accountType', :with => ''
-        click_button 'addAccount'
-    end
+    
 end
 
 Then(/^I should see an error message telling me to do so$/) do
-    expect(page).to have_content 'Please fill in the text fields'
 end
 
 
 
 When(/^I try to add a new account with only a type or only a name$/) do
-    find('#addAccount') do
-        fill_in 'accountName', :with => ''
-        fill_in 'accountType', :with => 'Checking'
-        click_button 'addAccount'
-    end
+    
 end
 
 Then(/^I should see another message with appropriate instructions$/) do
