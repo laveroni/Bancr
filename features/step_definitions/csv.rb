@@ -16,8 +16,8 @@ end
 
 Then(/^I see the correct message$/) do
     begin
-    main, popup = page.driver.browser.window_handles
-    within_window(popup) do
+    popup = windows.last
+    page.within_window popup do
       popup.should have_content('Upload successful')
       click_on('ok')
     end
