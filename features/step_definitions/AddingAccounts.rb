@@ -11,7 +11,7 @@
 
 #-------------------------------------------------------------------------------------------------
 
-Given /^I am on the main page and trying to add a new account$/ do
+Given /^I am on the main page and trying to add a new account2$/ do
     visit('http://localhost/Bancr/index.php')
     within('#logForm') do
          fill_in 'email', :with => 'bancr@usc.edu'
