@@ -6,17 +6,12 @@ convertNoticesToExceptions="true"
 convertWarningsToExceptions="true"
 stopOnFailure="true">
 <filter>
-  <whitelist processUncoveredFilesFromWhitelist="true">
-    <directory suffix=".php">../logout/</directory>
-	
+  <whitelist processUncoveredFilesFromWhitelist="true">	
     <directory suffix=".php" phpVersion="5.6.0">../login/</directory>
     <directory suffix=".php">../UserClass/</directory>
     <directory suffix=".php">../Transaction/</directory>
     <directory suffix=".php">../account/</directory>
-    <exclude>
-      <directory suffix=".php">../db/</directory>
-      <directory suffix=".php">../uploadCSV</directory>
-      <directory suffix=".php">../registration</directory>      
+    <exclude>     
     </exclude>
   </whitelist>
 </filter>
