@@ -11,12 +11,16 @@ class AccountTest extends PHPUnit_Framework_TestCase{
 
 	protected $account;
 	private $trans;
-
+	/**
+	 * @runInSeparateProcess
+	 */
 	protected function setUp(){
 		$this->trans = array();
 		$this->account = new Account("Savings", "credit");
 	}
-
+	/**
+	 * @runInSeparateProcess
+	 */
 	public function testSetNumber(){
 		$this->account->setNumber(50);
 		$this->assertEquals(50, $this->account->accountNumber);
@@ -29,18 +33,25 @@ class AccountTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals($actual, $expected);
 	}
 */
+	/**
+	 * @runInSeparateProcess
+	 */
 	public function testGetName(){
 		$actual = $this->account->getName();
 		$expected = "Savings";
 		$this->assertEquals($expected, $actual);
 	}
-
+	/**
+	 * @runInSeparateProcess
+	 */
 	public function testGetHistory(){
 		$actual = $this->account->getHistory();
 		$expected = $this->trans;
 		$this->assertEquals($actual, $expected);
 	}
-
+	/**
+	 * @runInSeparateProcess
+	 */
 	public function testGetBalance(){
 		$expected = 0;
 		$actual = $this->account->getBalance();
