@@ -2,10 +2,10 @@
 
 Given (/^I am buying a stock with a valid ticker symbol and valid quantity$/) do
     visit('http://localhost/Bancr/index.php')
-    within('#logForm') do
+    #within('#logForm') do
         fill_in 'email', :with => 'bancr@usc.edu'
         fill_in 'password', :with => 'password'
-    end
+    #end
     click_button 'signInButton'
 end
 
