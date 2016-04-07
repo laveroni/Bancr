@@ -2,5 +2,6 @@ Feature: Removing accounts not there
 
 Scenario: User tries to remove an account 
 
-Given I am on the index page2
-Then I should not see a remove account button
+Given I am on the index page
+When I remove a new account
+Then I should not see that account
