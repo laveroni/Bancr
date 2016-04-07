@@ -154,7 +154,7 @@
 							    <a  class="pointer"data-toggle="modal" id="userManual" data-target="#myModal">User Manual</a>
 
 							</div>
-							<a class="pointer" href="scripts/logout/logout.php">Log Out</a>
+							<a class="pointer" href="scripts/logout/logout.php" name="logout" id="logout">Log Out</a>
 							
 
 
@@ -267,6 +267,8 @@
 								</table>
 								</div>
 							</div>
+
+							<!--Error: Enter Account Name-->
 
 							<form action="" method="post">
 								Account Name:<br>
