@@ -8,7 +8,7 @@ Given(/^I am on the main application page$/) do
 end
 
 When(/^I try to logout$/) do
-    click_button('#logout')
+    click_button('logout')
 end
 
 Then(/^I should be successful to now see the login page$/) do
