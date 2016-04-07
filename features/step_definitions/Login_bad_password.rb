@@ -1,7 +1,7 @@
 Given(/^I am on the login page$/) do
     visit('http://localhost/Bancr/index.php')
 end
-When(/^When I try to login with invalid credentials$/) do
+When(/^I try to login with invalid credentials$/) do
     #within('#logForm') do
         fill_in 'email', :with => 'bancr@usc.edu'
         fill_in 'password', :with => 'a'
@@ -9,6 +9,6 @@ When(/^When I try to login with invalid credentials$/) do
     click_button 'signInButton'
 end
 
-Then(/^Then I should see an error message$/) do
+Then(/^I should see an error message$/) do
     page.should have_content('Enter your email and password')
 end

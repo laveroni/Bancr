@@ -1,7 +1,7 @@
 Given(/^I am on the login page2$/) do
     visit('http://localhost/Bancr/index.php')
 end
-When(/^When I try to login without credentials$/) do
+When(/^I try to login without credentials$/) do
     #within('#logForm') do
         fill_in 'email', :with => 'ban@usc.edu'
         fill_in 'password', :with => 'password'
@@ -9,6 +9,6 @@ When(/^When I try to login without credentials$/) do
     click_button 'signInButton'
 end
 
-Then(/^Then I should see another error message$/) do
+Then(/^I should see another error message$/) do
     page.should have_content('Enter your email and password')
 end

@@ -9,6 +9,6 @@ When(/^I try to login with valid credentials$/) do
     click_button 'signInButton'
 end
 
-Then(/^I should be successful to now see the main page$/) do
+Then(/^I should be successful and now see the main page$/) do
     page.should have_content('Accounts')
 end
