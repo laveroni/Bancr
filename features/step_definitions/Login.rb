@@ -15,7 +15,7 @@ Then(/^I should see a login error message$/) do
 end
 
 
-Given(/^I am on the login page$/) do
+Given(/^I am on the login page2$/) do
     visit('http://localhost/Bancr/index.php')
 end
 When(/^I try to login with invalid credentials$/) do
@@ -31,7 +31,7 @@ Then(/^I should see another error message$/) do
 end
 
 
-Given(/^I am on the login page$/) do
+Given(/^I am on the login page3$/) do
     visit('http://localhost/Bancr/index.php')
 end
 When(/^I try to login with valid credentials$/) do
