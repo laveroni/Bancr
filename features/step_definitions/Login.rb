@@ -15,7 +15,9 @@ Then(/^I should see a login error message$/) do
 end
 
 
-
+Given(/^I am on the login page$/) do
+    visit('http://localhost/Bancr/index.php')
+end
 When(/^I try to login with invalid credentials$/) do
     within('#logForm') do
         fill_in 'email', :with => 'test@test.com'
@@ -29,7 +31,9 @@ Then(/^I should see another error message$/) do
 end
 
 
-
+Given(/^I am on the login page$/) do
+    visit('http://localhost/Bancr/index.php')
+end
 When(/^I try to login with valid credentials$/) do
     within('#logForm') do
         fill_in 'email', :with => 'bancr@usc.edu'
