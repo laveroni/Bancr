@@ -11,7 +11,7 @@ When(/^I try to login without credentials$/) do
 end
 
 Then(/^I should see a login error message$/) do
-    expect(page).to have_content 'Incorrect email/password'
+    expect(page).to have_content 'Enter your email and password'
 end
 
 
@@ -27,7 +27,7 @@ When(/^I try to login with invalid credentials$/) do
 end
 
 Then(/^I should see another error message$/) do
-    expect(page).to have_content 'Incorrect email/password'
+    expect(page).to have_content 'Enter your email and password'
 end
 
 
