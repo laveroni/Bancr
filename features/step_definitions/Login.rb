@@ -27,7 +27,7 @@ When(/^I try to login with invalid credentials$/) do
 end
 
 Then(/^I should see another error message$/) do
-    expect(page).to have_content 'Enter your email and password'
+    page.should have_css('email')
 end
 
 
@@ -43,5 +43,5 @@ When(/^I try to login with valid credentials$/) do
 end
 
 Then(/^I should be successful to now see the main page$/) do
-    visit('http://localhost/Bancr/dashboard.php')
+    page.should have_content('Accounts')
 end
