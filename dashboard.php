@@ -424,10 +424,10 @@
 
 		</table>
 
-		<?php 
-			$ar = $_SESSION['userObject']->getStocks();
-			echo json_encode($ar); 
-		?>
+		<!--<?php 
+			$ar //= $_SESSION['userObject']->getStocks();
+			//echo json_encode($ar); 
+		?>-->
 
 		<script>
 			var ar = <?php echo json_encode($ar) ?>;

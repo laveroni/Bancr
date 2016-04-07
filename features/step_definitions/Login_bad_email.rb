@@ -1,4 +1,4 @@
-Given(/^I am on the login page3$/) do
+Given(/^I am on the login page1$/) do
     visit('http://localhost/Bancr/index.php')
 end
 When(/^I try to login without credentials$/) do
