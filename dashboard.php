@@ -13,6 +13,10 @@
 
 	session_start();
 
+	if(!isset($_SESSION['addAccountError']))
+	{
+		$_SESSION['addAccountError'] = "";
+	}
 
 	if($_SESSION['loggedIn'] == false || $_SESSION['loggedIn'] == null)
 	{	
@@ -22,23 +26,53 @@
 
 	if(isset($_POST['addAccount']))
 	{
-		$newAccount = new Account($_POST["accountName"]);
+		
+		if(isset($_POST["accountName"]) && $_POST["accountName"] != "")
+		{
+			$_SESSION['addAccountError'] = "";
 
-		$_SESSION['userObject']->addAccount($newAccount);
+
+			$testAccounts = $_SESSION['userObject']->getAccountsArray();
+
+			foreach ($testAccounts as $key => $value)
+			{ 
+				if($value->getName() == $_POST["accountName"])
+				{
+					$_SESSION['addAccountError'] = "<br>Error: Account Name Already Exists";
+					break;
+				}
+				
+			}	
+
+			if($_SESSION['addAccountError'] == "")
+			{
+				$newAccount = new Account($_POST["accountName"], $_POST['accountTypeInput']);
+
+				$_SESSION['userObject']->addAccount($newAccount);
 
 
-		$testAccounts = $_SESSION['userObject']->getAccountsArray();
+				//$testAccounts = $_SESSION['userObject']->getAccountsArray();
 
-		// foreach ($testAccounts as $key => $value)
-		// {
-		// 	echo'<br>'; 
-		// 	echo $key . "   " . $value->getName();
-		// 	echo'<br>';
-		// }	
-		// exit();	
+				// foreach ($testAccounts as $key => $value)
+				// {
+				// 	echo'<br>'; 
+				// 	echo $key . "   " . $value->getName();
+				// 	echo'<br>';
+				// }	
+				// exit();	
 
-		header("Location: dashboard.php");
-		exit();
+				header("Location: dashboard.php");
+				exit();
+			}
+
+		}
+
+		else
+		{
+			$_SESSION['addAccountError'] = "<br>Error: Enter Account Name";
+		}
+
+		
 	}
 
 ?>
@@ -179,10 +213,14 @@
 											<th style="width:90px">
 												Account Name
 											</th>
+											<th style="width:90px">
+												Account Type
+											</th>
 											<th style="width:10px">
+												Display
 												<i class="fa fa-line-chart"></i>
 											</th>
-											<th style="width:90px">
+											<th style="width:40px">
 												Action
 											</th>
 
@@ -195,6 +233,7 @@
 										    {
 										        echo'<tr>'; 
 										        echo'<td>' . $value->getName() . "</td>";
+										        echo'<td>' . $value->getType() . "</td>";
 										        echo'<td> 
 										        		<form action="" method="post">
 										        			<input type="radio" name="display" unchecked>
@@ -203,18 +242,9 @@
 										        echo'<td> 
 										        		<form action="" method="post">
 										        			<input type="button" name="removeAccount"
-										        				value="remove account">
+										        				value="Remove" id="removeAccount">
 										        		</form>
 										        	</td>';
-										        echo'<td>
-										                <SELECT name="country">
-										                    <OPTION value="in">India</OPTION>
-										                    <OPTION value="de">Germany</OPTION>
-										                    <OPTION value="fr">France</OPTION>
-										                    <OPTION value="us">United States</OPTION>
-										                    <OPTION value="ch">Switzerland</OPTION>
-										                </SELECT>
-										            </td>';
 										        echo'<tr>';
 										    }
 										?>
@@ -224,16 +254,22 @@
 								</div>
 							</div>
 
-							<!--Error: Enter Account Name-->
 
 							<form action="" method="post">
 								Account Name:<br>
 								<input type="text" name="accountName" id="accountName"><br>
+								Account Type:<br>
+								<select name="accountTypeInput">
+									<option value="savings">Savings</option>
+									<option value="credit">Credit</option>
+									<option value="loan">Loan</option>
+								</select>
+
+								<?php echo '<div style="color:red;">' . $_SESSION['addAccountError'] . '</div>'; ?>
 								<div style="margin-top: 15px">
 									<button name="addAccount" type="submit" style="width:100px;" class="btn btn-default" id="addAccount">Add account</button>
 								</div>
 							</form>
-
 
 						</td>
 
