@@ -2,6 +2,9 @@
 //Done need coverage
 require_once "../UserClass/User.php";
 
+/**
+ * @runInSeparateProcess
+ */
 class UserTest extends PHPUnit_Framework_TestCase{
 	
 	protected $accounts;
