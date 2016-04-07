@@ -1,4 +1,5 @@
 <?php 
+    session_start();
 
     ini_set('display_errors', 'On');
     error_reporting(E_ALL | E_STRICT);
@@ -9,7 +10,7 @@
 
     
 	//unset session data, destroy session data, and redirect to login page
-	session_start();
+	
 
 	//database configuration file containing db login credential
 
