@@ -59,56 +59,7 @@
 
 	<body style="margin:30px;">
 
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" style="text-align:center" id="myModalLabel">User Manual</h4>
-		      	</div>
-		      		<div class="modal-body">
-		     			<p>
-		     				<span style="font-size:20px">Welcome to Trading!</span>
-		     				<br><br> 
-		    				<b>Search</b>
-		      				<br>
-							<span>Enter a company name or ticker name to browse through available stocks. Click "Add to Watchlist" to add the stock to your Watchlist and see its information and it plotted on the graph.</span>
-							<br><br>
-							<b>Import .csv File</b>
-							<br>
-							<span>Click "Browse" to search through your files to import a .csv formatted file. The file will be in this format:<span>
-							<br>
-							<p>
-								STOCK_TICKER_NAME, DATE_BOUGHT_DOLLARS, PRICE_BOUGHT, NUMBER_OF_SHARES
-								<br>
-								NFLX, 11/2/2015, 108.92, 10
-								<br>
-								CMG, 2/27/2016, 505.79, 25
-								<br>
-								COST, 2/4/2016, 143.28, 90
-								<br>
-								EBAY, 1/5/2013, 26.12, 20
-								<br>
-								GLD, 2/11/2012, 119.06, 5
-							</p>
-							<br>
-							<b>Portfolio and Watchlist</b>
-							<br>
-							<span>Click on a checkbox next to any stock to see it plotted on the graph in the center. On the graph, hover over a trend to see the price of the share at a given time. Access the different graphs for Portfolio and Watchlist through the tabs on top.</span>
-							<br><br>
-							<b>Buy/Sell Stock</b>
-							<br>
-							<span>Enter the ticker name of a company and the amount of shares to buy. Click on the sell tab to sell an owned stock. Using the dropdown, select which stock to sell and how many shares.</span> 
-						</p>
-
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
+		
 		<table class ="portfolioPage" style=" border-collapse: separate; border-spacing: 15px;">
 			<thead>
 			</thead>
@@ -146,14 +97,11 @@
 						<td style="width:25%; text-align:center ">
 							<div class="timeDisplay"></div>
 							<div class="dateDisplay"></div>
-							<div class="userManual">
-							    <a  class="pointer"data-toggle="modal" id="userManual" data-target="#myModal">User Manual</a>
-
-							</div>
-							<button name="logout" id="logout" type="submit" style="width:100px;" class="btn btn-default" onclick="window.location.href='scripts/logout/logout.php'">
+						
+							<button name="logout" id="logout" value="logout" type="submit" style="width:100px;" class="btn btn-default" onclick="window.location.href='scripts/logout/logout.php'">
 							Logout
 							</button>
-							
+						
 							
 
 
@@ -258,6 +206,15 @@
 										        				value="remove account">
 										        		</form>
 										        	</td>';
+										        echo'<td>
+										                <SELECT name="country">
+										                    <OPTION value="in">India</OPTION>
+										                    <OPTION value="de">Germany</OPTION>
+										                    <OPTION value="fr">France</OPTION>
+										                    <OPTION value="us">United States</OPTION>
+										                    <OPTION value="ch">Switzerland</OPTION>
+										                </SELECT>
+										            </td>';
 										        echo'<tr>';
 										    }
 										?>
