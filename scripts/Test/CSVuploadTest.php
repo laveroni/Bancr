@@ -1,6 +1,6 @@
 <?php
 //NOT DONE
-include_once "../account/account.php";
+/*include_once "../account/account.php";
 include_once "../Transaction/transaction.php";
 
 class TranactionTest extends PHPUnit_Framework_TestCase{
@@ -13,27 +13,27 @@ class TranactionTest extends PHPUnit_Framework_TestCase{
 		$this->transaction = new Transaction("Saves","01/01/16",100,"Ted");
 	}
 
-	/*public function testSetAccount(){
+	public function testSetAccount(){
 		$this->transaction->setAccount($this->acc);
 		$this->assertEquals($this->acc, $this->transaction->$account);
-	}*/
+	}
 
-/*	public function testSetDate(){
+	public function testSetDate(){
 		$this->transaction->setDate("03/23/10");
 		$this->assertEquals("03/23/10", $this->transaction->$date);
 	}
-*/
-/*	public function testSetMerchant(){
+
+	public function testSetMerchant(){
 		$this->transaction->setMerchant("John");
 		$this->assertEquals("John",$this->transaction->$merchant);
 	}
-*/
 
-/*	public function testSetAmount(){
+
+	public function testSetAmount(){
 		$this->transaction->setAmount(100);
 		$this->assertEquals(100, $this->transaction->$amount);
 	}
-*/
+
 	public function testGetAccount(){
 		$expected = "Saves";
 		$actual = $this->transaction->getAccount();
@@ -60,5 +60,5 @@ class TranactionTest extends PHPUnit_Framework_TestCase{
 }
 
 
-
+*/
 ?>

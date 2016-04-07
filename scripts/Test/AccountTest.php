@@ -14,7 +14,7 @@ class AccountTest extends PHPUnit_Framework_TestCase{
 
 	protected function setUp(){
 		$this->trans = array();
-		$this->account = new Account("Savings");
+		$this->account = new Account("Savings", "credit");
 	}
 
 	public function testSetNumber(){

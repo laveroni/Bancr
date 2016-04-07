@@ -1,6 +1,6 @@
 <?php
 
-include_once "../account/account.php";
+/*include_once "../account/account.php";
 include_once "../Transaction/transaction.php";
 //include_once "PHPUnit/Autoload.php";
 
@@ -22,13 +22,13 @@ class AccountTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals(50, $this->account->accountNumber);
 	}
 
-/*	public function testGetNumber(){
+	public function testGetNumber(){
 		$this->account->number=50;
 		$expected = 50;
 		$actual = $this->getNumber();
 		$this->assertEquals($actual, $expected);
 	}
-*/
+
 	public function testGetName(){
 		$actual = $this->account->getName();
 		$expected = "Savings";
@@ -47,18 +47,18 @@ class AccountTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals($actual, $expected);
 	}
 
-/*	public function testGetLastTransaction(){
+	public function testGetLastTransaction(){
 		$tran = new Transaction("savings", 2/31/23, 59, "tom");
 		$this->account->addTransaction($tran);
 		$this->assertEquals($tran, $this->account->getLastTransaction());
 	}
-*/
-/*	public function testAddTransaction(){
+
+	public function testAddTransaction(){
 		$prior = count($this->account->transactionHistory);
 		$tran = new Transaction("savings", 2/31/23, 59, "tom");
 		$this->account->addTransaction($tran);
 		$now = count($this->account->transactionHistory);
 		$this->assertEquals($prior, $now + 1);
-	}*/
-}
+	}
+}*/
 ?>
