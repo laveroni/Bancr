@@ -1,5 +1,5 @@
 Given(/^I am on the login page$/) do
-    visit('http://localhost/Bancr/index.php')
+    
 end
 
 When(/^I try to login without credentials$/) do
@@ -11,23 +11,22 @@ When(/^I try to login without credentials$/) do
 end
 
 Then(/^I should see a login error message$/) do
-    expect(page).to have_content 'Enter your email and password'
+    expect(page).to have_content 'Incorrect email/password'
 end
 
 
-Given(/^I am on the login page2$/) do
-    visit('http://localhost/Bancr/index.php')
-end
 When(/^I try to login with invalid credentials$/) do
-    within('#logForm') do
-        fill_in 'email', :with => 'test@test.com'
-        fill_in 'password', :with => 'b'
+    visit('http://localhost/Bancr/index.php')do
+        within('#logForm') do
+            fill_in 'email', :with => 'test@test.com'
+            fill_in 'password', :with => 'b'
+        end
+        click_button 'signInButton'
     end
-    click_button 'signInButton'
 end
 
 Then(/^I should see another error message$/) do
-    expect(page).to have_content 'Enter your email and password'
+    expect(page).to have_content 'Incorrect email/password'
 end
 
 
