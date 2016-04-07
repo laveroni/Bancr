@@ -5,16 +5,9 @@ include_once "../Transaction/transaction.php";
 
 class TranactionTest extends PHPUnit_Framework_TestCase{
 
-	/**
- 	* @runInSeparateProcess
-	 */
-
 	protected $transaction;
 	protected $acc;
 
-	/**
- 	* @runInSeparateProcess
-	 */
 	protected function setUp(){
 		$this->acc = new Account("Check", 3000, null);
 		$this->transaction = new Transaction("Saves","01/01/16",100,"Ted");
@@ -41,33 +34,25 @@ class TranactionTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals(100, $this->transaction->$amount);
 	}
 */
-	/**
- 	* @runInSeparateProcess
-	 */
+	
 	public function testGetAccount(){
 		$expected = "Saves";
 		$actual = $this->transaction->getAccount();
 		$this->assertEquals($expected, $actual);
 	}
-	/**
- 	* @runInSeparateProcess
-	 */
+	
 	public function testGetDate(){
 		$expected = "01/01/16";
 		$actual = $this->transaction->getDate();
 		$this->assertEquals($expected, $actual);
 	}
-	/**
- 	* @runInSeparateProcess
-	 */
+	
 	public function testGetAmount(){
 		$expected = 100;
 		$actual = $this->transaction->getAmount();
 		$this->assertEquals($expected, $actual);
 	}
-	/**
- 	* @runInSeparateProcess
-	 */
+	
 	public function testGetMerchant(){
 		$expected = "Ted";
 		$actual = $this->transaction->getMerchant();

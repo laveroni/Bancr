@@ -3,9 +3,6 @@
 /*include_once "../account/account.php";
 include_once "../Transaction/transaction.php";
 */
-/**
- * @runInSeparateProcess
- */
 /*
 class TranactionTest extends PHPUnit_Framework_TestCase{
 
