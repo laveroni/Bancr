@@ -11,6 +11,6 @@ When(/^I try to logout$/) do
     click_button('logout')
 end
 
-Then(/^I should be successful to now see the login page$/) do
+Then(/^I should be successful and now see the login page$/) do
     current_path.should == "/scripts/logout/logout.php"
 end
