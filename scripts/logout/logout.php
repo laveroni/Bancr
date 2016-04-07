@@ -16,24 +16,24 @@
 
     //need to store serialized portfolio and balance
 
-    $email = $_SESSION['email']; 
+    // $email = $_SESSION['email']; 
 
-    $user = $_SESSION['userObject'];
+    // $user = $_SESSION['userObject'];
 
 
 
-    $serial = serialize($user);
+    //$serial = serialize($user);
 
 
     //create a db class object, open connection
-    $db = new dbManager();
-    $db->openConnection();
+    //$db = new dbManager();
+    //$db->openConnection();
 
 	// $query = "UPDATE Users SET Balance = '$balance', Portfolio = '$serial' WHERE Email = '$email'";
 
 	// $result = $db->queryRequest($query);
 
-	$db->closeConnection();
+	//$db->closeConnection();
 
 
 
