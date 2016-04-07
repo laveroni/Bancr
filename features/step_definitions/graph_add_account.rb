@@ -1,5 +1,5 @@
 
-Given (/^I am on the main application page$/)do
+Given (/^I am on the main application page1$/)do
 	
 end
 When (/^I try to add an account to the graph$/)do
