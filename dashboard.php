@@ -150,8 +150,8 @@
 							    <a  class="pointer"data-toggle="modal" id="userManual" data-target="#myModal">User Manual</a>
 
 							</div>
-							<button name="logout" id="logout" type="submit" style="width:100px;" class="btn btn-default">
-								<a class="pointer" href="scripts/logout/logout.php" name="logout">Log Out</a>
+							<button name="logout" id="logout" type="submit" style="width:100px;" class="btn btn-default" onclick="window.location.href='scripts/logout/logout.php'">
+							Logout
 							</button>
 							
 							
