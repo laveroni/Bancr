@@ -97,11 +97,11 @@
 						<td style="width:25%; text-align:center ">
 							<div class="timeDisplay"></div>
 							<div class="dateDisplay"></div>
-							
-							<button name="logout" id="logout" type="submit" style="width:100px;" class="btn btn-default" onclick="window.location.href='scripts/logout/logout.php'">
+						
+							<button name="logout" id="logout" value="logout" type="submit" style="width:100px;" class="btn btn-default" onclick="window.location.href='scripts/logout/logout.php'">
 							Logout
 							</button>
-							
+						
 							
 
 
@@ -206,6 +206,15 @@
 										        				value="remove account">
 										        		</form>
 										        	</td>';
+										        echo'<td>
+										                <SELECT name="country">
+										                    <OPTION value="in">India</OPTION>
+										                    <OPTION value="de">Germany</OPTION>
+										                    <OPTION value="fr">France</OPTION>
+										                    <OPTION value="us">United States</OPTION>
+										                    <OPTION value="ch">Switzerland</OPTION>
+										                </SELECT>
+										            </td>';
 										        echo'<tr>';
 										    }
 										?>
