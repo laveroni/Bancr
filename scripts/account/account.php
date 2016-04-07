@@ -9,12 +9,20 @@ class Account
 	private	$accountName;
 	private $transacationHistory;
 	private $accountBalance;
+	private $accountType;
 
-	function __construct ($name)
+	function __construct ($name, $type)
 	{
 		$this->accountName = $name;
 		$this->transacationHistory = array();
 		$this->accountBalance = 0;
+		$this->accountType = $type;
+	}
+
+
+	public function getType()
+	{
+		return $this->accountType;
 	}
 
 	public function setNumber($number)
