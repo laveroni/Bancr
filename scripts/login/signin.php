@@ -5,7 +5,6 @@ function incorrectEmail() {
 	?>
 	<script type="text/javascript">
 		window.location = "../../index.php";
-		alert("Incorrect email/password");
 	</script>  
 <?php
 }
@@ -13,7 +12,6 @@ function goToSleep(){
 	?>
 	<script type="text/javascript">
 		window.location = "../disable.html";
-		alert("Incorrect 4 times. Will time out for 1 minute");
 		//window.setTimeout(sleepB, 20000);
 	</script>
 <?php
