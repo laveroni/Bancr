@@ -12,5 +12,5 @@ When(/^I try to logout$/) do
 end
 
 Then(/^I should be successful and now see the login page$/) do
-    current_path.should == "/scripts/logout/logout.php"
+    page.should have_content('Enter your email and password')
 end
