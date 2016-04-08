@@ -1,0 +1,16 @@
+
+
+Code Coverage Report:    
+  2016-04-08 12:03:50    
+                         
+ Summary:                
+  Classes:  0.00% (0/3)  
+  Methods: 41.38% (12/29)
+  Lines:   40.98% (25/61)
+
+Account
+  Methods:  41.67% ( 5/12)   Lines:  47.62% ( 10/ 21)
+Transaction
+  Methods:  55.56% ( 5/ 9)   Lines:  52.94% (  9/ 17)
+User
+  Methods:  25.00% ( 2/ 8)   Lines:  26.09% (  6/ 23)
