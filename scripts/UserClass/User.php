@@ -47,7 +47,7 @@
 
 			//locate which account object by finding the key that is the account number
 			//assuming that the key exists
-			if (array_key_exists($accountNumber, $accounts)) 
+			if (array_key_exists($accountNumber, $this->accounts)) 
 			{
     			$this->accounts[$accountNumber]->addTransaction($newTransaction);
 			}
