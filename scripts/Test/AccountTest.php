@@ -63,7 +63,7 @@ class AccountTest extends PHPUnit_Framework_TestCase{
 		$this->account->addTransaction($tran);
 		$tranNow = $this->account->getHistory();
 		$now = count($tranNow);
-		$this->assertEquals($prior, $now + 1);
+		$this->assertEquals($prior, $now - 1);
 	}
 }
 ?>
