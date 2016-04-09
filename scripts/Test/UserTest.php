@@ -2,6 +2,7 @@
 //Done need coverage
 require_once "../UserClass/User.php";
 require_once "../account/account.php";
+require_once "../Transaction/transaction.php";
 
 class UserTest extends PHPUnit_Framework_TestCase{
 	
@@ -45,10 +46,27 @@ class UserTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals($expected, $actual);
 	}
 	
-	public function testAddTransaction(){
+	/*public function testAddTransaction(){
 		$this->transaction = new Transaction(32112, 50,"food", "taco bell");
 		array_push($this->accounts, $this->transaction);
 		$this->assertEquals($this->transaction, end($this->accounts));
+	}*/
+
+	public function testAddTransactionFailure(){
+		$users = new User("ttrojan@usc.edu", "pass");
+		$this->invokeMethod($users, 'addTransaction', array("1/011/01", 170, "Savings", "Bob", 0));
+		$accountNumber = 0;
+		$accs = $users->getAccountsArray();
+		$this->assertFalse(array_key_exists($accountNumber, $accounts));
+	}
+
+	public function testAddTransactionSuccess(){
+		$this->user->addAccount($this->acc);
+		$users = new User("ttrojan@usc.edu", "pass");
+		$this->invokeMethod($users, 'addTransaction', array("1/01/01", 170, "Savings", "Bob", 0));
+		$trans = new Transaction("1/01/01", 170, "Savings", "Bob");
+		$accs = $users->getAccountsArray();
+		$this->assertEquals($accs[0], trans);
 	}
 
 	/*public function testAddTransactions(){

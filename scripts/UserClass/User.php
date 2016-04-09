@@ -49,7 +49,7 @@
 			//assuming that the key exists
 			if (array_key_exists($accountNumber, $accounts)) 
 			{
-    			$accounts[$accountNumber]->addTransaction($newTransaction);
+    			$this->accounts[$accountNumber]->addTransaction($newTransaction);
 			}
 			else
 			{
