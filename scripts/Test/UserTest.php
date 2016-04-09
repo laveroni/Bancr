@@ -9,8 +9,8 @@ class UserTest extends PHPUnit_Framework_TestCase{
 	protected $user;
 	
 	protected function setUp(){
-		$this->user = new User("ttrojan@usc.edu","rasmuslerdorf");
-		$this->accounts = array();
+		$user = new User("ttrojan@usc.edu","rasmuslerdorf");
+		$accounts = array();
 	}
 
 	//used to test private functions
