@@ -24,9 +24,8 @@ class UserTest extends PHPUnit_Framework_TestCase{
 
 
 	public function testGetEncryptedPassword(){
-		$actual = $this->invokeMethod($user, 'getEncryptedPassword', array());
 		$expected = "$2y$10$.vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a";
-		$this->assertEquals($actual, $expected);
+		$this->assertEquals($this->invokeMethod($user, 'getEncryptedPassword', array()), $expected);
 	}
 
 	
