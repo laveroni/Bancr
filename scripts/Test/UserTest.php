@@ -64,7 +64,7 @@ class UserTest extends PHPUnit_Framework_TestCase{
 	public function testRemoveAccount(){
 		$this->user->removeAccount($this->acc);
 		$accs = $this->user->getAccountsArray();
-		$this->assertEquals(0, count[$accs]);
+		$this->assertEquals(0, count($accs));
 	}
 
 }
