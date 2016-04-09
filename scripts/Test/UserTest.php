@@ -29,6 +29,13 @@ class UserTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals($this->invokeMethod($users, 'getEncryptedPassword', array()), $expected);
 	}
 
+	public function testSetEncryptedPassword(){
+		$users = new User("ttrojan@usc.edu", "pass");
+		$this->invokeMethod($users, 'setEncryptedPassword', array("newPass"));
+		$expected = "newPass";
+		$actual = $users['encryptedPassword'];
+		$this->assertEquals($actual, $expected);
+	}
 	
 	public function testGetEmail(){
 		$actual = $this->user->getEmail();
