@@ -9,16 +9,26 @@ class UserTest extends PHPUnit_Framework_TestCase{
 	protected $user;
 	
 	protected function setUp(){
-		$this->user = new User("ttrojan@usc.edu","Ladida");
+		$this->user = new User("ttrojan@usc.edu","rasmuslerdorf");
 		$this->accounts = array();
 	}
-	
-/*	public function testGetEncryptedPassword(){
-		$actual = $this->getPass();
-		$expected = "Ladida";
+
+	//used to test private functions
+	public function invokeMethod(&$object, $methodName, array $parameters = array()){
+    	$reflection = new \ReflectionClass(get_class($object));
+    	$method = $reflection->getMethod($methodName);
+    	$method->setAccessible(true);
+
+    	return $method->invokeArgs($object, $parameters);
+	}
+
+
+	public function testGetEncryptedPassword(){
+		$actual = $this->invokeMethod($user, 'getEncryptedPassword', array());
+		$expected = "$2y$10$.vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a";
 		$this->assertEquals($actual, $expected);
 	}
-*/
+
 	
 	public function testGetEmail(){
 		$actual = $this->user->getEmail();
