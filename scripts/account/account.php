@@ -13,6 +13,10 @@ class Account
 
 	function __construct ($name, $type)
 	{
+		//TODO:  GET ACCOUNT NUMBER FROM DATABASE
+		$this->accountNumber = 0;
+
+		
 		$this->accountName = $name;
 		$this->transacationHistory = array();
 		$this->accountBalance = 0;
@@ -30,20 +34,20 @@ class Account
 		$this->accountNumber = $number;
 	}
 
-	private function setName($name)
-	{
-		$this->accountName = $name;
-	}
+	// private function setName($name)
+	// {
+	// 	$this->accountName = $name;
+	// }
 
-	 private function setHistory($transactions)
-	 {
-	 	$this->transacationHistory = $transacations;
-	 }
+	//  private function setHistory($transactions)
+	//  {
+	//  	$this->transacationHistory = $transacations;
+	//  }
 
-	private function setBalance($balance)
-	{
-		$this->setBalance = $balance;
-	}
+	// private function setBalance($balance)
+	// {
+	// 	$this->setBalance = $balance;
+	// }
 
 	public function getNumber()
 	{
@@ -55,10 +59,10 @@ class Account
 		return $this->accountName;
 	}
 
-	 public function getHistory()
-	 {
+	public function getHistory()
+	{
 	 	return $this->transacationHistory;
-	 }
+	}
 
 	public function getBalance()
 	{

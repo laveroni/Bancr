@@ -68,7 +68,7 @@
 
 		public function removeAccount($accountObject)
 		{
-			unset($accounts[$accountObject->getNumber()]);
+			unset($this->accounts[$accountObject->getNumber()]);
 		}
 
 		public function getAccountsArray()

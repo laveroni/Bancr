@@ -21,25 +21,25 @@
 			$this->merchant = $merchant;
 		}
 
-		private function setAccount($account)
-		{
-			$this->account = $account;
-		}
+		// private function setAccount($account)
+		// {
+		// 	$this->account = $account;
+		// }
 
-		private function setDate($date)
-		{
-			$this->date = $date;
-		}
+		// private function setDate($date)
+		// {
+		// 	$this->date = $date;
+		// }
 
-		private function setAmount($amount)
-		{
-			$this->amount = $amount;
-		}
+		// private function setAmount($amount)
+		// {
+		// 	$this->amount = $amount;
+		// }
 
-		private function setMerchant($merchant)
-		{
-			$this->merchant = $merchant;
-		}
+		// private function setMerchant($merchant)
+		// {
+		// 	$this->merchant = $merchant;
+		// }
 
 		public function getAccount()
 		{
