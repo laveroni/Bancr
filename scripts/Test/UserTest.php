@@ -57,16 +57,16 @@ class UserTest extends PHPUnit_Framework_TestCase{
 		$this->invokeMethod($users, 'addTransaction', array("1/011/01", 170, "Savings", "Bob", 0));
 		$accountNumber = 0;
 		$accs = $users->getAccountsArray();
-		$this->assertFalse(array_key_exists($accountNumber, $accounts));
+		$this->assertFalse(array_key_exists($accountNumber, $accs));
 	}
 
 	public function testAddTransactionSuccess(){
-		$this->user->addAccount($this->acc);
 		$users = new User("ttrojan@usc.edu", "pass");
+		$users->addAccount($this->acc);
 		$this->invokeMethod($users, 'addTransaction', array("1/01/01", 170, "Savings", "Bob", 0));
 		$trans = new Transaction("1/01/01", 170, "Savings", "Bob");
 		$accs = $users->getAccountsArray();
-		$this->assertEquals($accs[0], trans);
+		$this->assertEquals($accs[0], $trans);
 	}
 
 	/*public function testAddTransactions(){
