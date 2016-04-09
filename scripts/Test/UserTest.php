@@ -64,9 +64,9 @@ class UserTest extends PHPUnit_Framework_TestCase{
 		$users = new User("ttrojan@usc.edu", "pass");
 		$users->addAccount($this->acc);
 		$this->invokeMethod($users, 'addTransaction', array("1/01/01", 170, "Savings", "Bob", 0));
-		$trans = new Transaction("1/01/01", 170, "Savings", "Bob");
 		$accs = $users->getAccountsArray();
-		$this->assertEquals($accs[0], $trans);
+		$trans = $accs[0];
+		$this->assertEquals("1/01/01", $trans->getDate());
 	}
 
 	/*public function testAddTransactions(){
