@@ -1,16 +1,18 @@
 <?php
 //Done need coverage
 require_once "../UserClass/User.php";
+require_once "../account/account.php";
 
 class UserTest extends PHPUnit_Framework_TestCase{
 	
-
+	protected $acc;
 	protected $accounts;
 	protected $user;
 	
 	protected function setUp(){
 		$this->user = new User("ttrojan@usc.edu","rasmuslerdorf");
 		$this->accounts = array();
+		$this ->acc = new Account("Bryan", "Savings");
 	}
 
 	//used to test private functions
@@ -48,5 +50,22 @@ class UserTest extends PHPUnit_Framework_TestCase{
 		array_push($this->accounts, $this->transaction);
 		$this->assertEquals($this->transaction, end($this->accounts));
 	}
+
+	/*public function testAddTransactions(){
+
+	}*/
+
+	public function testAddAccount(){
+		$this->user->addAccount($this->acc);
+		$accs = $this->user->getAccountsArray();
+		$this->assertEquals($accs[0], $this->acc);
+	}
+
+	public function testRemoveAccount(){
+		$this->user->removeAccount($this->acc);
+		$accs = $this->user->getAccountsArray();
+		$this->assertEquals(0, count[$accs]);
+	}
+
 }
 ?>
