@@ -20,8 +20,12 @@ class DbManagerTest extends PHPUnit_Framework_TestCase{
 		$db = new dbManager();
 		$db->openConnection();
 		$db_conn = $db->getCon();
+<<<<<<< HEAD
 		$val = boolval($db_conn);
 		$this->assertEquals(true, $val);
+=======
+		$this->assertFalse($db_conn);
+>>>>>>> 8b89c4cb985ebfd18749945544c43c42059aa598
 		$db->closeConnection();
 	}
 /*	public function testCloseConnectionAfterOpeningConnection(){
