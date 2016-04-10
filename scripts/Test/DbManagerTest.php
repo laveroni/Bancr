@@ -16,5 +16,25 @@ class DbManagerTest extends PHPUnit_Framework_TestCase{
 	public function testSetVars(){
 		$db = new dbManager();
 	}
+	public function testOpenConnection(){
+		$db = new dbManager();
+		$db->openConnection();
+		$db_conn = $db->getCon();
+		$this->assertTrue($db_conn);
+		$db->closeConnection();
+	}
+	public function testCloseConnectionAfterOpeningConnection(){
+		$db = new dbManager();
+		$db->openConnection();
+		$db->closeConnection();
+		$db_conn = $db->getCon();
+		$this->assertFalse($db_conn);
+	}
+	public function testCloseConnectionWithoutOpeningConnection(){
+		$db = new dbManager();
+		$db->closeConnection();
+		$db_conn = $db->getCon();
+		$this->assertFalse($db_conn);
+	}
 }
 ?>
