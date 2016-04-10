@@ -44,18 +44,23 @@ class AccountTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals($actual, $expected);
 	}
 
-/*	public function testGetLastTransaction(){
+	public function testGetType(){
+		$actual = $this->account->getType();
+		$expected = "credit";
+		$this->assertEquals($actual, $expected);
+	}
+	public function testGetLastTransaction(){
 		$tran = new Transaction("savings", 2/31/23, 59, "tom");
 		$this->account->addTransaction($tran);
 		$this->assertEquals($tran, $this->account->getLastTransaction());
 	}
-*/
-/*	public function testAddTransaction(){
+
+	public function testAddTransaction(){
 		$prior = count($this->account->transactionHistory);
 		$tran = new Transaction("savings", 2/31/23, 59, "tom");
 		$this->account->addTransaction($tran);
 		$now = count($this->account->transactionHistory);
 		$this->assertEquals($prior, $now + 1);
-	}*/
+	}
 }
 ?>
