@@ -2,7 +2,7 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <title>Dashboard for /var/www/html/Bancr/scripts/UserClass</title>
+  <title>Dashboard for /var/www/html/Bancr/scripts/db</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/nv.d3.min.css" rel="stylesheet">
@@ -19,7 +19,7 @@
      <div class="col-md-12">
       <ol class="breadcrumb">
         <li><a href="../index.html">/var/www/html/Bancr/scripts</a></li>
-        <li><a href="index.html">UserClass</a></li>
+        <li><a href="index.html">db</a></li>
         <li class="active">(Dashboard)</li>
 
       </ol>
@@ -59,6 +59,7 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="db_manager.php.html#12">dbManager</a></td><td class="text-right">77%</td></tr>
 
        </tbody>
       </table>
@@ -75,6 +76,7 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="db_manager.php.html#12">dbManager</a></td><td class="text-right">8</td></tr>
 
        </tbody>
       </table>
@@ -112,6 +114,8 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="db_manager.php.html#51"><abbr title="dbManager::queryRequest">queryRequest</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="db_manager.php.html#36"><abbr title="dbManager::openConnection">openConnection</abbr></a></td><td class="text-right">66%</td></tr>
 
        </tbody>
       </table>
@@ -128,6 +132,7 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="db_manager.php.html#36"><abbr title="dbManager::openConnection">openConnection</abbr></a></td><td class="text-right">3</td></tr>
 
        </tbody>
       </table>
@@ -158,7 +163,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#classCoverageDistribution svg')
-      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,0,0,1], "Class Coverage"))
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,1,0,0,0], "Class Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -176,7 +181,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#methodCoverageDistribution svg')
-      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,0,0,8], "Method Coverage"))
+      .datum(getCoverageDistributionData([1,0,0,0,0,0,0,1,0,0,0,4], "Method Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -226,7 +231,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Cyclomatic Complexity');
 
     d3.select('#classComplexity svg')
-      .datum(getComplexityData([[100,9,"<a href=\"User.php.html#11\">User<\/a>"]], 'Class Complexity'))
+      .datum(getComplexityData([[77.777777777778,8,"<a href=\"db_manager.php.html#12\">dbManager<\/a>"]], 'Class Complexity'))
       .transition()
       .duration(500)
       .call(chart);
@@ -250,7 +255,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Method Complexity');
 
     d3.select('#methodComplexity svg')
-      .datum(getComplexityData([[100,1,"<a href=\"User.php.html#19\">User::__construct<\/a>"],[100,1,"<a href=\"User.php.html#29\">User::setEncryptedPassword<\/a>"],[100,1,"<a href=\"User.php.html#34\">User::getEncryptedPassword<\/a>"],[100,1,"<a href=\"User.php.html#39\">User::getEmail<\/a>"],[100,2,"<a href=\"User.php.html#44\">User::addTransaction<\/a>"],[100,1,"<a href=\"User.php.html#61\">User::addAccount<\/a>"],[100,1,"<a href=\"User.php.html#69\">User::removeAccount<\/a>"],[100,1,"<a href=\"User.php.html#74\">User::getAccountsArray<\/a>"]], 'Method Complexity'))
+      .datum(getComplexityData([[100,1,"<a href=\"db_manager.php.html#21\">dbManager::__construct<\/a>"],[100,1,"<a href=\"db_manager.php.html#27\">dbManager::setVars<\/a>"],[66.666666666667,3,"<a href=\"db_manager.php.html#36\">dbManager::openConnection<\/a>"],[0,1,"<a href=\"db_manager.php.html#51\">dbManager::queryRequest<\/a>"],[100,1,"<a href=\"db_manager.php.html#62\">dbManager::closeConnection<\/a>"],[100,1,"<a href=\"db_manager.php.html#67\">dbManager::getCon<\/a>"]], 'Method Complexity'))
       .transition()
       .duration(500)
       .call(chart);
