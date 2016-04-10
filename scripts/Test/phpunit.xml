@@ -11,6 +11,7 @@ stopOnFailure="true">
     <directory suffix=".php">../Transaction/</directory>
     <directory suffix=".php">../account/</directory>
     <directory suffix=".php">../db/</directory>
+    <directory suffix=".php">../uploadCSV/</directory>
     <exclude>     
     </exclude>
   </whitelist>
