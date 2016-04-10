@@ -5,8 +5,8 @@
     error_reporting(E_ALL | E_STRICT);
     //REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
 
-    //need to actually use it but right now it is not necessary and giving an include error
-    //include_once('../account/account.php');
+	require_once('scripts/account/account.php');
+    require_once('scripts/Transaction/transaction.php');
 
 	class User
 	{
@@ -41,34 +41,18 @@
 			return $this->email;
 		}
 
-		private function addTransaction($date, $amount, $type, $merchant, $accountNumber)
-		{
-			$newTransaction = new Transaction($date, $amount, $type, $merchant);
-
-			//locate which account object by finding the key that is the account number
-			//assuming that the key exists
-			if (array_key_exists($accountNumber, $accounts)) 
-			{
-    			$accounts[$accountNumber]->addTransaction($newTransaction);
-			}
-			else
-			{
-				echo "Account number: " . $accountNumber . " is invalid in user addTransaction";
-			}
-
-		}
-
 		public function addAccount($accountObject)
 		{
-			$accountObject->setNumber($this->numAccounts);
+			//$accountObject->setNumber($this->numAccounts);
 			$this->numAccounts++;
-
-			$this->accounts[$accountObject->getNumber()] = $accountObject;
+			//$this->accounts[$accountObject->getNumber()] = $accountObject;
+			$this->accounts[$accountObject->getName()] = $accountObject;
 		}
 
 		public function removeAccount($accountObject)
 		{
-			unset($accounts[$accountObject->getNumber()]);
+			//unset($accounts[$accountObject->getNumber()]);
+			unset($accounts[$accountObject->getName()]);
 		}
 
 		public function getAccountsArray()
@@ -76,6 +60,19 @@
 			return $this->accounts;
 		}
 
+		public function addTransaction($account, $date, $amount, $merchant)
+		{
+			// Check whether account exists or not
+			if(!array_key_exists($account, $this->accounts)) 
+			{	
+				// Create account and add transaction
+				$new_account = new Account($account);
+				$this->addAccount($new_account);
+			}
+			// Create new transaction object
+			$new_transaction = new Transaction($account, $date, $amount, $merchant);
+			// Add transaction to account
+			$this->accounts[$account]->addTransaction($new_transaction);
+		}
 	}
-
 ?>

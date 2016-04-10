@@ -5,29 +5,15 @@
 
 class Account
 {
-	private $acountNumber;
 	private	$accountName;
 	private $transacationHistory;
 	private $accountBalance;
 	private $accountType;
 
-	function __construct ($name, $type)
+	function __construct ($name)
 	{
 		$this->accountName = $name;
 		$this->transacationHistory = array();
-		$this->accountBalance = 0;
-		$this->accountType = $type;
-	}
-
-
-	public function getType()
-	{
-		return $this->accountType;
-	}
-
-	public function setNumber($number)
-	{
-		$this->accountNumber = $number;
 	}
 
 	private function setName($name)
@@ -40,14 +26,9 @@ class Account
 	 	$this->transacationHistory = $transacations;
 	 }
 
-	private function setBalance($balance)
+	private function setType($type)
 	{
-		$this->setBalance = $balance;
-	}
-
-	public function getNumber()
-	{
-		return $this->accountNumber;
+		$this->accountType = $type;
 	}
 
 	public function getName()
@@ -62,7 +43,17 @@ class Account
 
 	public function getBalance()
 	{
-		return $this->accountBalance;
+		$accountBalance = 0;
+		for($i = 0; $i < count($this->transacationHistory); $i++)
+		{
+			$accountBalance += $this->transacationHistory[$i]->getAmount();
+		}
+		return $accountBalance;
+	}
+
+	private function getType()
+	{
+		return $this->accountType;
 	}
 
 	public function getLastTransaction()
@@ -74,7 +65,5 @@ class Account
 	{
 		array_push($this->transacationHistory, $newTransaction);
 	}
-
 }
-
 ?>

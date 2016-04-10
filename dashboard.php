@@ -1,80 +1,62 @@
-<!-- if not logged in, redirect to log in page -->
 <?php
 	
-	//REMOVE BELOW UPON SUCCESSFUL IMPLEMENTATION
-    ini_set('display_errors', 'On');
-    error_reporting(E_ALL | E_STRICT);
-    //REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
+//REMOVE BELOW UPON SUCCESSFUL IMPLEMENTATION
+ini_set('display_errors', 'On');
+error_reporting(E_ALL | E_STRICT);
+//REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
 
-	
+require_once("scripts/Transaction/transaction.php");
+require_once("scripts/account/account.php");
+require_once("scripts/db/db_manager.php");
+require_once("scripts/UserClass/User.php");
 
-	include_once("scripts/UserClass/User.php");
-	include_once("scripts/account/account.php");
+session_start();
 
-	session_start();
+if($_SESSION['loggedIn'] == false || $_SESSION['loggedIn'] == null)
+{	
+	header('Location: ./index.php');
+	exit();
+}
 
-	if(!isset($_SESSION['addAccountError']))
-	{
-		$_SESSION['addAccountError'] = "";
-	}
+if(!isset($_SESSION['email']) || !isset($_SESSION['password'])) 
+{
+	header('Location: ./index.php');
+	exit();
+}
 
-	if($_SESSION['loggedIn'] == false || $_SESSION['loggedIn'] == null)
-	{	
-		header('Location: ./index.php');
-		exit();
-	}
+// file_put_contents('php://stderr', print_r("HERE", TRUE));
 
-	if(isset($_POST['addAccount']))
-	{
-		
-		if(isset($_POST["accountName"]) && $_POST["accountName"] != "")
-		{
-			$_SESSION['addAccountError'] = "";
+$email = $_SESSION['email'];
+$password = $_SESSION['password'];
 
+// Create user object
+$user = new User($email, $password);
 
-			$testAccounts = $_SESSION['userObject']->getAccountsArray();
+// Connect to database to fetch user data from db
+$db = new dbManager();
+$db->openConnection();
 
-			foreach ($testAccounts as $key => $value)
-			{ 
-				if($value->getName() == $_POST["accountName"])
-				{
-					$_SESSION['addAccountError'] = "<br>Error: Account Name Already Exists";
-					break;
-				}
-				
-			}	
+// Fetch all user transactions
+$query = "SELECT * FROM transactions WHERE user = '$email' ";
+$transactions = $db->queryRequest($query) or trigger_error(mysql_error().$query);
 
-			if($_SESSION['addAccountError'] == "")
-			{
-				$newAccount = new Account($_POST["accountName"], $_POST['accountTypeInput']);
+$transactions_json = array();
 
-				$_SESSION['userObject']->addAccount($newAccount);
+// Parse transaction/account info from transactions data
+while($row = $transactions->fetch_assoc())
+{
+	$account = $row['account'];
+	$date = $row['date'];
+	$amount = $row['amount'];
+	$merchant = $row['merchant'];
 
+	// Add transaction data to user
+    $user->addTransaction($account, $date, $amount, $merchant);
 
-				//$testAccounts = $_SESSION['userObject']->getAccountsArray();
+    $transactions_json[] = array('account' => $account, 'date' => $date, 'amount' => $amount, 'merchant' => $merchant);
+}
 
-				// foreach ($testAccounts as $key => $value)
-				// {
-				// 	echo'<br>'; 
-				// 	echo $key . "   " . $value->getName();
-				// 	echo'<br>';
-				// }	
-				// exit();	
-
-				header("Location: dashboard.php");
-				exit();
-			}
-
-		}
-
-		else
-		{
-			$_SESSION['addAccountError'] = "<br>Error: Enter Account Name";
-		}
-
-		
-	}
-
+$db->closeConnection();
 ?>
 
 <html>
@@ -88,12 +70,12 @@
         <link rel="stylesheet" href="./vendors/font-awesome-4.5.0/css/font-awesome.min.css">
         <script src="https://code.highcharts.com/stock/highstock.js"></script>
 		<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-
+		<script src="./vendors/chart.min.js"></script>
+		<script src="./vendors/Chart.Scatter.min.js"></script>
+		
 	</head>
 
 	<body style="margin:30px;">
-
-		
 		<table class ="portfolioPage" style=" border-collapse: separate; border-spacing: 15px;">
 			<thead>
 			</thead>
@@ -144,8 +126,8 @@
 
 					<!-- Middle -->
 					<tr>
-						<!-- Portfolio of seven stocks -->
-						<td  style="height:480px; width:30%; background-color: white; padding-top:0px;">
+						<!-- Transactions -->
+						<td  style="height:480px; width:25%; background-color: white; padding-top:0px;">
 							<div style="">
 							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Transactions</h2>
 							<div style="overflow-y: scroll; max-height: 321px">
@@ -178,34 +160,23 @@
 								</div>
 							</div>
 							<div style=" background-color:white">
-									<!-- Stock info
 									
-								-->
 							</div>
 								
 						</td>
 
 						<!-- Graph -->
-
 						<td class="graphTD" >
-							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Graph</h2>
-							<!-- Nav tabs -->
-							<!--<ul class="nav nav-tabs" role="tablist" >
-								<li role="presentation" class="active" style="width:50%; text-align:center"><a href="#portfolioGraph" aria-controls="portfolioGraph" role="tab" data-toggle="tab">Portfolio</a>
-								</li>
-								<li role="presentation"  style="width:50%; text-align:center"><a href="#watchlistGraph" aria-controls="watchlistGraph" role="tab" data-toggle="tab">Watchlist</a>
-								</li>
-							</ul>-->
-							<div class="tab-content">
-								<div role="tabpanel" class="tab-pane active" id="portfolioGraph"></div>
-								<!--<div role="tabpanel" class="tab-pane" id="whatlistGraph"></div>-->
+							<div id="gContainer">
+		                    	<canvas id="graph" width = 500 height = 300>></canvas>
+		                    </div>		
 						</td>
 
 						<!-- Account list -->
 						<td style="width:25%; text-align:center ">
 							<div style="">
 							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Accounts</h2>
-							<div style="overflow-y: scroll; max-height: 321px">
+							<div id='accounts' name='accounts' style="overflow-y: scroll; max-height: 321px">
 								
 								<table style="margin-bottom:0px" class="table table-striped table-hover table-bordered table-responsive  portfolioWidget">
 									<tbody>
@@ -214,7 +185,7 @@
 												Account Name
 											</th>
 											<th style="width:90px">
-												Account Type
+												Balance
 											</th>
 											<th style="width:10px">
 												Display
@@ -223,26 +194,24 @@
 											<th style="width:40px">
 												Action
 											</th>
-
 										</tr>
 
 										<?php 
-											$accountsArray = $_SESSION['userObject']->getAccountsArray();
+											$accountsArray = $user->getAccountsArray();
 
 										    foreach ($accountsArray as $key => $value)
 										    {
 										        echo'<tr>'; 
 										        echo'<td>' . $value->getName() . "</td>";
-										        echo'<td>' . $value->getType() . "</td>";
+										        echo'<td>' . $value->getBalance() . "</td>";
 										        echo'<td> 
-										        		<form action="" method="post">
-										        			<input type="radio" name="display" unchecked>
+										        		<form action="" method="post" name="af" id="af">
+										        			<input type="checkbox" onclick="updateGraph();" name="display[]" id=' . $value->getName() . ' unchecked>
 										        		</form>
 										        	</td>';
 										        echo'<td> 
 										        		<form action="" method="post">
-										        			<input type="button" name="removeAccount"
-										        				value="Remove" id="removeAccount">
+										        			<input type="button" name="removeAccount" value="Remove" id="removeAccount">
 										        		</form>
 										        	</td>';
 										        echo'<tr>';
@@ -253,8 +222,6 @@
 								</table>
 								</div>
 							</div>
-
-
 							<form action="" method="post">
 								Account Name:<br>
 								<input type="text" name="accountName" id="accountName"><br>
@@ -279,8 +246,66 @@
 				</tbody>
 
 		</table>
+	<script type='text/javascript'>
 
+		function updateGraph(cb) {
+			// Get selected account names
+			var selected = [];
+		    $('#accounts input:checked').each(function() {
+		        selected.push($(this).attr('id'));
+		    });
+
+		    // Convert user transactions to js
+			var transactions = <?php echo json_encode($transactions_json); ?>;
+			//console.log(transactions);
+
+			// Get relevant transaction data
+			var data = [];
+			for(i = 0; i < selected.length; i++) 
+			{
+				var account = selected[i];
+				var balance = 0;
+
+				var data_set = {
+					label: account,
+				    strokeColor: '#F16220',
+				    pointColor: '#F16220',
+				    pointStrokeColor: '#fff',
+				    data: []
+				};
+
+				for(j = 0; j < transactions.length; j++)
+				{
+					if(account == transactions[j]['account']) 
+					{
+						var date = transactions[j]['date'];
+						balance += transactions[j]['amount'];
+
+						var point = {
+							x: date,
+						    y: balance,
+						};
+
+						data_set.data.push(point);
+					}
+				}
+
+				data.push(data_set);
+			}
+
+			console.log(data);
+
+		  	var options = {
+		    	scaleType: "date",
+		    	scaleDateFormat: "m d yyyy"
+		  	};
+
+
+			var ctx = document.getElementById("graph").getContext("2d");
+			new Chart(ctx).Scatter(data, options);
+		}
+
+	</script>
 
 	</body>
-
 </html>

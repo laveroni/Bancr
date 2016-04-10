@@ -36,7 +36,7 @@ if(isset($_POST['submit']))
 	    if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true)
 	    {
 	    	//if the user is loggedIn already then it redirects the page to the homepage
-	        header("Location: create_user_object.php");
+	        header("Location: ../../dashboard.php");
 	        exit();
 	    }
 
@@ -71,8 +71,8 @@ if(isset($_POST['submit']))
 	    		$_SESSION['email'] = $email;
 	        	$_SESSION['password'] = $row[1];
 	        	$_SESSION['loggedIn'] = TRUE;
-
-	        	header('Location: create_user_object.php');
+	        	header('Location: ../../dashboard.php');
+	        	//header('Location: create_user_object.php');
 	        	exit();
 	    	}
 	    	else
