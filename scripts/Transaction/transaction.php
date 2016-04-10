@@ -13,7 +13,7 @@
 		private $merchant;
 
 
-		function __construct ($account, $date, $amount, $merchant)
+		function __construct ($date, $amount, $account, $merchant)
 		{
 			$this->account = $account;
 			$this->date = $date;
