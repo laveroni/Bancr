@@ -67,8 +67,9 @@ class UserTest extends PHPUnit_Framework_TestCase{
 		$accountNumber = 0;
 		$accs = $users->getAccountsArray();
 		$a = $accs[$accountNumber];
-		$trans = $a -> getLastTransaction();
-		$this->assertEquals("1/01/01", $trans->getDate());
+		$trans = $a -> getHistory();
+		$tran = $trans[0];
+		$this->assertEquals("1/01/01", $tran->getDate());
 	}
 
 	/*public function testAddTransactions(){
