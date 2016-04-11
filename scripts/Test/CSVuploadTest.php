@@ -3,7 +3,7 @@
 include_once "../account/account.php";
 include_once "../Transaction/transaction.php";
 include_once "../uploadCSV/uploadCSV.php";
-
+include_once "../db/db_manager.php";
 
 class CSVuploadTest extends PHPUnit_Framework_TestCase{
 
@@ -21,6 +21,29 @@ class CSVuploadTest extends PHPUnit_Framework_TestCase{
 
 	public function testValidFileFailure(){
 		$this->assertFalse(is_valid_file("this.i"));
+	}
+
+	public function testValidFileFailureWithoutAPeriodInTheFilename(){
+		$this->assertFalse(is_valid_file("this"));
+	}
+
+	public function testValidInput(){
+		$db = new dbManager();
+		$hello = "hello"
+		$this->assertEquals($hello, validate_input($hello));
+	}
+
+	public function testValidTransactionNoAccountFailure(){
+		//$trans = new Transaction("1/08/08", 170, "", "Bob");
+		$this->assertFalse(is_valid_transaction("", "1/08/08", 170, "Bob"));
+	}
+
+	public function testValidTransactionDateInFutureFailure(){
+		$this->assertFalse(is_valid_transaction("Savings", "1/08/17", 170, "Bob"));
+	}
+
+	public function testValidTransactionSuccess(){
+		$this->assertTrue(is_valid_transaction("Savings", "1/08/14", 170, "Bob"));
 	}
 }
 
