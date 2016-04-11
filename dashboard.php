@@ -102,7 +102,7 @@
 					<tr>
 						<!-- Import csv -->
 						<td style ="width: 100px; height: 80px; text-align:center">
-							<h4>Import .csv File</h4>
+							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Import CSV</h2>
 							<form id="csv-form" action="scripts/uploadCSV/uploadCSV.php" method="post" enctype="multipart/form-data">
 							    <input id='csv-file' type='file' name='csv-file' accept='.csv,.CSV'>
 							    <input type='submit' value='upload' name='submit'>
@@ -144,7 +144,7 @@
 
 					<!-- Middle -->
 					<tr>
-						<!-- Portfolio of seven stocks -->
+						<!-- Transactions -->
 						<td  style="height:480px; width:30%; background-color: white; padding-top:0px;">
 							<div style="">
 							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Transactions</h2>
@@ -271,6 +271,46 @@
 								</div>
 							</form>
 
+						</td>
+						</tr>
+						
+						<!-- bottom -->
+						<tr>
+						<!-- Budget -->
+						<td  style="height:480px; width:30%; background-color: white; padding-top:0px;">
+							<div style="">
+							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:bottom">Budget</h2>
+							<form action="" method="post">
+								Budget Type:
+								<select name="budgetType" id="budgetType">
+									<option value="Food">Food</option>
+									<option value="Transportation">Transportation</option>
+									<option value="Clothes">Clothes</option>
+								</select><br>
+								Budget:
+								<input type="text" name="budget" id="budget">
+								<input type="button" value="submit" name="budgetSubmission" id="budgetSubmission">
+							</form>
+							<table border="1">
+								<tr>
+									<td>Budget type</td>
+									<td>Budget</td>
+									<td>Already used</td>
+									<td>Fund left</td>
+								</tr>
+								<tr>
+									<td>Food</td>
+									<td>100</td>
+									<td>20</td>
+									<td>80</td>
+								</tr>
+							</div>
+							<div style=" background-color:white">
+									<!-- Stock info
+									
+								-->
+							</div>
+								
 						</td>
 
 
