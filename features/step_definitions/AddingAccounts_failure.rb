@@ -22,7 +22,7 @@ end
 
 
 When(/^I try to add a new account without selecting a type or entering a name$/) do
-    fill_in 'accountName', :with => ''
+    fill_in 'accountName', :with => ' '
     click_button 'addAccount'
 end
 
