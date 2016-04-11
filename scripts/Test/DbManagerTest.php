@@ -16,6 +16,23 @@ class DbManagerTest extends PHPUnit_Framework_TestCase{
 	public function testSetVars(){
 		$db = new dbManager();
 	}
+	public function testQueryRequestValid(){
+		$log = "INSERT INTO Users (email) VALUES ('dom@usc.edu')";
+		$db = new dbManager();
+		$db->openConnection();
+	    $result_login = $db->queryRequest($log);
+	    $val = boolval($result_login);
+	    $this->assertEquals(true, $val);
+	}
+	public function testQueryRequestInvalid(){
+		$log = "SELECT * FROM Hsers WHERE Email = '$email' ";
+		$db = new dbManager();
+		$db->openConnection();
+	    $result_login = $db->queryRequest($log);
+	    $val = boolval($result_login);
+	    $this->assertEquals(false, $val);
+	}
+
 	public function testOpenConnection(){
 		$db = new dbManager();
 		$db->openConnection();
