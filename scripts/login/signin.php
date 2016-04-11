@@ -16,8 +16,8 @@ function goToSleep(){
 	</script>
 <?php
 }
-if(isset($_POST['submit']))
-{
+	if(isset($_POST['submit']) && isset($_POST["password"]) && isset($_POST["email"]))
+	{
 	
 		//REMOVE BELOW UPON SUCCESSFUL IMPLEMENTATION
 		ini_set('display_errors', 'On');
@@ -39,6 +39,13 @@ if(isset($_POST['submit']))
 	        header("Location: create_user_object.php");
 	        exit();
 	    }
+
+	    //check if loginAttempts is equal to 4
+	    if(!$_SESSION['loginAttempts'] || !isset($_SESSION['loginAttempts']))
+	    {
+	    	$_SESSION['loginAttempts'] = 0;
+	    }
+
 
 	    //create a db class object, open connection
 	    $db = new dbManager();
@@ -77,16 +84,41 @@ if(isset($_POST['submit']))
 	    	}
 	    	else
 	    	{
+	    		$_SESSION['loginAttempts'] += 1;
 	    		incorrectEmail();
+	    		
 	    	}
 
 	    }
 	    else
 	    {
+	    	$_SESSION['loginAttempts'] += 1;
 	    	incorrectEmail();
 	    }
 
-}
+	}
+	else if(isset($_POST['submit']) && (!isset($_POST["password"]) || !isset($_POST["email"])))
+	{
+
+		//check if loginAttempts is equal to 4
+	    if(!$_SESSION['loginAttempts'])
+	    {
+	    	$_SESSION['loginAttempts'] = 0;
+	    }
+
+	    if($_SESSION['loginAttempts'] == 4)
+	    {
+	    	//disable text fields and button
+	    	//TODO
+	    }	
+	    else
+	    {
+	    	$_SESSION['loginAttempts'] += 1;
+			incorrectEmail();
+	    }	
+		
+	}
+
 
 
 	function test_input($db, $data) 
