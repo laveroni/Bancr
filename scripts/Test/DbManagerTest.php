@@ -20,7 +20,7 @@ class DbManagerTest extends PHPUnit_Framework_TestCase{
 		$db = new dbManager();
 		$db->openConnection();
 		$db_conn = $db->getCon();
-		$this->assertTrue($db_conn);
+		$this->assertFalse($db_conn);
 		$db->closeConnection();
 	}
 	public function testCloseConnectionAfterOpeningConnection(){
