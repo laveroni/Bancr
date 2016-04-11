@@ -30,22 +30,23 @@ class CSVuploadTest extends PHPUnit_Framework_TestCase{
 	public function testValidInput(){
 		$db = new dbManager();
 		$db->openConnection();
-		$hello = "hello";
-		$this->assertEquals($hello, validate_input($db, $hello));
+		$csv_file = array(array("hello", 22));
+		$word = validate_input($db, $csv_file[0][0]);
+		$this->assertEquals($hello, $word);
 	}
 
 	public function testValidTransactionNoAccountFailure(){
 		//$trans = new Transaction("1/08/08", 170, "", "Bob");
-		$this->assertFalse(is_valid_transaction("", "1/08/08", 170, "Bob"));
+		$this->assertFalse(is_valid_transaction("", "01/08/2008", 170, "Bob"));
 	}
 
 	public function testValidTransactionDateInFutureFailure(){
-		$this->assertTrue(is_valid_transaction("Savings", "1/08/17", 170, "Bob"));
+		$this->assertTrue(is_valid_transaction("Savings", "01/08/2017", 170, "Bob"));
 		//should be assertFalse, but it fails :(
 	}
 
 	public function testValidTransactionSuccess(){
-		$this->assertTrue(is_valid_transaction("Savings", "1/08/14", 170, "Bob"));
+		$this->assertTrue(is_valid_transaction("Savings", "01/08/2014", 170, "Bob"));
 	}
 }
 
