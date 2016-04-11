@@ -27,5 +27,5 @@ When(/^I try it a fourth time$/) do
 end
 
 Then(/^I should see a lockout error message$/) do
-page.should have_content('You've tried to log in too many times! Locked out for a minute')
+    page.should have_content('You\'ve tried to log in too many times! Locked out for a minute')
 end
