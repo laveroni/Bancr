@@ -25,6 +25,7 @@ class DbManagerTest extends PHPUnit_Framework_TestCase{
 	    $this->assertEquals(true, $val);
 	}
 	public function testQueryRequestInvalid(){
+		$email = "bancr@usc.edu";
 		$log = "SELECT * FROM Hsers WHERE Email = '$email' ";
 		$db = new dbManager();
 		$db->openConnection();

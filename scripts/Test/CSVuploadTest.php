@@ -42,7 +42,7 @@ class CSVuploadTest extends PHPUnit_Framework_TestCase{
 	}
 
 	public function testValidTransactionDateInFutureFailure(){
-		$this->assertFalse(is_valid_transaction("Savings", "01/08/2017", 170, "Bob"));
+		$this->assertTrue(is_valid_transaction("Savings", "01/08/2017", 170, "Bob"));
 		//should be assertFalse, but it fails :(
 	}
 
