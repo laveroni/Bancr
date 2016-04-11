@@ -2,7 +2,7 @@ Given(/^I am on the login page5$/) do
     visit('http://localhost/Bancr/index.php')
 end
 
-When(/^I try to login with invalid credentials$/) do
+When(/^I try to login with invalid credentials3$/) do
     fill_in 'email', :with => 'bancr@usc.edu'
     fill_in 'password', :with => 'a'
     click_button 'signInButton'
