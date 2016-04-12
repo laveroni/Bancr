@@ -75,6 +75,19 @@
 		
 	}
 
+
+	if (isset($_POST['removeAccount'])) 
+	{
+  		$accountsArray = $_SESSION['userObject']->getAccountsArray();
+
+		$newAccountObject = $accountsArray[$_POST['id']];
+
+		$_SESSION['userObject']->removeAccount($newAccountObject);
+
+		header("Location: dashboard.php");
+		exit();
+	}
+
 ?>
 
 <html>
@@ -232,20 +245,20 @@
 										    foreach ($accountsArray as $key => $value)
 										    {
 										        echo'<tr>'; 
-										        echo'<td>' . $value->getName() . "</td>";
-										        echo'<td>' . $value->getType() . "</td>";
+										        echo'<td>' . $value->getName() . '</td>';
+										        echo'<td>' . $value->getType() . '</td>';
 										        echo'<td> 
 										        		<form action="" method="post">
 										        			<input type="radio" name="display" unchecked>
 										        		</form>
 										        	</td>';
-										        echo'<td> 
-										        		<form action="" method="post">
-										        			<input type="button" name="removeAccount"
-										        				value="Remove" id="removeAccount">
-										        		</form>
-										        	</td>';
-										        echo'<tr>';
+										        echo'<td>' . 
+										        		'<form action="" method="post">' . 
+										        			'<input type="submit" name="removeAccount" value="Remove" id="removeAccount">' . 
+										        			'<input type="hidden" name="id" value="' . $key . '" />' . 
+										        		'</form>' . 
+										        	'</td>';
+										        echo'</tr>';
 										    }
 										?>
 
@@ -324,3 +337,4 @@
 	</body>
 
 </html>
+
