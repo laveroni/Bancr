@@ -16,7 +16,7 @@
                 text-align: center;
                 }
         </style>
-          
+      <meta http-equiv="refresh" content="10" >
   </head>
 
   <!-- ensure values aren't empty-->
@@ -37,6 +37,21 @@
   <?php
   
     session_start(); 
+
+
+    if(isset($_SESSION['timerStarted']))
+    {
+      $_SESSION['endTimer'] = (60 - (time() - $_SESSION['timerStarted']));
+
+      if($_SESSION['endTimer'] <= 0)
+      {
+        session_unset();
+        session_destroy();  
+        header('Location: index.php');
+        exit();       
+      }
+    }
+
 
     if(!$_SESSION['loginErrorMessage'] || !isset($_SESSION['loginErrorMessage']))
     {
@@ -100,15 +115,16 @@
 
 <?php
 
-  if (isset($_SESSION['timeout']) && $_SESSION['timeout'] == true) 
+
+    if(isset($_SESSION['timeout']) && $_SESSION['timeout'] == true) 
     {
       //done waiting for a minute
-      $_SESSION['loginAttempts'] = 0;
-      $_SESSION['loginErrorMessage'] = " ";
-      $_SESSION['timeout'] = false;
-      header( "refresh:60; url=index.php" );
+      if(!isset($_SESSION['timerStarted']))
+      {
+        $_SESSION['timerStarted'] = time();
+      }
+      
     }
 
 ?>
 
-<!--$http.post('SignInData/testSignIn2.php', {email: email, password: password);-->
