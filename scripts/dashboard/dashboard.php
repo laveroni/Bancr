@@ -1,77 +1,17 @@
-<?php
-	
-//REMOVE BELOW UPON SUCCESSFUL IMPLEMENTATION
-ini_set('display_errors', 'On');
-error_reporting(E_ALL | E_STRICT);
-//REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
-
-require_once("scripts/Transaction/transaction.php");
-require_once("scripts/account/account.php");
-require_once("scripts/db/db_manager.php");
-require_once("scripts/UserClass/User.php");
-
-session_start();
-
-if($_SESSION['loggedIn'] == false || $_SESSION['loggedIn'] == null)
-{	
-	header('Location: ./index.php');
-	exit();
-}
-
-if(!isset($_SESSION['email']) || !isset($_SESSION['password'])) 
-{
-	header('Location: ./index.php');
-	exit();
-}
-
-// file_put_contents('php://stderr', print_r("HERE", TRUE));
-
-$email = $_SESSION['email'];
-$password = $_SESSION['password'];
-
-// Create user object
-$user = new User($email, $password);
-
-// Connect to database to fetch user data from db
-$db = new dbManager();
-$db->openConnection();
-
-// Fetch all user transactions
-$query = "SELECT * FROM transactions WHERE user = '$email' ";
-$transactions = $db->queryRequest($query) or trigger_error(mysql_error().$query);
-
-$transactions_json = array();
-
-// Parse transaction/account info from transactions data
-while($row = $transactions->fetch_assoc())
-{
-	$account = $row['account'];
-	$date = $row['date'];
-	$amount = $row['amount'];
-	$merchant = $row['merchant'];
-
-	// Add transaction data to user
-    $user->addTransaction($account, $date, $amount, $merchant);
-
-    $transactions_json[] = array('account' => $account, 'date' => $date, 'amount' => $amount, 'merchant' => $merchant);
-}
-
-$db->closeConnection();
-?>
-
+<?php require './controller.php' ?>
 <html>
 	<head>
-	    <script src="./vendors/jquery-1.12.1.min.js"></script>
-	    <script src="./vendors/moment.js"></script>
-	    <script src="./vendors/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="./vendors/bootstrap-3.3.6-dist/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="./styles/portfolio.css">
-        <link rel="stylesheet" type="text/css" href="./styles/styles.css">
-        <link rel="stylesheet" href="./vendors/font-awesome-4.5.0/css/font-awesome.min.css">
+	    <script src="../../vendors/jquery-1.12.1.min.js"></script>
+	    <script src="../../vendors/moment.js"></script>
+	    <script src="../../vendors/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../vendors/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../styles/portfolio.css">
+        <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
+        <link rel="stylesheet" href="../../vendors/font-awesome-4.5.0/css/font-awesome.min.css">
         <script src="https://code.highcharts.com/stock/highstock.js"></script>
 		<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-		<script src="./vendors/chart.min.js"></script>
-		<script src="./vendors/Chart.Scatter.min.js"></script>
+		<script src="../../vendors/chart.min.js"></script>
+		<script src="../../vendors/Chart.Scatter.min.js"></script>
 		
 	</head>
 
@@ -85,7 +25,7 @@ $db->closeConnection();
 						<!-- Import csv -->
 						<td style ="width: 100px; height: 80px; text-align:center">
 							<h4>Import .csv File</h4>
-							<form id="csv-form" action="scripts/uploadCSV/uploadCSV.php" method="post" enctype="multipart/form-data">
+							<form id="csv-form" action="../uploadCSV/uploadCSV.php" method="post" enctype="multipart/form-data">
 							    <input id='csv-file' type='file' name='csv-file' accept='.csv,.CSV'>
 							    <input type='submit' value='upload' name='submit'>
 							</form>
@@ -114,7 +54,7 @@ $db->closeConnection();
 							<div class="timeDisplay"></div>
 							<div class="dateDisplay"></div>
 						
-							<button name="logout" id="logout" value="logout" type="submit" style="width:100px;" class="btn btn-default" onclick="window.location.href='scripts/logout/logout.php'">
+							<button name="logout" id="logout" value="logout" type="submit" style="width:100px;" class="btn btn-default" onclick="window.location.href='../logout/logout.php'">
 							Logout
 							</button>
 						
@@ -232,7 +172,6 @@ $db->closeConnection();
 									<option value="loan">Loan</option>
 								</select>
 
-								<?php echo '<div style="color:red;">' . $_SESSION['addAccountError'] . '</div>'; ?>
 								<div style="margin-top: 15px">
 									<button name="addAccount" type="submit" style="width:100px;" class="btn btn-default" id="addAccount">Add account</button>
 								</div>
@@ -246,66 +185,13 @@ $db->closeConnection();
 				</tbody>
 
 		</table>
-	<script type='text/javascript'>
+		<!-- Upload Failure Popup -->
+		<div style="display: none;" id="dialog" title="Upload failure">
+  			<p>Something went wrong with your upload. Please check to make sure your file matches the following format:</p>
+  			<img src='../../money.jpg'/>
+		</div>
 
-		function updateGraph(cb) {
-			// Get selected account names
-			var selected = [];
-		    $('#accounts input:checked').each(function() {
-		        selected.push($(this).attr('id'));
-		    });
-
-		    // Convert user transactions to js
-			var transactions = <?php echo json_encode($transactions_json); ?>;
-			//console.log(transactions);
-
-			// Get relevant transaction data
-			var data = [];
-			for(i = 0; i < selected.length; i++) 
-			{
-				var account = selected[i];
-				var balance = 0;
-
-				var data_set = {
-					label: account,
-				    strokeColor: '#F16220',
-				    pointColor: '#F16220',
-				    pointStrokeColor: '#fff',
-				    data: []
-				};
-
-				for(j = 0; j < transactions.length; j++)
-				{
-					if(account == transactions[j]['account']) 
-					{
-						var date = transactions[j]['date'];
-						balance += transactions[j]['amount'];
-
-						var point = {
-							x: date,
-						    y: balance,
-						};
-
-						data_set.data.push(point);
-					}
-				}
-
-				data.push(data_set);
-			}
-
-			console.log(data);
-
-		  	var options = {
-		    	scaleType: "date",
-		    	scaleDateFormat: "m d yyyy"
-		  	};
-
-
-			var ctx = document.getElementById("graph").getContext("2d");
-			new Chart(ctx).Scatter(data, options);
-		}
-
-	</script>
+	<?php require './graph.php' ?>
 
 	</body>
 </html>

@@ -16,6 +16,12 @@ function goToSleep(){
 	</script>
 <?php
 }
+
+//create the user's session
+session_start();
+
+
+
 if(isset($_POST['submit']))
 {
 	
@@ -23,10 +29,6 @@ if(isset($_POST['submit']))
 		ini_set('display_errors', 'On');
 		error_reporting(E_ALL | E_STRICT);
 		//REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
-
-
-		//create the user's session
-		session_start(); 
 
 		//database configuration file containing db login credentials
 	    require_once('../db/db_manager.php');
@@ -36,7 +38,7 @@ if(isset($_POST['submit']))
 	    if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true)
 	    {
 	    	//if the user is loggedIn already then it redirects the page to the homepage
-	        header("Location: ../../dashboard.php");
+	        header("Location: ../dashboard/dashboard.php");
 	        exit();
 	    }
 
@@ -71,8 +73,8 @@ if(isset($_POST['submit']))
 	    		$_SESSION['email'] = $email;
 	        	$_SESSION['password'] = $row[1];
 	        	$_SESSION['loggedIn'] = TRUE;
-	        	header('Location: ../../dashboard.php');
-	        	//header('Location: create_user_object.php');
+	        	header('Location: ../dashboard/dashboard.php');
+	        	
 	        	exit();
 	    	}
 	    	else
