@@ -25,30 +25,33 @@
 	$email = $_SESSION['email'];
 	$encryptedPassword = $_SESSION['password'];
 
-	// //database configuration file containing db login credentials
- //    require_once('../db/db_manager.php');
+	//database configuration file containing db login credentials
+    require_once('../db/db_manager.php');
 
- //    //create a db class object, open connection
- //    $db = new dbManager();
- //    $db->openConnection();
+    //create a db class object, open connection
+    $db = new dbManager();
+    $db->openConnection();
 
-	// $query = "SELECT * FROM users WHERE Email = '$email'";
+	$query = "SELECT * FROM Users WHERE Email = '$email'";
 
-	// $result = $db->queryRequest($query);
+	$result = $db->queryRequest($query);
 
- //    $row = mysqli_fetch_row($result);
+    $row = mysqli_fetch_row($result);
 
 
 
 
     //create instance of user class
-    $user = new User($email,$encryptedPassword);
+    $user = $row[2];
+
+    $user = base64_decode($user);
+    $user = unserialize($user);
 
     $_SESSION['userObject'] = $user;
 
 
 
-    // $db->closeConnection();
+    $db->closeConnection();
 
 
     header('Location: ../../dashboard.php');
