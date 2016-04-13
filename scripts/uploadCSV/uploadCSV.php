@@ -20,6 +20,8 @@ if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
 
 $email = $_SESSION['email'];
 
+$user = $_SESSION['userObject'];
+
 function is_valid_file($filename) {
     $tmp = explode('.', $filename);
     $ext = end($tmp);
@@ -103,9 +105,11 @@ if(isset($_POST['submit'])) {
             $log = "INSERT INTO transactions (user, account, date, amount, merchant)
                     VALUES ('$email', '$account', '$date', '$amount', '$merchant')";
             $db->queryRequest($log);
+
+            $user->addTransaction($account, $date, $amount, $merchant);
         }
     }
-
+    $_SESSION['userObject'] = $user;
     $db->closeConnection(); 
     header('Location: ../dashboard/dashboard.php');
 }

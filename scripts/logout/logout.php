@@ -6,37 +6,22 @@
 
 
     require_once('../db/db_manager.php');
-    include_once('../UserClass/User.php');
+    require_once('../UserClass/User.php');
 
-    
-	//unset session data, destroy session data, and redirect to login page
-	
+    $email = $_SESSION['email']; 
+    $user = $_SESSION['userObject'];
 
-	//database configuration file containing db login credential
-
-
-    //need to store serialized portfolio and balance
-
-    // $email = $_SESSION['email']; 
-
-    // $user = $_SESSION['userObject'];
-
-
-
-    //$serial = serialize($user);
-
+    $serial = serialize($user);
+    $encodedObject = base64_encode($serial);
 
     //create a db class object, open connection
-    //$db = new dbManager();
-    //$db->openConnection();
+    $db = new dbManager();
+    $db->openConnection();
 
-	// $query = "UPDATE Users SET Balance = '$balance', Portfolio = '$serial' WHERE Email = '$email'";
-
-	// $result = $db->queryRequest($query);
-
-	//$db->closeConnection();
-
-
+    $query = "UPDATE Users SET UserObject = '$encodedObject' WHERE Email = '$email'";
+    $result = $db->queryRequest($query);
+    
+    $db->closeConnection();
 
 	unset($_SESSION);
 	session_destroy();

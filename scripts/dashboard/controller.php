@@ -47,8 +47,36 @@ if(!isset($_SESSION['email']) || !isset($_SESSION['password']))
 }
 
 $email = $_SESSION['email'];
-$password = $_SESSION['password'];
+$user = '';
 
+if(!isset($_SESSION['userObject'])) {
+	$db = new dbManager();
+	$db->openConnection();
+
+	$query = "SELECT * FROM Users WHERE Email = '$email'";
+	$result = $db->queryRequest($query);
+	$row = mysqli_fetch_row($result);
+
+
+	$user = $row[2];
+	$user = base64_decode($user);
+	$user = unserialize($user);
+
+	$_SESSION['userObject'] = $user;
+
+	file_put_contents('php://stderr', print_r('h', TRUE));
+
+	$db->closeConnection();
+
+} else {
+	$user = $_SESSION['userObject'];
+}
+
+file_put_contents('php://stderr', print_r($_SESSION['userObject']->getAccountsArray(), TRUE));
+
+
+
+/*
 // Create user object
 $user = new User($email, $password);
 
@@ -75,6 +103,52 @@ while($row = $transactions->fetch_assoc())
     // Encode transaction data for js
     $transactions_json[] = array('account' => $account, 'date' => $date, 'amount' => $amount, 'merchant' => $merchant);
 }
-
 $db->closeConnection();
+*/
+?>
+
+<?php
+/*
+// Add account funcitonality:
+// Check for session account variables
+// OR
+// Check db for account info with no history
+// If account valid (Doesn't already exist/Blank field)
+// Add that account to user info
+// Make sure those accounts display
+// Let user know those accounts have no transaction data ??
+if(isset($_POST['addAccount']))
+{
+	if(isset($_POST["accountName"]) && $_POST["accountName"] != "")
+	{
+		// $_SESSION['addAccountError'] = "";
+
+		$testAccounts = $_SESSION['userObject']->getAccountsArray();
+		
+		// Check whether account already exists
+		foreach ($testAccounts as $key => $value)
+		{ 
+			if($value->getName() == $_POST["accountName"])
+			{
+				$_SESSION['addAccountError'] = "<br>Error: Account Name Already Exists";
+				break;
+			}
+			
+		}	
+
+		if(!isset($_SESSION['addAccountError']))
+		{
+			$newAccount = new Account($_POST["accountName"], $_POST['accountTypeInput']);
+
+			$_SESSION['userObject']->addAccount($newAccount);	
+			header("Location: dashboard.php");
+			exit();
+		}
+	}
+	else
+	{
+		$_SESSION['addAccountError'] = "<br>Error: Enter Account Name";
+	}
+}
+*/
 ?>
