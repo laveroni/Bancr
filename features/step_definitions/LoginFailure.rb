@@ -29,3 +29,7 @@ end
 Then(/^I should see a lockout error message$/) do
     page.should have_content('Account Locked For 1 Minute')
 end
+
+Then(/^I should see it disappear after a minute$/) do
+    expect(page).to have_no_content 'Account Locked For 1 Minute', :wait=>60
+end

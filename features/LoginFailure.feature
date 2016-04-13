@@ -8,3 +8,4 @@ And I try it a second time
 And I try it a third time
 And I try it a fourth time
 Then I should see a lockout error message
+And I should see it disappear after a minute
