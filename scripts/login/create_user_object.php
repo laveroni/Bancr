@@ -28,6 +28,13 @@
 	//database configuration file containing db login credentials
     require_once('../db/db_manager.php');
 
+
+
+
+    /* To populate database with user, comment out below */
+    //START COMMENT
+
+
     //create a db class object, open connection
     $db = new dbManager();
     $db->openConnection();
@@ -50,8 +57,14 @@
     $_SESSION['userObject'] = $user;
 
 
-
     $db->closeConnection();
+
+    //END COMMENT HERE
+
+
+
+    //uncomment below line and login.  Logout, comment below line, and uncomment above section
+    //$_SESSION['userObject'] = new User($email, $encryptedPassword);
 
 
     header('Location: ../../dashboard.php');
