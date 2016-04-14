@@ -13,7 +13,7 @@ class UserTest extends PHPUnit_Framework_TestCase{
 	protected function setUp(){
 		$this->user = new User("ttrojan@usc.edu","rasmuslerdorf");
 		$this->accounts = array();
-		$this ->acc = new Account("Bryan", "Savings");
+		$this ->acc = new Account("Bryan");
 	}
 
 	//used to test private functions
@@ -45,12 +45,6 @@ class UserTest extends PHPUnit_Framework_TestCase{
 		$expected = "ttrojan@usc.edu";
 		$this->assertEquals($expected, $actual);
 	}
-	
-	/*public function testAddTransaction(){
-		$this->transaction = new Transaction(32112, 50,"food", "taco bell");
-		array_push($this->accounts, $this->transaction);
-		$this->assertEquals($this->transaction, end($this->accounts));
-	}*/
 
 	public function testAddTransactionFailure(){
 		$users = new User("ttrojan@usc.edu", "pass");
@@ -71,10 +65,6 @@ class UserTest extends PHPUnit_Framework_TestCase{
 		$tran = $trans[0];
 		$this->assertEquals("1/01/01", $tran->getDate());
 	}
-
-	/*public function testAddTransactions(){
-
-	}*/
 
 	public function testAddAccount(){
 		$this->user->addAccount($this->acc);
