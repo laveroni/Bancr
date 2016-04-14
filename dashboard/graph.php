@@ -48,7 +48,7 @@ function updateGraph(cb) {
 				    y: balance,
 				};
 				data_set.data.push(point);
-				//console.log(data_set.data);
+				console.log(data_set.data);
 			}
 		}
 		// Sort transaction data by date

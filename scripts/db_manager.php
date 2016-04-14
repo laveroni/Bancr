@@ -1,13 +1,9 @@
 <?php
-	
-	//assuming that when this class and it's methods are called, that loggedIn session variable
-	//is already checked to ensure a user is logged in
 
-
-	//REMOVE BELOW UPON SUCCESSFUL IMPLEMENTATION
-    ini_set('display_errors', 'On');
-    error_reporting(E_ALL | E_STRICT);
-    //REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
+//REMOVE BELOW UPON SUCCESSFUL IMPLEMENTATION
+ini_set('display_errors', 'On');
+error_reporting(E_ALL | E_STRICT);
+//REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
 
 class dbManager 
 {
@@ -22,7 +18,6 @@ class dbManager
 	{
 		$this->setVars();
 	}
-
 	
 	private function setVars() //$host, $user, $pass, $database
 	{
@@ -45,18 +40,12 @@ class dbManager
     	{
    		    die("Database connection failed: " . mysqli_connect_error());
    		}
-
 	}
 
-	public function queryRequest($command)
+	public function queryRequest($query)
 	{
-		//command is a variable holding the database command to locate user based on name and password
-
-    	//actually query the database with the given command
-    	$result_login = mysqli_query($this->db_conn, $command);
-
-    	//returns the rows returned from the query
-    	return $result_login;
+    	$result = mysqli_query($this->db_conn, $query);
+    	return $result;
 	}
 
 	public function closeConnection()
@@ -69,6 +58,5 @@ class dbManager
 		return $this->db_conn;
 	}
 }
-
 
 ?>

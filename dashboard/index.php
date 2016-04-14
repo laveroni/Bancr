@@ -1,17 +1,15 @@
-<?php require './controller.php' ?>
+<?php require 'dashboard.php' ?>
 <html>
 	<head>
-	    <script src="../../vendors/jquery-1.12.1.min.js"></script>
-	    <script src="../../vendors/moment.js"></script>
-	    <script src="../../vendors/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="../../vendors/bootstrap-3.3.6-dist/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="../../styles/portfolio.css">
-        <link rel="stylesheet" type="text/css" href="../../styles/styles.css">
-        <link rel="stylesheet" href="../../vendors/font-awesome-4.5.0/css/font-awesome.min.css">
-        <script src="https://code.highcharts.com/stock/highstock.js"></script>
-		<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-		<script src="../../vendors/chart.min.js"></script>
-		<script src="../../vendors/Chart.Scatter.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../vendors/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../styles/portfolio.css">
+        <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+        <link rel="stylesheet" href="../vendors/font-awesome-4.5.0/css/font-awesome.min.css">
+        <script src="../vendors/jquery-1.12.1.min.js"></script>
+	    <script src="../vendors/moment.js"></script>
+	    <script src="../vendors/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+		<script src="../vendors/chart.min.js"></script>
+		<script src="../vendors/Chart.Scatter.min.js"></script>
 	</head>
 
 	<body style="margin:30px;">
@@ -24,7 +22,7 @@
 						<!-- Import csv -->
 						<td style ="width: 100px; height: 80px; text-align:center">
 							<h4>Import .csv File</h4>
-							<form id="csv-form" action="../uploadCSV/uploadCSV.php" method="post" enctype="multipart/form-data">
+							<form id="csv-form" action="../scripts/uploadCSV.php" method="post" enctype="multipart/form-data">
 							    <input id='csv-file' type='file' name='csv-file' accept='.csv,.CSV'>
 							    <input type='submit' value='upload' name='submit'>
 							</form>
@@ -41,7 +39,7 @@
 						<td style="width:25%; text-align:center ">
 							<div class="timeDisplay"></div>
 							<div class="dateDisplay"></div>
-							<button name="logout" id="logout" value="logout" type="submit" style="width:100px;" class="btn btn-default" onclick="window.location.href='../logout/logout.php'">
+							<button name="logout" id="logout" value="logout" type="submit" style="width:100px;" class="btn btn-default" onclick="window.location.href='../scripts/logout.php'">
 							Logout
 							</button>
 						</td>
@@ -158,6 +156,6 @@
 					</tr>
 				</tbody>
 		</table>
-		<?php require './graph.php' ?>
+		<?php require 'graph.php' ?>
 	</body>
 </html>

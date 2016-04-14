@@ -4,8 +4,14 @@
     ini_set('display_errors', 'On');
     error_reporting(E_ALL | E_STRICT);
 
-    require_once('../db/db_manager.php');
-    require_once('../UserClass/User.php');
+    if($_SESSION['loggedIn'] == false || $_SESSION['loggedIn'] == null)
+    {   
+        header('Location: ../dashboard/index.php');
+        exit();
+    }
+
+    require_once('db_manager.php');
+    require_once('user.php');
 
     $email = $_SESSION['email']; 
     $user = $_SESSION['userObject'];
@@ -24,7 +30,6 @@
 
 	unset($_SESSION);
 	session_destroy();
-	header('Location: ../../index.php');
+	header('Location: ../index.php');
 	exit();
-
 ?>

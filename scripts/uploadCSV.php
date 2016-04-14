@@ -1,28 +1,26 @@
 <?php
-//file_put_contents('php://stderr', print_r('1', TRUE));
-require_once('../db/db_manager.php');
-require_once('../Transaction/transaction.php');
-require_once('../account/account.php');
-require_once('../UserClass/User.php');
 
 //REMOVE BELOW UPON SUCCESSFUL IMPLEMENTATION
 ini_set('display_errors', 'On');
 error_reporting(E_ALL | E_STRICT);
 //REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
 
+require_once('db_manager.php');
+require_once('User.php');
+
 session_start();
 
 if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
 {
-    header('Location: ../../index.php');
+    header('Location: ../index.php');
     exit();
 }
 
 $email = $_SESSION['email'];
-
 $user = $_SESSION['userObject'];
 
-function is_valid_file($filename) {
+function is_valid_file($filename) 
+{
     $tmp = explode('.', $filename);
     $ext = end($tmp);
     if($ext != "csv") {
@@ -40,8 +38,8 @@ function validate_input($db, $data)
     return $data;
 }
 
-function is_valid_transaction($account, $date, $amount, $merchant) {
-
+function is_valid_transaction($account, $date, $amount, $merchant) 
+{
     // Check whether fields are empty
     if( empty($account) || empty($date) || empty($amount) || empty($merchant)) {
         return false;
@@ -55,13 +53,14 @@ function is_valid_transaction($account, $date, $amount, $merchant) {
 }
 
 // CSV Functionality
-if(isset($_POST['submit'])) {
+if(isset($_POST['submit'])) 
+{
 
     $_SESSION['uploadSuccess'] = false;
 
     // Validate uploaded file type
     if(!is_valid_file($_FILES['csv-file']['name'])) {
-        header('Location: ../dashboard.php');
+        header('Location: ../dashboard/index.php');
         exit();
     }
     // Upload CSV file
@@ -76,8 +75,8 @@ if(isset($_POST['submit'])) {
     $_SESSION['uploadSuccess'] = true;
 
     // Validate transaction data
-    for ($i = 1; $i < count($csv_array); $i++) {
-        
+    for ($i = 1; $i < count($csv_array); $i++) 
+    {
         // Parse row for single transaction 
         $account = validate_input($db, $csv_array[$i][0]);
         $date = validate_input($db, $csv_array[$i][1]);
@@ -91,10 +90,11 @@ if(isset($_POST['submit'])) {
     }
     
     // Parse and log transaction data if valid
-    if($_SESSION['uploadSuccess'] == true) {
+    if($_SESSION['uploadSuccess'] == true) 
+    {
         // Parse 2D array for transaction data
-        for ($i = 1; $i < count($csv_array); $i++) {
-            
+        for ($i = 1; $i < count($csv_array); $i++) 
+        {
             // Parse row for single transaction 
             $account = validate_input($db, $csv_array[$i][0]);
             $date = validate_input($db, $csv_array[$i][1]);
@@ -112,6 +112,6 @@ if(isset($_POST['submit'])) {
 
     $_SESSION['userObject'] = $user;
     $db->closeConnection(); 
-    header('Location: ../dashboard/dashboard.php');
+    header('Location: ../dashboard/index.php');
 }
 ?>

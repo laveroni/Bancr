@@ -1,12 +1,17 @@
 <?php
 
-require_once('../Transaction/transaction.php');
+//REMOVE BELOW UPON SUCCESSFUL IMPLEMENTATION
+ini_set('display_errors', 'On');
+error_reporting(E_ALL | E_STRICT);
+//REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
+
+require_once('transaction.php');
 
 class Account
 {
 	private	$accountName;
+	private $accountType;
 	private $transacationHistory;
-	private $accountBalance;
 
 	function __construct ($name)
 	{

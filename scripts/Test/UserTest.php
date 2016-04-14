@@ -1,8 +1,6 @@
 <?php
 //Done need coverage
-require_once "../UserClass/User.php";
-require_once "../account/account.php";
-require_once "../Transaction/transaction.php";
+require_once "../User.php";
 
 class UserTest extends PHPUnit_Framework_TestCase{
 	

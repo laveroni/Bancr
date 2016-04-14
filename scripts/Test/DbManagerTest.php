@@ -1,6 +1,6 @@
 <?php
 
-include_once "../db/db_manager.php";
+include_once "../db_manager.php";
 //need to fix last test
 
 

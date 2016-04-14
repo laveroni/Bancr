@@ -9,13 +9,11 @@ session_start();
 $_SESSION['loggedIn'] = FALSE;
 
 //database configuration file containing db login credentials
-require_once('../db/db_manager.php');
+require_once('./db_manager.php');
 
 //create a db class object, open connection
 $db = new dbManager();
 $db->openConnection();
-
-
 
 // $usernameError = "";
 $passwordError = "";
@@ -117,7 +115,7 @@ if (isset($_POST['submit'])) {
 
 			$db->closeConnection();
 
-			header('Location: ../dashboard/dashboard.php');
+			header('Location: ../dashboard/index.php');
 			exit();
 		}
 
@@ -139,5 +137,5 @@ function hashit($password)
 	$string = password_hash($password, PASSWORD_DEFAULT);
 	return $string;
 }
-
+include('./register.html.php');
 ?>

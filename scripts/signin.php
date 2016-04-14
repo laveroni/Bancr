@@ -1,7 +1,24 @@
 <?php 
 
+//REMOVE BELOW UPON SUCCESSFUL IMPLEMENTATION
+ini_set('display_errors', 'On');
+error_reporting(E_ALL | E_STRICT);
+//REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
+
+require_once('db_manager.php');
+
 //create the user's session
 session_start();
+
+//checks if the session variable loggedIn is set
+//then validates that loggedIn is true and the user is logged in
+if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true)
+{
+    //if the user is loggedIn already then it redirects the page to the homepage
+    file_put_contents('php://stderr', print_r('2', TRUE));
+    header('Location: ../dashboard/index.php');
+    exit();
+}
 
 //check if loginAttempts is equal to 4
 if(!isset($_SESSION['loginAttempts']))
@@ -11,23 +28,6 @@ if(!isset($_SESSION['loginAttempts']))
 
 if(isset($_POST['submit']) && isset($_POST["password"]) && isset($_POST["email"]))
 {
-	//REMOVE BELOW UPON SUCCESSFUL IMPLEMENTATION
-	ini_set('display_errors', 'On');
-	error_reporting(E_ALL | E_STRICT);
-	//REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
-
-	//database configuration file containing db login credentials
-    require_once('../db/db_manager.php');
-
-    //checks if the session variable loggedIn is set
-    //then validates that loggedIn is true and the user is logged in
-    if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true)
-    {
-    	//if the user is loggedIn already then it redirects the page to the homepage
-        header("Location: ../dashboard/dashboard.php");
-        exit();
-    }
-
     //create a db class object, open connection
     $db = new dbManager();
     $db->openConnection();
@@ -47,6 +47,7 @@ if(isset($_POST['submit']) && isset($_POST["password"]) && isset($_POST["email"]
    	$row_cnt = mysqli_num_rows($result_login);
     $row = mysqli_fetch_row($result_login);
 
+
     if( $row_cnt == 1 )
     { // logs user in.
     	//verify that the password and the hash are the same, if not log in is incorrect
@@ -56,7 +57,7 @@ if(isset($_POST['submit']) && isset($_POST["password"]) && isset($_POST["email"]
     		$_SESSION['email'] = $email;
         	$_SESSION['password'] = $row[1];
         	$_SESSION['loggedIn'] = TRUE;
-        	header('Location: ../dashboard/dashboard.php');
+        	header('Location: ../dashboard/index.php');
         	exit();
     	}
     	else
@@ -75,7 +76,7 @@ else if(isset($_POST['submit']) && (!isset($_POST["password"]) || !isset($_POST[
     $_SESSION['loginAttempts'] += 1;  
 }
 
-header('Location: ../../index.php');
+header('Location: ../');
 
 function test_input($db, $data) 
 {

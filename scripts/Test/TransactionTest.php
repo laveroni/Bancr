@@ -1,7 +1,7 @@
 <?php
 //NOT DONE
-include_once "../account/account.php";
-include_once "../Transaction/transaction.php";
+include_once "../account.php";
+include_once "../transaction.php";
 
 class TranactionTest extends PHPUnit_Framework_TestCase{
 

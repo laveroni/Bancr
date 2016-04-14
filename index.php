@@ -54,10 +54,7 @@
 	<body style="background-color:#333333;">
 	<!--<body background="money.jpg">-->
 		<div class="container">
-
-			<form class="form-signin" method="POST" id="logForm" action="scripts/login/signin.php">
-			<form class="form-signin" id="loginform" method="POST" action="scripts/login/signin.php">
-
+			<form class="form-signin" method="POST" id="logForm" action="scripts/signin.php">
 				<h2 class="form-signin-heading"><font color="light green">Bancr</h2></font>
 				<h4 class="form-signin-heading"><font color="blue" font-weight="bold">Enter your email and password</font>
 				<h4></h4>
