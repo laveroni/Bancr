@@ -6,10 +6,8 @@ include_once "../Transaction/transaction.php";
 class TranactionTest extends PHPUnit_Framework_TestCase{
 
 	protected $transaction;
-	protected $acc;
 
 	protected function setUp(){
-		$this->acc = new Account("Check", 3000, null);
 		$this->transaction = new Transaction("01/01/16",100, "Saves", "Ted");
 	}
 

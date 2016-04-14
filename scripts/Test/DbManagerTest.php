@@ -1,8 +1,7 @@
 <?php
 
 include_once "../db/db_manager.php";
-include_once "../Transaction/transaction.php";
-//include_once "PHPUnit/Autoload.php";
+//need to fix last test
 
 
 class DbManagerTest extends PHPUnit_Framework_TestCase{
@@ -16,6 +15,7 @@ class DbManagerTest extends PHPUnit_Framework_TestCase{
 	public function testSetVars(){
 		$db = new dbManager();
 	}
+
 	public function testQueryRequestValid(){
 		$log = "INSERT INTO Users (email) VALUES ('dom@usc.edu')";
 		$db = new dbManager();
@@ -24,6 +24,7 @@ class DbManagerTest extends PHPUnit_Framework_TestCase{
 	    $val = boolval($result_login);
 	    $this->assertEquals(true, $val);
 	}
+
 	public function testQueryRequestInvalid(){
 		$email = "bancr@usc.edu";
 		$log = "SELECT * FROM Hsers WHERE Email = '$email' ";
@@ -42,6 +43,7 @@ class DbManagerTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals(true, $val);
 		$db->closeConnection();
 	}
+
 	public function testCloseConnectionAfterOpeningConnection(){
 		$db = new dbManager();
 		$db->openConnection();
@@ -49,14 +51,7 @@ class DbManagerTest extends PHPUnit_Framework_TestCase{
 		$db_conn = $db->getCon();
 		$val = boolval($db_conn);
 		$this->assertTrue($val);
-		//abover line should be assertFalse, but is giving errors rn
+		//above line should be assertFalse, but is giving errors rn
 	}
-/*	public function testCloseConnectionWithoutOpeningConnection(){
-		$db = new dbManager();
-		$db->closeConnection();
-		$db_conn = $db->getCon();
-		$val = boolval($db_conn);
-		$this->assertFalse($val);
-	}
-*/}
+}
 ?>

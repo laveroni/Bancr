@@ -11,24 +11,17 @@ class AccountTest extends PHPUnit_Framework_TestCase{
 
 	protected function setUp(){
 		$this->trans = array();
-		$this->account = new Account("Savings", "credit");
+		$this->account = new Account("John");
 	}
+	
 	public function testSetNumber(){
 		$this->account->setNumber(50);
 		$this->assertEquals(50, $this->account->accountNumber);
 	}
-
-/*	public function testGetNumber(){
-		$this->account->number=50;
-		$expected = 50;
-		$actual = $this->getNumber();
-		$this->assertEquals($actual, $expected);
-	}
-*/
 	
 	public function testGetName(){
 		$actual = $this->account->getName();
-		$expected = "Savings";
+		$expected = "John";
 		$this->assertEquals($expected, $actual);
 	}
 	
@@ -44,11 +37,6 @@ class AccountTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals($actual, $expected);
 	}
 
-	public function testGetType(){
-		$actual = $this->account->getType();
-		$expected = "credit";
-		$this->assertEquals($actual, $expected);
-	}
 	public function testGetLastTransaction(){
 		$tran = new Transaction("savings", 2/31/23, 59, "tom");
 		$this->account->addTransaction($tran);
