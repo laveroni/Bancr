@@ -71,6 +71,8 @@ class Account
 	public function addTransaction($newTransaction)
 	{
 		array_push($this->transacationHistory, $newTransaction);
+
+		$this->accountBalance += $newTransaction->getAmount();
 	}
 
 }

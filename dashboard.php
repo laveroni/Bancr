@@ -18,6 +18,11 @@
 		$_SESSION['addAccountError'] = "";
 	}
 
+	if(!isset($_SESSION['addTransactionError']))
+	{
+		$_SESSION['addTransactionError'] = "";
+	}
+
 	if($_SESSION['loggedIn'] == false || $_SESSION['loggedIn'] == null)
 	{	
 		header('Location: ./index.php');
@@ -74,6 +79,55 @@
 
 		
 	}
+
+
+
+//fix below for transaction
+
+
+	if(isset($_POST['addTransaction']))
+	{
+		
+		if(isset($_POST["transactionName"]) && $_POST["transactionName"] != "" && isset($_POST["transactionAmount"]) && $_POST["transactionAmount"] != "" && isset($_POST["transactionMerchant"]) && $_POST["transactionMerchant"] != "" && isset($_POST["transactionDate"]) && $_POST["transactionDate"] != "")
+		{
+			$_SESSION['addTransactionError'] = "";
+
+
+			$transAccounts = $_SESSION['userObject']->getAccountsArray();
+
+			$arrayKey = 0;
+
+			foreach ($transAccounts as $key => $value)
+			{ 
+				if($value->getName() == $_POST["transactionName"])
+				{
+					$arrayKey = $key;
+				}
+				
+			}
+
+
+			$_SESSION['userObject']->addTransaction($_POST["transactionDate"], $_POST["transactionAmount"], $_POST["transactionName"], $_POST["transactionMerchant"], $arrayKey);
+
+
+			header("Location: dashboard.php");
+			exit();
+			
+		}
+
+		else
+		{
+			$_SESSION['addTransactionError'] = "<br>Error: Invalid Parameters";
+		}
+
+		
+	}
+
+
+
+
+
+
 
 
 	if (isset($_POST['removeAccount'])) 
@@ -167,29 +221,83 @@
 									<tbody>
 										<tr>
 											<th style="width: 90px">
-												Name
+												Account
 											</th>
 											<th style="width:200px">
-												Type
-											</th>
-											<th style="width:70px">
-												<i class="fa fa-hashtag"></i>
-
-											</th>
-											<th style="width:70px">
 												<i class="fa fa-usd"></i>
-
 											</th>
-											<th style="width:10px">
-												<i class="fa fa-line-chart"></i>
-
+											<th style="width:70px">
+												Merchant
+											</th>
+											<th style="width:70px">
+												Date
 											</th>
 
 										</tr>
+
+
+										<?php 
+											$accountsArray = $_SESSION['userObject']->getAccountsArray();
+
+
+											function cmpTrans($a, $b)
+											{
+											    return strcmp($a->getName(), $b->getName());
+											}
+
+											usort($accountsArray, "cmpTrans");
+
+
+										    foreach ($accountsArray as $key => $value)
+										    {
+
+										    	$accountTransactionHistory = $value->getHistory();
+
+										    	foreach ($accountTransactionHistory as $transVal)
+										    	{
+										    		echo'<tr>'; 
+										        	echo'<td>' . $transVal->getAccount() . '</td>';
+										        	echo'<td>' . $transVal->getAmount() . '</td>';
+										        	echo'<td>' . $transVal->getMerchant() . '</td>';
+										        	echo'<td>' . $transVal->getDate() . '</td>';
+										        	echo'</tr>';
+										    	}
+
+										    }
+										?>
+
+
 									</tbody>
 								</table>
 								</div>
 							</div>
+
+
+							<form action="" method="post">
+								Transaction Acccount:<br>
+								<input type="text" name="transactionName" id="transactionName"><br>
+								<!-- Account Type:<br>
+								<select name="accountTypeInput">
+									<option value="savings">Savings</option>
+									<option value="credit">Credit</option>
+									<option value="loan">Loan</option>
+								</select> -->
+
+								Transaction Amount:<br>
+								<input type="text" name="transactionAmount" id="transactionAmount"><br>
+								Transaction Merchant:<br>
+								<input type="text" name="transactionMerchant" id="transactionMerchant"><br>
+								Transaction Date:<br>
+								<input type="text" name="transactionDate" id="transactionDate"><br>
+
+								<?php echo '<div style="color:red;">' . $_SESSION['addTransactionError'] . '</div>'; ?>
+								<div style="margin-top: 15px">
+									<button name="addTransaction" type="submit" style="width:140px;" class="btn btn-default" id="addTransaction">Add Transaction</button>
+								</div>
+							</form>
+
+
+
 							<div style=" background-color:white">
 									<!-- Stock info
 									
@@ -242,6 +350,15 @@
 										<?php 
 											$accountsArray = $_SESSION['userObject']->getAccountsArray();
 
+
+											function cmp($a, $b)
+											{
+											    return strcmp($a->getName(), $b->getName());
+											}
+
+											usort($accountsArray, "cmp");
+
+
 										    foreach ($accountsArray as $key => $value)
 										    {
 										        echo'<tr>'; 
@@ -262,7 +379,7 @@
 										        	echo'<td>' . 
 										        		'<form action="" method="post">' . 
 										        			'<input type="submit" name="removeAccount" value="Remove" id="removeAccount">' . 
-										        			'<input type="hidden" name="id" value="' . $key . '" />' . 
+										        			'<input type="hidden" name="id" value="' . $value->getNumber() . '" />' . 
 										        		'</form>' . 
 										        	'</td>';
 										        }

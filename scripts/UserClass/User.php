@@ -52,7 +52,7 @@
 			return $this->email;
 		}
 
-		private function addTransaction($date, $amount, $type, $merchant, $accountNumber)
+		public function addTransaction($date, $amount, $type, $merchant, $accountNumber)
 		{
 			$newTransaction = new Transaction($date, $amount, $type, $merchant);
 
@@ -66,6 +66,12 @@
 			{
 				echo "Account number: " . $accountNumber . " is invalid in user addTransaction";
 			}
+
+
+
+			//add the value to the actual account object too
+			//TODO
+			//TODO
 
 		}
 
