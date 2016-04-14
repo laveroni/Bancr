@@ -21,7 +21,6 @@ Given (/^I am on the main page and trying to add a new account2$/) do
 end
 
 When(/^I try to add a new account with a proper name and type$/) do
-    click_button 'removeAccount'
     fill_in 'accountName', :with => 'mynewaccount'
     click_button 'addAccount'
 end

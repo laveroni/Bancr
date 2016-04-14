@@ -13,7 +13,7 @@ class UserTest extends PHPUnit_Framework_TestCase{
 	protected function setUp(){
 		$this->user = new User("ttrojan@usc.edu","rasmuslerdorf");
 		$this->accounts = array();
-		$this ->acc = new Account("Bryan");
+		$this ->acc = new Account("Bryan", 3);
 	}
 
 	//used to test private functions
@@ -49,7 +49,7 @@ class UserTest extends PHPUnit_Framework_TestCase{
 	public function testAddTransactionFailure(){
 		$users = new User("ttrojan@usc.edu", "pass");
 		$this->invokeMethod($users, 'addTransaction', array("1/011/01", 170, "Savings", "Bob", 0));
-		$accountNumber = 0;
+		$accountNumber = 3;
 		$accs = $users->getAccountsArray();
 		$this->assertFalse(array_key_exists($accountNumber, $accs));
 	}
@@ -58,7 +58,7 @@ class UserTest extends PHPUnit_Framework_TestCase{
 		$users = new User("ttrojan@usc.edu", "pass");
 		$users->addAccount($this->acc);
 		$this->invokeMethod($users, 'addTransaction', array("1/01/01", 170, "Savings", "Bob", 0));
-		$accountNumber = 0;
+		$accountNumber = 3;
 		$accs = $users->getAccountsArray();
 		$a = $accs[$accountNumber];
 		$trans = $a -> getHistory();
@@ -69,13 +69,13 @@ class UserTest extends PHPUnit_Framework_TestCase{
 	public function testAddAccount(){
 		$this->user->addAccount($this->acc);
 		$accs = $this->user->getAccountsArray();
-		$this->assertEquals($accs[0], $this->acc);
+		$this->assertEquals($accs[3], $this->acc);
 	}
 
 	public function testRemoveAccount(){
 		$this->user->removeAccount($this->acc);
 		$accs = $this->user->getAccountsArray();
-		$this->assertEquals(0, count($accs));
+		$this->assertEquals(3, count($accs));
 	}
 
 }
