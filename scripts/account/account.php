@@ -1,51 +1,23 @@
 <?php
 
-//temporarily commented out for include errors
-// include_once('../Transaction/transaction.php');
+require_once('../Transaction/transaction.php');
 
 class Account
 {
-	private $acountNumber;
 	private	$accountName;
 	private $transacationHistory;
 	private $accountBalance;
 
 	function __construct ($name)
 	{
-		//TODO:  GET ACCOUNT NUMBER FROM DATABASE
 		$this->accountNumber = 0;
-
-		
 		$this->accountName = $name;
 		$this->transacationHistory = array();
-		$this->accountBalance = 0;
 	}
 
-
-
-	public function setNumber($number)
+	private function setType($type)
 	{
-		$this->accountNumber = $number;
-	}
-
-	// private function setName($name)
-	// {
-	// 	$this->accountName = $name;
-	// }
-
-	//  private function setHistory($transactions)
-	//  {
-	//  	$this->transacationHistory = $transacations;
-	//  }
-
-	// private function setBalance($balance)
-	// {
-	// 	$this->setBalance = $balance;
-	// }
-
-	public function getNumber()
-	{
-		return $this->accountNumber;
+		$this->accountType = $type;
 	}
 
 	public function getName()
@@ -60,7 +32,17 @@ class Account
 
 	public function getBalance()
 	{
-		return $this->accountBalance;
+		$accountBalance = 0;
+		for($i = 0; $i < count($this->transacationHistory); $i++)
+		{
+			$accountBalance += $this->transacationHistory[$i]->getAmount();
+		}
+		return $accountBalance;
+	}
+
+	private function getType()
+	{
+		return $this->accountType;
 	}
 
 	public function getLastTransaction()
@@ -73,7 +55,5 @@ class Account
 	{
 		array_push($this->transacationHistory, $newTransaction);
 	}
-
 }
-
 ?>
