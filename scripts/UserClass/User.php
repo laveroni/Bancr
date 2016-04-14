@@ -6,7 +6,8 @@
     //REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
 
     //need to actually use it but right now it is not necessary and giving an include error
-    //include_once('../account/account.php');
+    include "/var/www/html/Bancr/scripts/account/account.php";
+    include_once "/var/www/html/Bancr/scripts/Transaction/transaction.php";
 
 	class User
 	{
@@ -21,9 +22,19 @@
 			$this->email = $email;
 			$this->encryptedPassword = $encryptedPassword;
 
-			//key is account number, value is the account object
 			$this->accounts = array();
+
+			//key is account number, value is the account object
 			$this->numAccounts = 0;
+
+			$posAccount = new Account("Savings", $this->numAccounts);
+			$this->addAccount($posAccount);
+
+			$negAccount = new Account("Credit", $this->numAccounts);
+			$this->addAccount($negAccount);
+
+			$netAccount = new Account("Net", $this->numAccounts);
+			$this->addAccount($netAccount);
 		}
 
 		private function setEncryptedPassword($password)

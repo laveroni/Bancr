@@ -10,10 +10,9 @@ class Account
 	private $transacationHistory;
 	private $accountBalance;
 
-	function __construct ($name)
+	function __construct ($name, $num)
 	{
-		//TODO:  GET ACCOUNT NUMBER FROM DATABASE
-		$this->accountNumber = 0;
+		$this->accountNumber = $num;
 
 		
 		$this->accountName = $name;

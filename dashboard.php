@@ -226,9 +226,9 @@
 											<th style="width:90px">
 												Account Name
 											</th>
-											<!-- <th style="width:90px">
-												Account Type
-											</th> -->
+											<th style="width:90px">
+												Balance ($)
+											</th>
 											<th style="width:10px">
 												Display
 												<i class="fa fa-line-chart"></i>
@@ -246,18 +246,27 @@
 										    {
 										        echo'<tr>'; 
 										        echo'<td>' . $value->getName() . '</td>';
-										        // echo'<td>' . $value->getType() . '</td>';
+										        echo'<td>' . $value->getBalance() . '</td>';
 										        echo'<td> 
 										        		<form action="" method="post">
 										        			<input type="radio" name="display" unchecked>
 										        		</form>
 										        	</td>';
-										        echo'<td>' . 
+
+										        if($value->getNumber() >= 0 && $value->getNumber() <= 2)
+										        {
+										        	echo '<td></td>';
+										        }
+										        else
+										        {
+										        	echo'<td>' . 
 										        		'<form action="" method="post">' . 
 										        			'<input type="submit" name="removeAccount" value="Remove" id="removeAccount">' . 
 										        			'<input type="hidden" name="id" value="' . $key . '" />' . 
 										        		'</form>' . 
 										        	'</td>';
+										        }
+										        
 										        echo'</tr>';
 										    }
 										?>
