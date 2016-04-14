@@ -46,7 +46,7 @@
 
 			if($_SESSION['addAccountError'] == "")
 			{
-				$newAccount = new Account($_POST["accountName"], $_POST['accountTypeInput']);
+				$newAccount = new Account($_POST["accountName"]);
 
 				$_SESSION['userObject']->addAccount($newAccount);
 
@@ -226,9 +226,9 @@
 											<th style="width:90px">
 												Account Name
 											</th>
-											<th style="width:90px">
+											<!-- <th style="width:90px">
 												Account Type
-											</th>
+											</th> -->
 											<th style="width:10px">
 												Display
 												<i class="fa fa-line-chart"></i>
@@ -246,7 +246,7 @@
 										    {
 										        echo'<tr>'; 
 										        echo'<td>' . $value->getName() . '</td>';
-										        echo'<td>' . $value->getType() . '</td>';
+										        // echo'<td>' . $value->getType() . '</td>';
 										        echo'<td> 
 										        		<form action="" method="post">
 										        			<input type="radio" name="display" unchecked>
@@ -271,12 +271,12 @@
 							<form action="" method="post">
 								Account Name:<br>
 								<input type="text" name="accountName" id="accountName"><br>
-								Account Type:<br>
+								<!-- Account Type:<br>
 								<select name="accountTypeInput">
 									<option value="savings">Savings</option>
 									<option value="credit">Credit</option>
 									<option value="loan">Loan</option>
-								</select>
+								</select> -->
 
 								<?php echo '<div style="color:red;">' . $_SESSION['addAccountError'] . '</div>'; ?>
 								<div style="margin-top: 15px">
