@@ -109,6 +109,7 @@ if(isset($_POST['submit'])) {
             $user->addTransaction($account, $date, $amount, $merchant);
         }
     }
+
     $_SESSION['userObject'] = $user;
     $db->closeConnection(); 
     header('Location: ../dashboard/dashboard.php');

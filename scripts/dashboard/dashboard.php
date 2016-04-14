@@ -12,7 +12,6 @@
 		<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 		<script src="../../vendors/chart.min.js"></script>
 		<script src="../../vendors/Chart.Scatter.min.js"></script>
-		
 	</head>
 
 	<body style="margin:30px;">
@@ -31,43 +30,27 @@
 							</form>
 						</td>
 
-						<!-- Search -->
-						<td style="width:50%;     text-align: -webkit-center;">
+						<!-- Title -->
+						<td style="width:50%; text-align: -webkit-center;">
 							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Bancr</h2>
-							<!--<div>
-							    <div class="input-group" style="width: 60%;border-collapse: collapse;">
-							    	<form action='' method='post'>
-									    <input name="searchQuery" type="text" class="form-control" id="stockSearch" placeholder="Search for...">
-									    <span class="input-group-btn">
-							        		<button type="submit" id="addToWatchList" name="addToWatchList" class="btn btn-default"> Add to Watchlist</button>
-							        	</span>
-							        </form>
-							-->
-							   		
-							      
-							    </div><!-- /input-group -->
-							  </div><!-- /.col-lg-6 -->
+							    </div>
+							  </div>
 						</td>
 
 						<!-- Date, User Manual, Logout -->
 						<td style="width:25%; text-align:center ">
 							<div class="timeDisplay"></div>
 							<div class="dateDisplay"></div>
-						
 							<button name="logout" id="logout" value="logout" type="submit" style="width:100px;" class="btn btn-default" onclick="window.location.href='../logout/logout.php'">
 							Logout
 							</button>
-						
-							
-
-
 						</td>
 					</tr>
 
 					<!-- Middle -->
 					<tr>
 						<!-- Transactions -->
-						<td  style="height:480px; width:25%; background-color: white; padding-top:0px;">
+						<td style="height:480px; width:25%; background-color: white; padding-top:0px;">
 							<div style="">
 							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Transactions</h2>
 							<div style="overflow-y: scroll; max-height: 321px">
@@ -99,10 +82,8 @@
 								</table>
 								</div>
 							</div>
-							<div style=" background-color:white">
-									
+							<div style=" background-color:white">	
 							</div>
-								
 						</td>
 
 						<!-- Graph -->
@@ -137,9 +118,8 @@
 										</tr>
 
 										<?php 
-											$accountsArray = $user->getAccountsArray();
-
-										    foreach ($accountsArray as $key => $value)
+											$accounts = $user->getAccountsArray();
+										    foreach ($accounts as $key => $value)
 										    {
 										        echo'<tr>'; 
 										        echo'<td>' . $value->getName() . "</td>";
@@ -157,7 +137,6 @@
 										        echo'<tr>';
 										    }
 										?>
-
 									</tbody>
 								</table>
 								</div>
@@ -171,27 +150,14 @@
 									<option value="credit">Credit</option>
 									<option value="loan">Loan</option>
 								</select>
-								<?php echo '<div style="color:red;">' . $_SESSION['addAccountError'] . '</div>'; ?>
 								<div style="margin-top: 15px">
 									<button name="addAccount" type="submit" style="width:100px;" class="btn btn-default" id="addAccount">Add account</button>
 								</div>
 							</form>
-
 						</td>
-
-
 					</tr>
-				
 				</tbody>
-
 		</table>
-		<!-- Upload Failure Popup -->
-		<div style="display: none;" id="dialog" title="Upload failure">
-  			<p>Something went wrong with your upload. Please check to make sure your file matches the following format:</p>
-  			<img src='../../money.jpg'/>
-		</div>
-
-	<?php require './graph.php' ?>
-
+		<?php require './graph.php' ?>
 	</body>
 </html>

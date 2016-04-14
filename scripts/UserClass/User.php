@@ -45,9 +45,7 @@
 
 		public function addAccount($accountObject)
 		{
-			//$accountObject->setNumber($this->numAccounts);
 			$this->numAccounts++;
-			//$this->accounts[$accountObject->getNumber()] = $accountObject;
 			$this->accounts[$accountObject->getName()] = $accountObject;
 		}
 
