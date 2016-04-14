@@ -46,7 +46,7 @@
 
 			if($_SESSION['addAccountError'] == "")
 			{
-				$newAccount = new Account($_POST["accountName"]);
+				$newAccount = new Account($_POST["accountName"], $_SESSION['userObject']->getNumAccounts());
 
 				$_SESSION['userObject']->addAccount($newAccount);
 

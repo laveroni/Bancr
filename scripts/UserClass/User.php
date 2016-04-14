@@ -87,6 +87,11 @@
 			return $this->accounts;
 		}
 
+		public function getNumAccounts()
+		{
+			return $this->numAccounts;
+		}
+
 	}
 
 ?>
