@@ -1,6 +1,8 @@
 <?php
 //NOT DONE
 include_once "/var/www/html/Bancr/scripts/uploadCSV.php";
+include_once "/var/www/html/Bancr/scripts/db_manager.php";
+
 
 class CSVuploadTest extends PHPUnit_Framework_TestCase{
 
