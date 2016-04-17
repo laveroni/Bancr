@@ -7,11 +7,11 @@ convertWarningsToExceptions="true"
 stopOnFailure="true">
 <filter>
   <whitelist processUncoveredFilesFromWhitelist="true">	
-    <directory suffix=".php">../UserClass/</directory>
-    <directory suffix=".php">../Transaction/</directory>
-    <directory suffix=".php">../account/</directory>
-    <directory suffix=".php">../db/</directory>
-    <directory suffix=".php">../uploadCSV/</directory>
+    <file>../user.php</file>
+    <file>../transaction.php</file>
+    <file>../account.php</file>
+    <file>../db_manager.php</file>
+    <file>../uploadCSV.php</file>
     <exclude>     
     </exclude>
   </whitelist>
