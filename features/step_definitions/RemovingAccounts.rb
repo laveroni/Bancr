@@ -17,6 +17,8 @@ When(/^I remove a new account$/) do
 end
 
 Then(/^I should not see that account$/) do
+    expect(page).to have_content 'Account already exists'
+    page.driver.browser.switch_to.alert.accept
     expect(page).to have_no_content 'mynewaccount'
 end
 
