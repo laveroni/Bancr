@@ -1,4 +1,17 @@
 <?php require 'dashboard.php' ?>
+
+
+<!--
+
+http://jsfiddle.net/superscript18/dNAty/
+
+when the mouse stops moving, serialize object and put in database.
+
+This prevents loss of data on inactivity or window close, but when the logout button isnt clicked
+
+-->
+
+
 <html>
 	<head>
         <link rel="stylesheet" type="text/css" href="../vendors/bootstrap-3.3.6-dist/css/bootstrap.min.css">
@@ -57,29 +70,67 @@
 									<tbody>
 										<tr>
 											<th style="width: 90px">
-												Name
+												Account
 											</th>
 											<th style="width:200px">
-												Type
-											</th>
-											<th style="width:70px">
-												<i class="fa fa-hashtag"></i>
-
-											</th>
-											<th style="width:70px">
 												<i class="fa fa-usd"></i>
-
 											</th>
-											<th style="width:10px">
-												<i class="fa fa-line-chart"></i>
-
+											<th style="width:70px">
+												Merchant
+											</th>
+											<th style="width:70px">
+												Date
 											</th>
 
 										</tr>
+
+
+										<?php 
+											$accountsArray = $_SESSION['userObject']->getAccountsArray();
+											function cmpTrans($a, $b)
+											{
+											    return strcmp($a->getName(), $b->getName());
+											}
+											usort($accountsArray, "cmpTrans");
+										    foreach ($accountsArray as $key => $value)
+										    {
+										    	$accountTransactionHistory = $value->getHistory();
+										    	foreach ($accountTransactionHistory as $transVal)
+										    	{
+										    		echo'<tr>'; 
+										        	echo'<td>' . $transVal->getAccount() . '</td>';
+										        	echo'<td>' . $transVal->getAmount() . '</td>';
+										        	echo'<td>' . $transVal->getMerchant() . '</td>';
+										        	echo'<td>' . $transVal->getDate() . '</td>';
+										        	echo'</tr>';
+										    	}
+										    }
+										?>
+
+
 									</tbody>
 								</table>
 								</div>
 							</div>
+
+
+							<!-- <form action="" method="post">
+								Transaction Account:<br>
+								<input type="text" name="transactionName" id="transactionName"><br>
+
+								Transaction Amount:<br>
+								<input type="text" name="transactionAmount" id="transactionAmount"><br>
+								Transaction Merchant:<br>
+								<input type="text" name="transactionMerchant" id="transactionMerchant"><br>
+								Transaction Date:<br>
+								<input type="text" name="transactionDate" id="transactionDate"><br>
+
+								<div style="margin-top: 15px">
+									<button name="addTransaction" type="submit" style="width:140px;" class="btn btn-default" id="addTransaction">Add Transaction</button>
+								</div>
+							</form> -->
+
+
 							<div style=" background-color:white">	
 							</div>
 						</td>
@@ -115,39 +166,58 @@
 											</th>
 										</tr>
 
+
+
+
 										<?php 
-											$accounts = $user->getAccountsArray();
-										    foreach ($accounts as $key => $value)
+											$accountsArray = $_SESSION['userObject']->getAccountsArray();
+											function cmp($a, $b)
+											{
+											    return strcmp($a->getName(), $b->getName());
+											}
+											usort($accountsArray, "cmp");
+										    foreach ($accountsArray as $key => $value)
 										    {
 										        echo'<tr>'; 
-										        echo'<td>' . $value->getName() . "</td>";
-										        echo'<td>' . $value->getBalance() . "</td>";
+										        echo'<td>' . $value->getName() . '</td>';
+										        echo'<td>' . $value->getBalance() . '</td>';
 										        echo'<td> 
 										        		<form action="" method="post" name="af" id="af">
 										        			<input type="checkbox" onclick="updateGraph();" name="display[]" id=' . $value->getName() . ' unchecked>
 										        		</form>
 										        	</td>';
-										        echo'<td> 
-										        		<form action="" method="post">
-										        			<input type="button" name="removeAccount" value="Remove" id="removeAccount">
-										        		</form>
-										        	</td>';
-										        echo'<tr>';
+										        if($value->getNumber() >= 0 && $value->getNumber() <= 2)
+										        {
+										        	echo '<td></td>';
+										        }
+										        else
+										        {
+										        	echo'<td>' . 
+										        		'<form action="" method="post">' . 
+										        			'<input type="submit" name="removeAccount" value="Remove" id="removeAccount">' . 
+										        			'<input type="hidden" name="id" value="' . $value->getNumber() . '" />' . 
+										        		'</form>' . 
+										        	'</td>';
+										        }
+										        
+										        echo'</tr>';
 										    }
 										?>
+
+
 									</tbody>
 								</table>
 								</div>
 							</div>
 							<form action="" method="post">
-								Account Name:<br>
+								<br>Account Name:<br>
 								<input type="text" name="accountName" id="accountName"><br>
-								Account Type:<br>
+								<!-- Account Type:<br>
 								<select name="accountTypeInput">
 									<option value="savings">Savings</option>
 									<option value="credit">Credit</option>
 									<option value="loan">Loan</option>
-								</select>
+								</select> -->
 								<div style="margin-top: 15px">
 									<button name="addAccount" type="submit" style="width:100px;" class="btn btn-default" id="addAccount">Add account</button>
 								</div>

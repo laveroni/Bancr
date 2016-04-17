@@ -50,6 +50,8 @@ if(!isset($_SESSION['userObject']))
 	$_SESSION['userObject'] = $user;
 
 	$db->closeConnection();
+
+	//$_SESSION['userObject'] = new User($email, $_SESSION['password']);
 }
 
 $user = $_SESSION['userObject'];
@@ -71,10 +73,11 @@ if(isset($_POST['addAccount']))
 		}	
 		if(!$exists)
 		{
-			$newAccount = new Account($_POST['accountName'], $_POST['accountTypeInput']);
-			$user->addAccount($newAccount);	
-			unset($_POST['accountName']);
-			unset($_POST['accountTypeInput']);
+			$newAccount = new Account($_POST["accountName"], $_SESSION['userObject']->getNumAccounts());
+			$_SESSION['userObject']->addAccount($newAccount);
+			
+			header("Location: index.php");
+			exit();
 		} 
 		else 
 		{
@@ -117,6 +120,48 @@ if(isset($_SESSION['uploadSuccess']))
 	}
 	unset($_SESSION['uploadSuccess']);
 }
+
+
+if (isset($_POST['removeAccount'])) 
+{
+  	$accountsArray = $_SESSION['userObject']->getAccountsArray();
+	$newAccountObject = $accountsArray[$_POST['id']];
+	$_SESSION['userObject']->removeAccount($newAccountObject);
+	header("Location: index.php");
+	exit();
+}
+
+
+
+if(isset($_POST['addTransaction']))
+{
+		
+	if(isset($_POST["transactionName"]) && $_POST["transactionName"] != "" && isset($_POST["transactionAmount"]) && $_POST["transactionAmount"] != "" && isset($_POST["transactionMerchant"]) && $_POST["transactionMerchant"] != "" && isset($_POST["transactionDate"]) && $_POST["transactionDate"] != "")
+	{
+		$transAccounts = $_SESSION['userObject']->getAccountsArray();
+		$arrayKey = 0;
+		foreach ($transAccounts as $key => $value)
+		{ 
+			if($value->getName() == $_POST["transactionName"])
+			{
+				$arrayKey = $key;
+			}
+				
+		}
+		$_SESSION['userObject']->addTransaction($_POST["transactionName"], $_POST["transactionDate"], $_POST["transactionAmount"], $_POST["transactionMerchant"], $arrayKey);
+		header("Location: index.php");
+		exit();
+			
+	}
+	else
+	{
+
+	}
+		
+}
+
+
+
 
 // Encode transaction data for graph
 $transactions_json = array();

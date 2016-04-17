@@ -9,20 +9,28 @@ require_once('transaction.php');
 
 class Account
 {
+	private $acountNumber;
 	private	$accountName;
-	private $accountType;
 	private $transacationHistory;
+	private $accountBalance;
 
-	function __construct ($name)
+	function __construct ($name, $num)
 	{
-		$this->accountNumber = 0;
+		$this->accountNumber = $num;
+		
 		$this->accountName = $name;
 		$this->transacationHistory = array();
+		$this->accountBalance = 0;
 	}
 
-	private function setType($type)
+	public function setNumber($number)
 	{
-		$this->accountType = $type;
+		$this->accountNumber = $number;
+	}
+	
+	public function getNumber()
+	{
+		return $this->accountNumber;
 	}
 
 	public function getName()
@@ -37,17 +45,12 @@ class Account
 
 	public function getBalance()
 	{
-		$accountBalance = 0;
-		for($i = 0; $i < count($this->transacationHistory); $i++)
-		{
-			$accountBalance += $this->transacationHistory[$i]->getAmount();
-		}
-		return $accountBalance;
-	}
-
-	private function getType()
-	{
-		return $this->accountType;
+		// $accountBalance = 0;
+		// for($i = 0; $i < count($this->transacationHistory); $i++)
+		// {
+		// 	$accountBalance += $this->transacationHistory[$i]->getAmount();
+		// }
+		return $this->accountBalance;
 	}
 
 	public function getLastTransaction()
@@ -59,6 +62,14 @@ class Account
 	public function addTransaction($newTransaction)
 	{
 		array_push($this->transacationHistory, $newTransaction);
+
+		$this->accountBalance += $newTransaction->getAmount();
+	}
+
+	public function changeBalance($addition)
+	{
+		$this->accountBalance += $addition;
 	}
 }
+
 ?>
