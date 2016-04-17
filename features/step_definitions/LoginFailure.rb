@@ -36,6 +36,5 @@ Then(/^Error message should still exist after refreshing page$/)do
 end
 
 Then(/^I should see it disappear after a minute$/) do
-    visit('http://localhost/Bancr/index.php'), :wait=>65
-    page.should have_no_content('Account Locked For 1 Minute')
+    page.should have_no_content('Account Locked For 1 Minute'), :wait=>65
 end
