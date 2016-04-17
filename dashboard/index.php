@@ -242,6 +242,8 @@
 									<option value="credit">Credit</option>
 									<option value="loan">Loan</option>
 								</select> -->
+
+								<?php echo '<div style="color:red;">' . $_SESSION['addAccountError'] . '</div>'; ?>
 								<div style="margin-top: 15px">
 									<button name="addAccount" type="submit" style="width:100px;" class="btn btn-default" id="addAccount">Add account</button>
 								</div>

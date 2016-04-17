@@ -9,6 +9,12 @@ require_once("../scripts/db_manager.php");
 require_once("../scripts/user.php");
 
 session_start();
+
+if(!isset($_SESSION['addAccountError']))
+{
+	$_SESSION['addAccountError'] = "";
+}
+
 // Check whether user is logged in
 if($_SESSION['loggedIn'] == false || $_SESSION['loggedIn'] == null)
 {	
@@ -61,6 +67,8 @@ if(isset($_POST['addAccount']))
 {
 	if(isset($_POST['accountName']) && $_POST['accountName'] != "")
 	{
+		$_SESSION['addAccountError'] = "";
+
 		$accounts = $user->getAccountsArray();
 		$exists = false;
 		// Check whether account already exists
@@ -81,20 +89,12 @@ if(isset($_POST['addAccount']))
 		} 
 		else 
 		{
-			?>
-			<script type='text/javascript'>
-				alert("Account already exists.");
-			</script>
-			<?php
+			$_SESSION['addAccountError'] = "<br>Error: Account Name Already Exists";
 		}
 	}
 	else
 	{
-		?>
-		<script type='text/javascript'>
-			alert("Please enter an account name.");
-		</script>
-		<?php
+		$_SESSION['addAccountError'] = "<br>Error: Enter Account Name";
 	}
 	unset($_POST['addAccount']);
 }
