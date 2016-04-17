@@ -18,14 +18,14 @@ class CSVuploadTest extends PHPUnit_Framework_TestCase{
 		$this->assertFalse(is_valid_file("this"));
 	}
 
-	public function testValidInput(){
+	/*public function testValidInput(){
 		$db = new dbManager();
 		$db->openConnection();
 		$hello = "hello";
 		$csv_file = array(array("hello", 22));
 		$word = validate_input($db, $csv_file[0][0]);
 		$this->assertEquals($hello, $word);
-	}
+	}*/
 
 	public function testValidTransactionNoAccountFailure(){
 		$this->assertFalse(is_valid_transaction("", "01/08/2008", 170, "Bob"));
