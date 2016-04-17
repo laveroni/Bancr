@@ -8,6 +8,7 @@
 		<style>
 			h2 { text-align: center; }
 		</style>
+		<meta http-equiv="refresh" content="15" >
 	</head>
 
 	<!-- ensure values aren't empty-->
@@ -34,21 +35,33 @@
 	}
 
 	if(isset($_SESSION['timerStarted']))
-	{
-		if(time() - $_SESSION['timerStarted'] > 60)
-		{
-			session_unset();
-			session_destroy(); 
-			header('Refresh:0');     
-		}
-	}
+    {
+      $_SESSION['endTimer'] = (60 - (time() - $_SESSION['timerStarted']));
+      if($_SESSION['endTimer'] <= 0)
+      {
+        session_unset();
+        session_destroy();  
+        header('Location: index.php');
+        exit();       
+      }
+    }
 
-	if($_SESSION['loginAttempts'] == 4)
-	{
-		//set a boolean session variable for disabled 
-		$_SESSION['loginErrorMessage'] = "<br>Account Locked For 1 Minute:<br>4 Incorrect Login Attempts<br>";
-		$_SESSION['timeout'] = true;
-	}
+    if(!$_SESSION['loginErrorMessage'] || !isset($_SESSION['loginErrorMessage']))
+    {
+      $_SESSION['loginErrorMessage'] = " ";
+    }
+
+    if(!$_SESSION['loginAttempts'] || !isset($_SESSION['loginAttempts']))
+    {
+      $_SESSION['loginAttempts'] = 0;
+    }
+
+    if($_SESSION['loginAttempts'] == 4)
+    {
+      //set a boolean session variable for disabled 
+      $_SESSION['loginErrorMessage'] = "<br>Account Locked For 1 Minute:<br>4 Incorrect Login Attempts<br>";
+      $_SESSION['timeout'] = true;
+    }
 ?>
 
 	<body style="background-color:#333333;">
