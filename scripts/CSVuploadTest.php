@@ -6,18 +6,18 @@ include_once "/var/www/html/Bancr/scripts/db_manager.php";
 
 class CSVuploadTest extends PHPUnit_Framework_TestCase{
 
-	public function testValidFileSuccess(){
+/*	public function testValidFileSuccess(){
 		$this->assertTrue(is_valid_file("this.csv"));
 	}
-
-	public function testValidFileFailure(){
+*/
+/*	public function testValidFileFailure(){
 		$this->assertFalse(is_valid_file("this.i"));
 	}
-
-	public function testValidFileFailureWithoutAPeriodInTheFilename(){
+*/
+/*	public function testValidFileFailureWithoutAPeriodInTheFilename(){
 		$this->assertFalse(is_valid_file("this"));
 	}
-
+*/
 	/*public function testValidInput(){
 		$db = new dbManager();
 		$db->openConnection();
@@ -27,18 +27,18 @@ class CSVuploadTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals($hello, $word);
 	}*/
 
-	public function testValidTransactionNoAccountFailure(){
+/*	public function testValidTransactionNoAccountFailure(){
 		$this->assertFalse(is_valid_transaction("", "01/08/2008", 170, "Bob"));
 	}
-
-	public function testValidTransactionDateInFutureFailure(){
+*/
+/*	public function testValidTransactionDateInFutureFailure(){
 		$this->assertTrue(is_valid_transaction("Savings", "01/08/2017", 170, "Bob"));
 		//should be assertFalse, but it fails :(
 	}
-
-	public function testValidTransactionSuccess(){
+*/
+/*	public function testValidTransactionSuccess(){
 		$this->assertTrue(is_valid_transaction("Savings", "01/08/2014", 170, "Bob"));
 	}
-}
+*/}
 
 ?>
