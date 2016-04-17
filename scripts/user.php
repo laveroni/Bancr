@@ -25,13 +25,13 @@ class User
 
 		//key is account number, value is the account object
 		$this->numAccounts = 0;
-		$posAccount = new Account("Savings", $this->numAccounts);
+		$posAccount = new Account("Assets", $this->numAccounts);
 		$this->addAccount($posAccount);
 
-		$negAccount = new Account("Credit", $this->numAccounts);
+		$negAccount = new Account("Liabilities", $this->numAccounts);
 		$this->addAccount($negAccount);
 
-		$netAccount = new Account("Net", $this->numAccounts);
+		$netAccount = new Account("Net Worth", $this->numAccounts);
 		$this->addAccount($netAccount);
 	}
 
@@ -59,6 +59,24 @@ class User
 
 	public function removeAccount($accountObject)
 	{
+
+		$transArray = $this->accounts[$accountObject->getNumber()]->getHistory();
+
+		foreach($transArray as $trans)
+		{
+			if($trans->getAmount() >= 0)
+			{
+				$this->accounts[0]->changeBalance(-$trans->getAmount());
+				$this->accounts[2]->changeBalance(-$trans->getAmount());
+			}
+			else if ($trans->getAmount() < 0)
+			{
+				$this->accounts[1]->changeBalance(-$trans->getAmount());
+				$this->accounts[2]->changeBalance(-$trans->getAmount());
+			}
+		}
+
+
 		unset($this->accounts[$accountObject->getNumber()]);
 	}
 

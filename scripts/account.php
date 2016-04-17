@@ -50,7 +50,8 @@ class Account
 		// {
 		// 	$accountBalance += $this->transacationHistory[$i]->getAmount();
 		// }
-		return $this->accountBalance;
+
+		return number_format($this->accountBalance, 2);
 	}
 
 	public function getLastTransaction()
@@ -61,14 +62,17 @@ class Account
 
 	public function addTransaction($newTransaction)
 	{
+
 		array_push($this->transacationHistory, $newTransaction);
 
-		$this->accountBalance += $newTransaction->getAmount();
+		$newAdditionAmount = number_format($newTransaction->getAmount(), 2, '.', '');
+
+		$this->accountBalance += $newAdditionAmount;
 	}
 
 	public function changeBalance($addition)
 	{
-		$this->accountBalance += $addition;
+		$this->accountBalance += number_format($addition, 2, '.', '');
 	}
 }
 
