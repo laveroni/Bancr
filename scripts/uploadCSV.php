@@ -6,7 +6,7 @@ error_reporting(E_ALL | E_STRICT);
 //REMOVE ABOVE UPON SUCCESSFUL IMPLEMENTATION
 
 require_once('db_manager.php');
-require_once('User.php');
+require_once('user.php');
 
 session_start();
 

@@ -138,17 +138,8 @@ if(isset($_POST['addTransaction']))
 		
 	if(isset($_POST["transactionName"]) && $_POST["transactionName"] != "" && isset($_POST["transactionAmount"]) && $_POST["transactionAmount"] != "" && isset($_POST["transactionMerchant"]) && $_POST["transactionMerchant"] != "" && isset($_POST["transactionDate"]) && $_POST["transactionDate"] != "")
 	{
-		$transAccounts = $_SESSION['userObject']->getAccountsArray();
-		$arrayKey = 0;
-		foreach ($transAccounts as $key => $value)
-		{ 
-			if($value->getName() == $_POST["transactionName"])
-			{
-				$arrayKey = $key;
-			}
-				
-		}
-		$_SESSION['userObject']->addTransaction($_POST["transactionName"], $_POST["transactionDate"], $_POST["transactionAmount"], $_POST["transactionMerchant"], $arrayKey);
+		
+		$_SESSION['userObject']->addTransaction($_POST["transactionName"], $_POST["transactionDate"], $_POST["transactionAmount"], $_POST["transactionMerchant"]);
 		header("Location: index.php");
 		exit();
 			

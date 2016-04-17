@@ -1,17 +1,6 @@
 <?php require 'dashboard.php' ?>
 
 
-<!--
-
-http://jsfiddle.net/superscript18/dNAty/
-
-when the mouse stops moving, serialize object and put in database.
-
-This prevents loss of data on inactivity or window close, but when the logout button isnt clicked
-
--->
-
-
 <html>
 	<head>
         <link rel="stylesheet" type="text/css" href="../vendors/bootstrap-3.3.6-dist/css/bootstrap.min.css">
@@ -23,6 +12,41 @@ This prevents loss of data on inactivity or window close, but when the logout bu
 	    <script src="../vendors/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 		<script src="../vendors/chart.min.js"></script>
 		<script src="../vendors/Chart.Scatter.min.js"></script>
+
+		<script type="text/javascript">
+			var timer;
+			var stoppedElement=document.getElementById("stopped");   
+
+			function mouseStopped()
+			{                                 
+    			<?php
+    				//when the mouse stops moving, serialize object and put in database.
+					//This prevents loss of data on inactivity or window close, but when the logout button isnt clicked
+
+    				$email = $_SESSION['email']; 
+    				$user = $_SESSION['userObject'];
+
+    				$serial = serialize($user);
+    				$encodedObject = base64_encode($serial);
+
+    				//create a db class object, open connection
+    				$db = new dbManager();
+    				$db->openConnection();
+
+    				$query = "UPDATE Users SET UserObject = '$encodedObject' WHERE Email = '$email'";
+    				$result = $db->queryRequest($query);
+    
+    				$db->closeConnection();
+    			?>
+			}
+
+			window.addEventListener("mousemove",function()
+			{
+    			clearTimeout(timer);
+    			timer=setTimeout(mouseStopped,300);
+			});
+		</script>
+
 	</head>
 
 	<body style="margin:30px;">
@@ -66,7 +90,7 @@ This prevents loss of data on inactivity or window close, but when the logout bu
 							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Transactions</h2>
 							<div style="overflow-y: scroll; max-height: 321px">
 								
-								<table style="margin-bottom:0px" class="table table-striped table-hover table-bordered table-responsive  portfolioWidget">
+								<table style="margin-bottom:0px; " class="table table-striped table-hover table-bordered table-responsive  portfolioWidget">
 									<tbody>
 										<tr>
 											<th style="width: 90px">

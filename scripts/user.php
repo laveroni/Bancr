@@ -72,34 +72,55 @@ class User
 		return $this->numAccounts;
 	}
 
-	public function addTransaction($account, $date, $amount, $merchant, $accountNumber)
+	public function addTransaction($account, $date, $amount, $merchant)
 	{
-		// // Check whether account exists or not
-		// if(!array_key_exists($account, $this->accounts)) 
-		// {	
-		// 	// Create account and add transaction
-		// 	$new_account = new Account($account);
-		// 	$this->addAccount($new_account);
-		// }
-		// // Create new transaction object
-		// $new_transaction = new Transaction($account, $date, $amount, $merchant);
-		// // Add transaction to account
-		// $this->accounts[$account]->addTransaction($new_transaction);
-
 
 		$newTransaction = new Transaction($account, $date, $amount, $merchant);
 		//locate which account object by finding the key that is the account number
 		//assuming that the key exists
-		if (array_key_exists($accountNumber, $this->accounts)) 
+
+		//find account
+		$transAccounts = $this->getAccountsArray();
+		$arrayKey = -1;
+		foreach ($transAccounts as $key => $value)
+		{ 
+			if($value->getName() == $account)
+			{
+				$arrayKey = $key;
+			}
+				
+		}
+
+		//if arrayKey == -1, then account doesnt exist, add it
+		if($arrayKey == -1)
 		{
-    		$this->accounts[$accountNumber]->addTransaction($newTransaction);
+			$arrayKey = $this->getNumAccounts();
+			$newAccount = new Account($account, $arrayKey);
+			$this->addAccount($newAccount);
+		}
+
+
+		if (array_key_exists($arrayKey, $this->accounts)) 
+		{
+    		$this->accounts[$arrayKey]->addTransaction($newTransaction);
 
     		//add to net
     		$this->accounts[2]->changeBalance($amount);
+
+    		//add to credit
+    		if($amount < 0)
+    		{
+    			$this->accounts[1]->changeBalance($amount);
+    		}
+    		//add to savings
+    		if($amount >= 0)
+    		{
+    			$this->accounts[0]->changeBalance($amount);
+    		}
 		}
 		else
 		{
-			echo "Account number: " . $accountNumber . " is invalid in user addTransaction";
+			echo "Account number: " . $arrayKey . " is invalid in user addTransaction";
 			exit();
 		}
 
