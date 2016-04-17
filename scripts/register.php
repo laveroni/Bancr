@@ -108,7 +108,7 @@ if (isset($_POST['submit'])) {
 	
 		if($result_register === TRUE && $registrationError == "")
 		{
-			$_SESSION['pass'] = $password;
+			$_SESSION['password'] = $password;
 			$_SESSION['email'] = $email;
 			$_SESSION['loggedIn'] = TRUE;
 			$_SESSION['newUser'] = TRUE;

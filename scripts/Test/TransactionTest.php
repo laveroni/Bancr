@@ -8,7 +8,7 @@ class TranactionTest extends PHPUnit_Framework_TestCase{
 	protected $transaction;
 
 	protected function setUp(){
-		$this->transaction = new Transaction("01/01/16",100, "Saves", "Ted");
+		$this->transaction = new Transaction("Saves","01/01/16", 100, "Ted");
 	}
 
 	/*public function testSetAccount(){
