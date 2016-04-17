@@ -1,7 +1,7 @@
 <?php
 
-include_once "../account.php";
-include_once "../transaction.php";
+include_once "/var/www/html/Bancr/scripts/account.php";
+include_once "/var/www/html/Bancr/scripts/transaction.php";
 //include_once "PHPUnit/Autoload.php";
 
 class AccountTest extends PHPUnit_Framework_TestCase{
