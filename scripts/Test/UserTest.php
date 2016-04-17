@@ -1,6 +1,6 @@
 <?php
 //Done need coverage
-require_once "../user.php";
+require_once "/var/www/html/Bancr/scripts/user.php";
 
 class UserTest extends PHPUnit_Framework_TestCase{
 	

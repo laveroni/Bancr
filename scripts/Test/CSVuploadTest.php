@@ -1,6 +1,6 @@
 <?php
 //NOT DONE
-include_once "../uploadCSV.php";
+include_once "/var/www/html/Bancr/scripts/uploadCSV.php";
 
 class CSVuploadTest extends PHPUnit_Framework_TestCase{
 
