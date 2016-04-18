@@ -78,6 +78,15 @@ class UserTest extends PHPUnit_Framework_TestCase{
 		$accs = $this->user->getAccountsArray();
 		$this->assertEquals(3, count($accs));
 	}
+	public function testAddTransactionSuccessAccountAlreadyExists(){
+		$users = new User("ttrojan@usc.edu", "pass");
+		$this->invokeMethod($users, 'addTransaction', array("Credit", "1/01/01", -170, "Bob"));
+		$accs = $users->getAccountsArray();
+		$a = $accs[1];
+		$trans = $a -> getHistory();
+		$tran = $trans[0];
+		$this->assertEquals("1/01/01", $tran->getDate());
+	}
 
 }
 ?>
