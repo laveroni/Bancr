@@ -31,7 +31,7 @@ class User
 		$negAccount = new Account("Liabilities", $this->numAccounts);
 		$this->addAccount($negAccount);
 
-		$netAccount = new Account("Net Worth", $this->numAccounts);
+		$netAccount = new Account("Net", $this->numAccounts);
 		$this->addAccount($netAccount);
 	}
 
