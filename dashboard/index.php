@@ -118,15 +118,22 @@
 											usort($accountsArray, "cmpTrans");
 										    foreach ($accountsArray as $key => $value)
 										    {
-										    	$accountTransactionHistory = $value->getHistory();
-										    	foreach ($accountTransactionHistory as $transVal)
+										    	if($value->getNumber() == 0 || $value->getNumber() == 1 || $value->getNumber() == 2)
 										    	{
-										    		echo'<tr>'; 
-										        	echo'<td>' . $transVal->getAccount() . '</td>';
-										        	echo'<td>' . $transVal->getAmount() . '</td>';
-										        	echo'<td>' . $transVal->getMerchant() . '</td>';
-										        	echo'<td>' . $transVal->getDate() . '</td>';
-										        	echo'</tr>';
+
+										    	}
+										    	else
+										    	{
+										    		$accountTransactionHistory = $value->getHistory();
+										    		foreach ($accountTransactionHistory as $transVal)
+										    		{
+										    			echo'<tr>'; 
+										        		echo'<td>' . $transVal->getAccount() . '</td>';
+										        		echo'<td>' . $transVal->getAmount() . '</td>';
+										        		echo'<td>' . $transVal->getMerchant() . '</td>';
+										        		echo'<td>' . $transVal->getDate() . '</td>';
+										        		echo'</tr>';
+										    		}
 										    	}
 										    }
 										?>
@@ -161,8 +168,8 @@
 
 						<!-- Graph -->
 						<td class="graphTD" >
-							<div id="gContainer">
-		                    	<canvas id="graph" width = 500 height = 300>></canvas>
+							<div id="gContainer" style="max-width:500px;">
+		                    	<canvas id="graph" width = "500px" height = "300px" style="max-width:500px;"></canvas>
 		                    </div>		
 						</td>
 

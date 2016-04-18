@@ -68,11 +68,43 @@ class User
 			{
 				$this->accounts[0]->changeBalance(-$trans->getAmount());
 				$this->accounts[2]->changeBalance(-$trans->getAmount());
+
+				//unset the transaction from the account 0,1,2 transaction array
+				foreach($this->accounts[0]->getHistory() as $credit)
+				{
+					if($credit->getAccount() == $accountObject->getName())
+					{
+						unset($credit);
+					}
+				}
+				foreach($this->accounts[2]->getHistory() as $net)
+				{
+					if($net->getAccount() == $accountObject->getName())
+					{
+						unset($net);
+					}
+				}
 			}
 			else if ($trans->getAmount() < 0)
 			{
 				$this->accounts[1]->changeBalance(-$trans->getAmount());
 				$this->accounts[2]->changeBalance(-$trans->getAmount());
+
+				//unset the transaction from the account 0,1,2 transaction array
+				foreach($this->accounts[1]->getHistory() as $loan)
+				{
+					if($loan->getAccount() == $accountObject->getName())
+					{
+						unset($loan);
+					}
+				}
+				foreach($this->accounts[2]->getHistory() as $net)
+				{
+					if($net->getAccount() == $accountObject->getName())
+					{
+						unset($net);
+					}
+				}
 			}
 		}
 
@@ -123,23 +155,25 @@ class User
     		$this->accounts[$arrayKey]->addTransaction($newTransaction);
 
     		//add to net
-    		$this->accounts[2]->changeBalance($amount);
+    		//$this->accounts[2]->changeBalance($amount);
+    		$this->accounts[2]->addTransaction($newTransaction);
 
     		//add to credit
     		if($amount < 0)
     		{
-    			$this->accounts[1]->changeBalance($amount);
+    			//$this->accounts[1]->changeBalance($amount);
+
+    			//below line will affect removeAccount. Must ensure that we remove the transactions from 0,1,2 first
+    			$this->accounts[1]->addTransaction($newTransaction);
     		}
     		//add to savings
     		if($amount >= 0)
     		{
-    			$this->accounts[0]->changeBalance($amount);
+    			//$this->accounts[0]->changeBalance($amount);
+
+    			//below line will affect removeAccount. Must ensure that we remove the transactions from 0,1,2 first
+    			$this->accounts[0]->addTransaction($newTransaction);
     		}
-		}
-		else
-		{
-			echo "Account number: " . $arrayKey . " is invalid in user addTransaction";
-			exit();
 		}
 
 	}

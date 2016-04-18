@@ -65,14 +65,14 @@ class Account
 
 		array_push($this->transacationHistory, $newTransaction);
 
-		$newAdditionAmount = number_format($newTransaction->getAmount(), 2, '.', '');
+		$newAdditionAmount = number_format($newTransaction->getAmount(), 2);
 
 		$this->accountBalance += $newAdditionAmount;
 	}
 
 	public function changeBalance($addition)
 	{
-		$this->accountBalance += number_format($addition, 2, '.', '');
+		$this->accountBalance += number_format($addition, 2);
 	}
 }
 
