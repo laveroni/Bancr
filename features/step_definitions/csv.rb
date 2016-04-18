@@ -10,7 +10,7 @@ Given (/^I am on the main page trying to upload a cvs file$/) do
 end
 
 When(/^I choose an invalid file$/)do
-	attach_file('csv-file', File.absolute_path('./var/www/html/Bancr/money.jpg'))
+	attach_file('csv-file', File.absolute_path('money.jpg'))
 end
 
 Then(/^I should see an error popup$/)do
@@ -26,7 +26,7 @@ Then(/^I should see an error popup$/)do
 end
 
 When(/^I specify and submit a file with correct information$/)do
-	attach_file('csv-file', File.absolute_path('./var/www/html/Bancr/transactions.csv'))
+	attach_file('csv-file', File.absolute_path('transactions.csv'))
 end
 
 Then(/^I see the error message$/) do
