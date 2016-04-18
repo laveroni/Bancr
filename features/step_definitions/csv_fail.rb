@@ -18,7 +18,7 @@ end
 Then(/^I should see an error popup$/)do
   begin
     main, popup = page.driver.browser.window_handles
-    within_window(popup) do
+    page.within_window popup do
       popup.should have_content('Something went wrong')
       click_on('ok')
     end
