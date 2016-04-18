@@ -25,3 +25,7 @@ Then(/^I see the correct message$/) do
   end
 end
 
+Then(/^I should see the transactions$/)do
+	page.should have_content 'BofA'
+end
+
