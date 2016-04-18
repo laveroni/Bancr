@@ -11,7 +11,7 @@ class UserTest extends PHPUnit_Framework_TestCase{
 	protected function setUp(){
 		$this->user = new User("ttrojan@usc.edu","rasmuslerdorf");
 		$this->accounts = array();
-		$this ->acc = new Account("Bryan", 3);
+		$this ->acc = new Account("Bryan", 2);
 	}
 
 	//used to test private functions
@@ -74,13 +74,18 @@ class UserTest extends PHPUnit_Framework_TestCase{
 	}
 
 	public function testRemoveAccount(){
-		$this->user->removeAccount($this->acc);
-		$accs = $this->user->getAccountsArray();
-		$this->assertEquals(3, count($accs));
+		$users = new User("ttrojan@usc.edu", "pass");
+		$acc = new Account("Billy", 3);
+		$users->addAccount($acc);
+		$this->invokeMethod($users, 'addTransaction', array("Billy", "1/01/01", -170, "Bob"));
+		$this->invokeMethod($users, 'addTransaction', array("Billy", "1/01/01", 170, "Bob"));
+		$users->removeAccount($acc);
+		$accountArray = $users->getAccountsArray();
+		$this->assertEquals(3, count($accountArray));
 	}
 	public function testAddTransactionSuccessAccountAlreadyExists(){
 		$users = new User("ttrojan@usc.edu", "pass");
-		$this->invokeMethod($users, 'addTransaction', array("Credit", "1/01/01", -170, "Bob"));
+		$this->invokeMethod($users, 'addTransaction', array("Liabilities", "1/01/01", -170, "Bob"));
 		$accs = $users->getAccountsArray();
 		$a = $accs[1];
 		$trans = $a -> getHistory();

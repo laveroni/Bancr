@@ -1,6 +1,6 @@
 #-------------------------------------------------------------------------------------------------
 
-Given (/^I am on the main page trying to upload a csv file$/) do
+Given (/^I am on the main page trying to upload a csv file1$/) do
     visit('http://localhost/Bancr/index.php')
     #within('#logForm') do
         fill_in 'email', :with => 'halfond@usc.edu'
@@ -10,22 +10,19 @@ Given (/^I am on the main page trying to upload a csv file$/) do
 end
 
 
-When(/^I specify and submit a file with correct information$/)do
-	attach_file('csv-file', File.absolute_path('transactions.csv'))
+When(/^I choose an invalid file$/)do
+  attach_file('csv-file', File.absolute_path('money.jpg'))
+  click_on('upload')
 end
 
-Then(/^I see the correct message$/) do
-    begin
+Then(/^I should see an error popup$/)do
+  begin
     main, popup = page.driver.browser.window_handles
     within_window(popup) do
-      popup.should have_content('Upload successful')
+      popup.should have_content('Something went wrong')
       click_on('ok')
     end
   rescue
   end
-end
-
-Then(/^I should see the transactions$/)do
-	page.should have_content 'BofA'
 end
 
