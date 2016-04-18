@@ -157,17 +157,20 @@ if(isset($_POST['addTransaction']))
 // Encode transaction data for graph
 $transactions_json = array();
 $accounts = $user->getAccountsArray();
-foreach ($accounts as $a)
+foreach ($accounts as $key => $value)
 { 
-	$history = $a->getHistory();
+	$history = $value->getHistory();
 	foreach ($history as $t) 
 	{
-		$account = $a->getName();
+		$account = $value->getName();
 		$date = $t->getDate();
 		$amount = (float) $t->getAmount();
 		$merchant = $t->getMerchant();
 		$transactions_json[] = array('account' => $account, 'date' => $date, 'amount' => $amount, 'merchant' => $merchant);
 	}
 }
+
+
+
 // file_put_contents('php://stderr', print_r($transactions_json, TRUE));
 ?>
