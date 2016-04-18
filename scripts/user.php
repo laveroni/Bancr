@@ -60,9 +60,9 @@ class User
 	public function removeAccount($accountObject)
 	{
 
-		$transArray = $this->accounts[$accountObject->getNumber()]->getHistory();
+		//NNED TO MAKE SURE THAT UNSETTING ACTUALLY UNSETS THE VARIABLES
 
-		foreach($transArray as $trans)
+		foreach($this->accounts[$accountObject->getNumber()]->transacationHistory as $trans)
 		{
 			if($trans->getAmount() >= 0)
 			{
@@ -70,18 +70,18 @@ class User
 				$this->accounts[2]->changeBalance(-$trans->getAmount());
 
 				//unset the transaction from the account 0,1,2 transaction array
-				foreach($this->accounts[0]->getHistory() as $credit)
+				foreach($this->accounts[0]->transacationHistory as $i => $credit)
 				{
 					if($credit->getAccount() == $accountObject->getName())
 					{
-						unset($credit);
+						unset($this->accounts[0]->transacationHistory[$i]);
 					}
 				}
-				foreach($this->accounts[2]->getHistory() as $net)
+				foreach($this->accounts[2]->transacationHistory as $i => $net)
 				{
 					if($net->getAccount() == $accountObject->getName())
 					{
-						unset($net);
+						unset($this->accounts[2]->transacationHistory[$i]);
 					}
 				}
 			}
@@ -91,18 +91,18 @@ class User
 				$this->accounts[2]->changeBalance(-$trans->getAmount());
 
 				//unset the transaction from the account 0,1,2 transaction array
-				foreach($this->accounts[1]->getHistory() as $loan)
+				foreach($this->accounts[1]->transacationHistory as $i => $loan)
 				{
 					if($loan->getAccount() == $accountObject->getName())
 					{
-						unset($loan);
+						unset($this->accounts[1]->transacationHistory[$i]);
 					}
 				}
-				foreach($this->accounts[2]->getHistory() as $net)
+				foreach($this->accounts[2]->transacationHistory as $i => $net)
 				{
 					if($net->getAccount() == $accountObject->getName())
 					{
-						unset($net);
+						unset($this->accounts[2]->transacationHistory[$i]);
 					}
 				}
 			}

@@ -120,7 +120,16 @@
 										    {
 										    	if($value->getNumber() == 0 || $value->getNumber() == 1 || $value->getNumber() == 2)
 										    	{
-
+										    		// $accountTransactionHistory = $value->getHistory();
+										    		// foreach ($accountTransactionHistory as $transVal)
+										    		// {
+										    		// 	echo'<tr>'; 
+										      //   		echo'<td>' . $transVal->getAccount() . '</td>';
+										      //   		echo'<td>' . $transVal->getAmount() . '</td>';
+										      //   		echo'<td>' . $transVal->getMerchant() . '</td>';
+										      //   		echo'<td>' . $transVal->getDate() . '</td>';
+										      //   		echo'</tr>';
+										    		// }
 										    	}
 										    	else
 										    	{
@@ -168,8 +177,8 @@
 
 						<!-- Graph -->
 						<td class="graphTD" >
-							<div id="gContainer" style="max-width:500px;">
-		                    	<canvas id="graph" width = "500px" height = "300px" style="max-width:500px;"></canvas>
+							<div id="gContainer" style="max-width:500px; min-width: 500px; max-height:300px; min-height:300px;">
+		                    	<canvas id="graph" width = "500px" height = "300px" style="max-width:500px; max-height:300px; min-height:300px; position: absolute;"></canvas>
 		                    </div>		
 						</td>
 

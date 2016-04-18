@@ -11,7 +11,7 @@ class Account
 {
 	private $acountNumber;
 	private	$accountName;
-	private $transacationHistory;
+	public  $transacationHistory;
 	private $accountBalance;
 
 	function __construct ($name, $num)
