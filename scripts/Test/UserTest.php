@@ -74,9 +74,14 @@ class UserTest extends PHPUnit_Framework_TestCase{
 	}
 
 	public function testRemoveAccount(){
-		$this->user->removeAccount($this->acc);
-		$accs = $this->user->getAccountsArray();
-		$this->assertEquals(2, count($accs));
+		$users = new User("ttrojan@usc.edu", "pass");
+		$acc = new Account("Billy", 3);
+		$users->addAccount($acc);
+		$this->invokeMethod($users, 'addTransaction', array("Billy", "1/01/01", -170, "Bob"));
+		$this->invokeMethod($users, 'addTransaction', array("Billy", "1/01/01", 170, "Bob"));
+		$users->removeAccount($acc);
+		$accountArray = $users->getAccountsArray();
+		$this->assertEquals(3, count($accountArray));
 	}
 	public function testAddTransactionSuccessAccountAlreadyExists(){
 		$users = new User("ttrojan@usc.edu", "pass");

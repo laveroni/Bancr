@@ -27,8 +27,5 @@ When(/^I try to add a new account without selecting a type or entering a name$/)
 end
 
 Then(/^I should see an error message telling me to do so$/) do
-    popup = page.driver.browser.window_handles.last
-    page.driver.browser.switch_to.window(popup)
-    expect(page).to have_content 'Please enter an account name'
-	page.driver.browser.switch_to.alert.accept
+    expect(page).to have_content 'Error: Enter Account Name'
 end
