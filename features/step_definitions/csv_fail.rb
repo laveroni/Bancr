@@ -16,13 +16,6 @@ When(/^I choose an invalid file$/)do
 end
 
 Then(/^I should see an error popup$/)do
-  begin
-    main, popup = page.driver.browser.window_handles
-    page.within_window popup do
-      popup.should have_content('Something went wrong')
-      click_on('ok')
-    end
-  rescue
-  end
+   page.driver.browser.switch_to.alert.accept 
 end
 

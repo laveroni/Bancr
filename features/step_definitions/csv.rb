@@ -14,15 +14,9 @@ When(/^I specify and submit a file with correct information$/)do
 	attach_file('csv-file', File.absolute_path('transactions.csv'))
 end
 
-Then(/^I see the correct message$/) do
-    begin
-    main, popup = page.driver.browser.window_handles
-    page.within_window popup do
-      page.should have_content('Upload successful')
-      click_on('ok')
-    end
-  rescue
-  end
+When(/^I click the upload button$/) do
+  click_on('upload')
+  page.driver.browser.accept_js_confirms  
 end
 
 Then(/^I should see the transactions$/)do
