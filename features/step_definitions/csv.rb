@@ -12,11 +12,11 @@ end
 
 When(/^I specify and submit a file with correct information$/)do
 	attach_file('csv-file', File.absolute_path('transactions.csv'))
+  click_on('upload')
 end
 
 When(/^I click the upload button$/) do
-  click_on('upload')
-  page.driver.browser.accept_js_confirms  
+  page.driver.browser.switch_to.alert.accept
 end
 
 Then(/^I should see the transactions$/)do
