@@ -223,7 +223,7 @@
 										        echo'<td>' . $value->getBalance() . '</td>';
 										        echo'<td> 
 										        		<form action="" method="post" name="af" id="af">
-										        			<input type="checkbox" onclick="updateGraph();" name="display[]" id=' . $value->getName() . ' unchecked>
+										        			<input type="checkbox" onclick="updateGraph();" name="display[]" id=' . $value->getNumber() . ' unchecked>
 										        		</form>
 										        	</td>';
 										        if($value->getNumber() >= 0 && $value->getNumber() <= 2)

@@ -163,10 +163,11 @@ foreach ($accounts as $key => $value)
 	foreach ($history as $t) 
 	{
 		$account = $value->getName();
+		$number = $value->getNumber();
 		$date = $t->getDate();
 		$amount = (float) $t->getAmount();
 		$merchant = $t->getMerchant();
-		$transactions_json[] = array('account' => $account, 'date' => $date, 'amount' => $amount, 'merchant' => $merchant);
+		$transactions_json[] = array('account' => $account, 'number' => $number, 'date' => $date, 'amount' => $amount, 'merchant' => $merchant);
 	}
 }
 
