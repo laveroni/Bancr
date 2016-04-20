@@ -18,7 +18,7 @@ When(/I change the dates for the calendar$/) do
 end
 
 Then(/^I should see the dates change on the graph$/) do
-	page.should have_content '4/27/2016'
+	find_field('to_date_text').value.should eq '4/27/2016'
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
