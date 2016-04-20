@@ -12,13 +12,13 @@ When(/^I upload a beautiful csv file1$/) do
 end
 
 When(/I change the dates for the calendar$/) do
-    fill_in 'from_date_text', :with => '1/1/2003'
-    fill_in 'to_date_text', :with => '4/1/2003'
+    fill_in 'from_date_text', :with => '4/27/2015'
+    fill_in 'to_date_text', :with => '4/27/2016'
     click_on('range_button')
 end
 
 Then(/^I should see the dates change on the graph$/) do
-	page.should have_content '03/09/03'
+	page.should have_content '01/28/16'
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)

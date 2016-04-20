@@ -12,14 +12,13 @@ When(/^I upload a beautiful csv file$/) do
 end
 
 When(/^I change the dates for the graph$/) do
-    fill_in 'from_date_text', :with => '1/1/1999'
-    fill_in 'to_date_text', :with => '2/1/1999'
+    fill_in 'from_date_text', :with => '3/27/2016'
+    fill_in 'to_date_text', :with => '4/27/2016'
     click_on('range_button')
 end
 
 Then(/^I should see the new dates on the graph$/) do
-    page.should have_content '179'
-    page.should have_content '178'
+    page.should have_content '04/11/16'
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
