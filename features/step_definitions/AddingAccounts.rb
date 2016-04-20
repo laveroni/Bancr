@@ -36,4 +36,5 @@ end
 
 Then (/^I should get an error$/)do
 	expect(page).to have_content 'Error: Account Name Already Exists'
+    click_button 'removeAccount'
 end
