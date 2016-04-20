@@ -1,5 +1,7 @@
 <?php
 //Done need coverage
+//problem with remove account, for net all the transactions run in one of the
+//for statements, so the other one is never called
 require_once "/var/www/html/Bancr/scripts/user.php";
 
 class UserTest extends PHPUnit_Framework_TestCase{
@@ -77,8 +79,9 @@ class UserTest extends PHPUnit_Framework_TestCase{
 		$users = new User("ttrojan@usc.edu", "pass");
 		$acc = new Account("Billy", 3);
 		$users->addAccount($acc);
-		$this->invokeMethod($users, 'addTransaction', array("Billy", "1/01/01", -170, "Bob"));
 		$this->invokeMethod($users, 'addTransaction', array("Billy", "1/01/01", 170, "Bob"));
+		$this->invokeMethod($users, 'addTransaction', array("Billy", "1/01/01", -170, "Bob"));
+		$this->invokeMethod($users, 'addTransaction', array("Billy", "1/01/01", 0, "Tom"));
 		$users->removeAccount($acc);
 		$accountArray = $users->getAccountsArray();
 		$this->assertEquals(3, count($accountArray));
