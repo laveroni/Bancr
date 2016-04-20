@@ -6,7 +6,7 @@ Given(/^I am on the login page of Bancr1$/) do
 end
 
 When(/^I upload csv$/) do
-	    
+	
 end
 
 
