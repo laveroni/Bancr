@@ -18,7 +18,7 @@ When(/^I change the dates for the graph$/) do
 end
 
 Then(/^I should see the new dates on the graph$/) do
-    page.should have_content '04/11/16'
+    page.should have_content '4/27/2016'
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
