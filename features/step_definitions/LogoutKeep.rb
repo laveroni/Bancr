@@ -6,14 +6,12 @@ Given(/^I am on the login page for Bancr$/) do
 end
 
 When(/^I add an account to keep$/) do
-    fill_in 'accountName', :with => 'mynewaccount'
+    fill_in 'accountName', :with => 'mynewsaccount'
     click_button 'addAccount'
 end
 
 When(/^I logout of the account$/) do
-    fill_in 'email', :with => 'bancr@usc.edu'
-    fill_in 'password', :with => 'a'
-    click_button 'signInButton'
+    click_button('logout')
 end
 
 When(/^I login again$/) do
@@ -23,6 +21,6 @@ When(/^I login again$/) do
 end
 
 Then(/^I should see the added account$/) do
-    page.should have_content('mynewaccount')
-    click_button('tr', text: 'mynewaccount')
+    page.should have_content('mynewsaccount')
+    first(:css,'tr', text: "mynewsaccount").click_button('removeAccount')
 end
