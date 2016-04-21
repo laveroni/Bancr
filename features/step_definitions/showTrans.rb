@@ -13,7 +13,7 @@ When(/^I upload one csv file$/) do
 end
 
 When(/^I click on the button to show transactions$/) do
-     click('2', match: :first)
+     check('2', match: :first)
 end
 
 Then(/^I should see the transactions appear for A$/) do

@@ -12,7 +12,7 @@ When(/^I upload one csv file1$/) do
 end
 
 When(/^I click on the button to show transactions for net$/) do
-    click('2', match: :first)
+    check('2', match: :first)
 end
 
 Then(/^I should not see the transactions$/) do
