@@ -16,7 +16,7 @@ When(/^I click on the button to show transactions$/) do
      click('2', match: :first)
 end
 
-Then(/^I should see the transactions$/) do
+Then(/^I should see the transactions appear for A$/) do
     page.should have_css('#graph')
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
