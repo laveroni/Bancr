@@ -12,7 +12,7 @@ var ctx = document.getElementById('graph').getContext('2d');
 new Chart(ctx).Scatter(data, options);
 
 function updateGraph(cb) {
-	// Get selected account names
+	// Get selected account numbers
 	var selected = [];
 	$('#accounts input:checked').each(function() {
 	    selected.push($(this).attr('id'));
@@ -26,11 +26,11 @@ function updateGraph(cb) {
 	data = [];
 	for(i = 0; i < selected.length; i++) 
 	{
-		var account = selected[i];
+		var number = selected[i];
 		var balance = 0;
 
 		var data_set = {
-			label: account,
+			// label: number,
 		    strokeColor: '#01DF01',
 		    pointColor: '#01DF01',
 		    pointStrokeColor: '#fff',
@@ -39,8 +39,9 @@ function updateGraph(cb) {
 		// Get selected transaction data
 		for(j = 0; j < transactions.length; j++)
 		{
-			if(account == transactions[j]['account']) 
+			if(number == transactions[j]['number']) 
 			{
+				data_set.label = transactions[j]['account'];
 				var date = new Date(transactions[j]['date']);
 				balance += parseFloat(transactions[j]['amount']);
 				var point = {
@@ -48,7 +49,7 @@ function updateGraph(cb) {
 				    y: balance,
 				};
 				data_set.data.push(point);
-				console.log(data_set.data);
+				//console.log(data_set.data);
 			}
 		}
 		// Sort transaction data by date

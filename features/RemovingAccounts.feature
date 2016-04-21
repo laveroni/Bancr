@@ -1,4 +1,4 @@
-Feature: Removing accounts not there
+Feature: Removing accounts
 
 Scenario: User tries to remove an account 
 

@@ -25,7 +25,7 @@ When(/^I try to add a new account with a proper name and type$/) do
     click_button 'addAccount'
 end
 
-Then(/^I should see a success message, and then see the account in my list\.$/) do
+Then(/^I should see the account in my list$/) do
     expect(page).to have_content 'mynewaccount'
 end
 
@@ -36,4 +36,5 @@ end
 
 Then (/^I should get an error$/)do
 	expect(page).to have_content 'Error: Account Name Already Exists'
+    first(:css,'tr', text: "mynewaccount").click_button('removeAccount')
 end

@@ -10,10 +10,9 @@ Given (/^I am on the index page$/) do
 end
 
 When(/^I remove a new account$/) do
-    click_button 'removeAccount'
     fill_in 'accountName', :with => 'mynewaccount'
     click_button 'addAccount'
-    click_button 'removeAccount'
+    first(:css,'tr', text: "mynewaccount").click_button('removeAccount')
 end
 
 Then(/^I should not see that account$/) do

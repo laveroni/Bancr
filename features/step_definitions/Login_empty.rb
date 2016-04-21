@@ -9,6 +9,6 @@ When(/^I try to login with empty fields$/) do
     click_button 'signInButton'
 end
 
-Then(/^I should be back on the login page$/) do
+Then(/^It should fail and I should be back on the login page$/) do
     page.should have_content('Enter your email and password')
 end
