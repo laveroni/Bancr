@@ -1,4 +1,4 @@
-Given(/^I am on the login page for main Bancr application$/) do
+Given(/^I am located on the Bancr login page$/) do
     visit('http://localhost/Bancr/index.php')
     fill_in 'email', :with => 'halfond@usc.edu'
     fill_in 'password', :with => 'password'
@@ -6,17 +6,17 @@ Given(/^I am on the login page for main Bancr application$/) do
 end
 
 
-When(/^I upload a good csv file1$/) do
+When(/^I upload one csv file$/) do
   attach_file('csv-file', File.absolute_path('transactions.csv'))
   click_on('upload')
   page.driver.browser.switch_to.alert.accept
 end
 
-When(/^I click on the button to graph net$/) do
+When(/^I click on the button to show transactions$/) do
      click('2', match: :first)
 end
 
-Then(/^I should see net graphed$/) do
+Then(/^I should see the transactions$/) do
     page.should have_css('#graph')
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
