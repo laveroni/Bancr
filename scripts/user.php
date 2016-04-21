@@ -79,7 +79,7 @@ class User
 				}
 				foreach($this->accounts[2]->transacationHistory as $i => $net)
 				{
-					if($net->getAccount() == $accountObject->getName())
+					if($net->getAccount() == $accountObject->getName() && $net->getAmount() >= 0)
 					{
 						unset($this->accounts[2]->transacationHistory[$i]);
 					}
@@ -100,7 +100,7 @@ class User
 				}
 				foreach($this->accounts[2]->transacationHistory as $i => $net)
 				{
-					if($net->getAccount() == $accountObject->getName())
+					if($net->getAccount() == $accountObject->getName() && $net->getAmount() < 0)
 					{
 						unset($this->accounts[2]->transacationHistory[$i]);
 					}
