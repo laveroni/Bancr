@@ -1,5 +1,5 @@
 Given(/^I am located on the login page for Bancr$/) do
-    visit('http://localhost/Bancr/index.php')
+    visit('https://localhost/Bancr/index.php')
     fill_in 'email', :with => 'halfond@usc.edu'
     fill_in 'password', :with => 'password'
     click_button 'signInButton'
