@@ -31,7 +31,7 @@ Then(/^I should see a lockout error message$/) do
 end
 
 Then(/^Error message should still exist after refreshing page$/)do
-    visit('http://localhost/Bancr/index.php')
+    visit('https://localhost/Bancr/index.php')
     page.should have_content('Account Locked For 1 Minute')
 end
 

@@ -15,7 +15,7 @@ When(/^I click the upload button1$/) do
 end
 
 Then (/^I should see correct balance for liabilities account$/)do
-	page.should have_content('-191.84')
+	page.should have_content('-217.96')
   click_button('removeAccount', match: :first)
   click_button('removeAccount', match: :first)
   click_button('removeAccount', match: :first)
