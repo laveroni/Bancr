@@ -49,7 +49,7 @@
 
 	</head>
 
-	<body style="margin:30px;">
+	<body style="margin:30px;background-color:333333;">
 		<table class ="portfolioPage" style=" border-collapse: separate; border-spacing: 15px;">
 			<thead>
 			</thead>
@@ -57,7 +57,7 @@
 					<!-- Top -->
 					<tr>
 						<!-- Import csv -->
-						<td style ="width: 100px; height: 80px; text-align:center">
+						<td style ="width: 100px; height: 80px; text-align:center; background-color:d3d3d3;">
 							<h4>Import .csv File</h4>
 							<form id="csv-form" action="../scripts/uploadCSV.php" method="post" enctype="multipart/form-data">
 							    <input id='csv-file' type='file' name='csv-file' accept='.csv,.CSV'>
@@ -66,14 +66,14 @@
 						</td>
 
 						<!-- Title -->
-						<td style="width:50%; text-align: -webkit-center;">
+						<td style="width:50%; text-align: -webkit-center; background-color:d3d3d3;" >
 							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Bancr</h2>
 							    </div>
 							  </div>
 						</td>
 
 						<!-- Date, User Manual, Logout -->
-						<td style="width:25%; text-align:center ">
+						<td style="width:25%; text-align:center;  background-color:d3d3d3;">
 							<div class="timeDisplay"></div>
 							<div class="dateDisplay"></div>
 							<button name="logout" id="logout" value="logout" type="submit" style="width:100px;" class="btn btn-default" onclick="window.location.href='../scripts/logout.php'">
@@ -85,7 +85,7 @@
 					<!-- Middle -->
 					<tr>
 						<!-- Transactions -->
-						<td style="height:480px; width:25%; background-color: white; padding-top:0px;">
+						<td style="height:480px; width:25%; background-color: white; padding-top:0px; background-color:d3d3d3;">
 							<div style="">
 							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Transactions</h2>
 							<div style="overflow-y: scroll; max-height: 321px">
@@ -176,14 +176,14 @@
 						</td>
 
 						<!-- Graph -->
-						<td class="graphTD" >
-							<div id="gContainer" style="max-width:500px; min-width: 500px; max-height:300px; min-height:300px;">
+						<td class="graphTD" style="background-color:d3d3d3;">
+							<div id="gContainer" style="max-width:500px; min-width: 500px; max-height:300px; min-height:300px; ">
 		                    	<canvas id="graph" width = "500px" height = "300px" style="max-width:500px; max-height:300px; min-height:300px; position: absolute;"></canvas>
 		                    </div>		
 						</td>
 
 						<!-- Account list -->
-						<td style="width:25%; text-align:center ">
+						<td style="width:25%; text-align:center; background-color:d3d3d3 ">
 							<div style="">
 							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Accounts</h2>
 							<div id='accounts' name='accounts' style="overflow-y: scroll; max-height: 321px">
@@ -263,6 +263,47 @@
 								<div style="margin-top: 15px">
 									<button name="addAccount" type="submit" style="width:100px;" class="btn btn-default" id="addAccount">Add account</button>
 								</div>
+							</form>
+						</td>
+					</tr>
+					<!-- bottom -->
+					<tr>
+						<td style ="width: 100px; height: 80px; text-align:center; background-color:d3d3d3;">
+							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Budget</h2>
+							<form>
+								<select>
+									<option value="food" name="food" id="food">food</option>
+									<option value="clothes" name="clothes" id="clothes">clothes</option>
+									<option value="transportation" name="transportation" id="transportation">transportation</option>
+								</select>
+								Budget:
+								<input type="text" name="budget" id="budget">
+								<input type="button" name="budgetButton" id="budgetButton" value="Submit">
+								<br>
+								<table border="1">
+								<tr>
+									<th style="width:100px">
+									Budget Category
+									</th>
+									<th style="width:100px">
+									Budget
+									</th>
+									<th style="width:100px">
+									Balance
+									</th>
+								</tr>
+								<tr>
+									<td>
+									food
+									</td>
+									<td>
+									300
+									</td>
+									<td>
+									250
+									</td>
+								</tr>
+								</table>
 							</form>
 						</td>
 					</tr>
