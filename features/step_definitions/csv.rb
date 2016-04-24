@@ -20,6 +20,6 @@ When(/^I click the upload button$/) do
 end
 
 Then(/^I should see the transactions$/)do
-	page.should have_content 'BofA'
+	page.should have_content 'A'
 end
 
