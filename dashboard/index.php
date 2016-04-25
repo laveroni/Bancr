@@ -219,7 +219,7 @@
 										    foreach ($accountsArray as $key => $value)
 										    {
 										        echo'<tr>'; 
-										        echo'<td id=' . $value->getName(). '>' . $value->getName() . '</td>';
+										        echo'<td id="superRow">' . $value->getName() . '</td>';
 										        echo'<td>' . $value->getBalance() . '</td>';
 										        echo'<td> 
 										        		<form action="" method="post" name="af" id="af">
