@@ -1,4 +1,4 @@
-Given(/^I am on the login page of Bancr1$/) do
+Given(/^I am on the login page of Bancrs$/) do
     visit('http://localhost/Bancr/index.php')
     fill_in 'email', :with => 'bancr@usc.edu'
     fill_in 'password', :with => 'password'
