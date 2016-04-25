@@ -11,6 +11,6 @@ When(/^I remove an account from the list$/) do
     first(:css,'tr', text: "mynewaccount").click_button('removeAccount')
 end
 
-Then(/^I should see the accounts in order$/) do
-    page.body.should =~ /*"Assets"."Liabilities"*/
+Then(/^I should see the accounts in order1$/) do
+    find(:xpath, '//table/tr[1]/td[1]').should have_content("Assets")
 end

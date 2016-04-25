@@ -15,8 +15,10 @@ When(/^I add an account to the list$/)do
   click_button 'addAccount'
 end
 
-Then(/^I should see the accounts in order still$/)do
-  page.body.should =~ /*"Assets"."Liabilities"*/
+Then/^I should see the accounts in order still:$/do |table|
+  expected_order = table.raw
+  actual_order = page.all('tr').collect(&:text)
+  expected_order.should = actual_order
   first(:css,'tr', text: "mynewaccount").click_button('removeAccount')
 end
 

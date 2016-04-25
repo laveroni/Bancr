@@ -12,6 +12,6 @@ When(/^I log in to bancr$/)do
 end
 
 Then(/^I should see the accounts in order$/)do
-	page.body.should =~ /*"Assets"."Liabilities"*/
+	
 end
 
