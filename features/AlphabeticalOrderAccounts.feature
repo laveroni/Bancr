@@ -8,3 +8,4 @@ Then I should see the accounts in order:
   | Assets     |
   | Liabilities |
   | Net |
+Then Remove Accounts
