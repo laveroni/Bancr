@@ -20,7 +20,7 @@ Then /^I should see the accounts in order still:$/ do |table|
   actual = []
   actual_order = page.all('#superRow').collect(&:text)
   for number in actual_order
-     actual << [number]
+     actual << '[number]'
   end
   expected_order.should == actual
   first(:css,'tr', text: "mynewaccount").click_button('removeAccount')

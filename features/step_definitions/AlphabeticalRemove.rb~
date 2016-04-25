@@ -12,5 +12,5 @@ When(/^I remove an account from the list$/) do
 end
 
 Then(/^I should see the accounts in order1$/) do
-    find(:xpath, '//table[contains(.,"accounts")]')
+    find(:xpath, '//table[contains(.,"accounts")]
 end
