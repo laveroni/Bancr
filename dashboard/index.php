@@ -188,7 +188,7 @@
 							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Accounts</h2>
 							<div id='accounts' name='accounts' style="overflow-y: scroll; max-height: 321px">
 								
-								<table style="margin-bottom:0px" class="table table-striped table-hover table-bordered table-responsive  portfolioWidget">
+								<table style="margin-bottom:0px" id = 'accounts' class="table table-striped table-hover table-bordered table-responsive  portfolioWidget">
 									<tbody>
 										<tr>
 											<th style="width:90px">
