@@ -21,7 +21,7 @@ When(/^I provide invalid credentials on the login page thrice$/) do
 end
 
 Then(/^I should be able to login after all this$/) do
-    fill_in 'email', :with => 'bancr@usc.edu'
+    fill_in 'email', :with => 'halfond@usc.edu'
     fill_in 'password', :with => 'password'
     click_button 'signInButton'
     page.should have_content("Transactions")

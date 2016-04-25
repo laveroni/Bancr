@@ -3,7 +3,7 @@
 Given (/^I am on the index page2$/) do
     visit('http://localhost/Bancr/index.php')
     #within('#logForm') do
-        fill_in 'email', :with => 'bancr@usc.edu'
+        fill_in 'email', :with => 'halfond@usc.edu'
         fill_in 'password', :with => 'password'
     #end
     click_button 'signInButton'
