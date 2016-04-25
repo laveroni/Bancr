@@ -31,7 +31,7 @@ end
 
 Then (/^I should see correct balance for liabilities account$/)do
 	first(:css, 'tr', text: "Liabilities").should have_content('-112.64')
-    click_button('removeButton', match: :first)
-  click_button('removeButton', match: :first)
-  click_button('removeButton', match: :first)
+    click_button('removeAccount', match: :first)
+  click_button('removeAccount', match: :first)
+  click_button('removeAccount', match: :first)
 end

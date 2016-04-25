@@ -27,8 +27,8 @@ Then /^I should see the accounts ordered:$/ do |table|
 end
 
 Then (/^Remove Accounts$/) do
-  click_button('removeButton', match: :first)
-  click_button('removeButton', match: :first)
-  click_button('removeButton', match: :first)
+  click_button('removeAccount', match: :first)
+  click_button('removeAccount', match: :first)
+  click_button('removeAccount', match: :first)
 end
 

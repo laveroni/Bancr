@@ -16,6 +16,6 @@ end
 
 Then(/^I should see the new transactions$/) do
     page.should have_content 'A'
-    click_button('removeButton', match: :first)
-    click_button('removeButton', match: :first)
+    click_button('removeAccount', match: :first)
+    click_button('removeAccount', match: :first)
 end

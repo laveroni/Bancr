@@ -31,7 +31,7 @@ end
 
 Then (/^I should see correct balance for net account$/)do
 	first(:css, 'tr', text: "Net").should have_content('748.06')
-  click_button('removeButton', match: :first)
-  click_button('removeButton', match: :first)
-  click_button('removeButton', match: :first)
+  click_button('removeAccount', match: :first)
+  click_button('removeAccount', match: :first)
+  click_button('removeAccount', match: :first)
 end
