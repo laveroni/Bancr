@@ -11,8 +11,9 @@ end
 
 
 When(/^I upload a CSV file to add accounts$/)do
-	fill_in 'accountName', :with => 'mynewaccount'
-  click_button 'addAccount'
+	attach_file('csv-file', File.absolute_path('transactions.csv'))
+  click_on('upload')
+  page.driver.browser.switch_to.alert.accept
 end
 
 Then /^I should see the accounts ordered:$/ do |table|
