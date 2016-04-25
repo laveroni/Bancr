@@ -1,7 +1,7 @@
 Given(/^I am on the main page trying to upload a small csv file$/) do
     visit('http://localhost/Bancr/index.php')
-    fill_in 'email', :with => ' '
-    fill_in 'password', :with => ' '
+    fill_in 'email', :with => 'bancr@usc.edu'
+    fill_in 'password', :with => 'password'
     click_button 'signInButton'
 end
 

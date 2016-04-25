@@ -4,7 +4,7 @@ end
 
 When(/^I login to an account2$/) do
     fill_in 'email', :with => 'bancr@usc.edu'
-    fill_in 'password', :with => 'a'
+    fill_in 'password', :with => 'password'
     click_button 'signInButton'
 end
 

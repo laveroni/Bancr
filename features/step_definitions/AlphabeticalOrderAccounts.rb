@@ -6,7 +6,7 @@ end
 
 
 When(/^I log in to bancr$/)do
-    fill_in 'email', :with => 'halfond@usc.edu'
+    fill_in 'email', :with => 'bancr@usc.edu'
     fill_in 'password', :with => 'password'
     click_button 'signInButton'
 end
