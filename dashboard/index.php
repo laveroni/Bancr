@@ -188,7 +188,7 @@
 							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Accounts</h2>
 							<div id='accounts' name='accounts' style="overflow-y: scroll; max-height: 321px">
 								
-								<table style="margin-bottom:0px" id = 'accounts' class="table table-striped table-hover table-bordered table-responsive  portfolioWidget">
+								<table style="margin-bottom:0px" class="table table-striped table-hover table-bordered table-responsive  portfolioWidget">
 									<tbody>
 										<tr>
 											<th style="width:90px">
@@ -219,7 +219,7 @@
 										    foreach ($accountsArray as $key => $value)
 										    {
 										        echo'<tr>'; 
-										        echo'<td>' . $value->getName() . '</td>';
+										        echo'<td id=' . $value->getName(). '>' . $value->getName() . '</td>';
 										        echo'<td>' . $value->getBalance() . '</td>';
 										        echo'<td> 
 										        		<form action="" method="post" name="af" id="af">
