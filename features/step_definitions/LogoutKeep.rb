@@ -11,9 +11,7 @@ When(/^I add an account to keep$/) do
 end
 
 When(/^I logout of the account$/) do
-    fill_in 'email', :with => 'bancr@usc.edu'
-    fill_in 'password', :with => 'a'
-    click_button 'signInButton'
+    click_button 'logout'
 end
 
 When(/^I login again$/) do

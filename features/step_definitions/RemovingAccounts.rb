@@ -12,7 +12,7 @@ end
 When(/^I remove a new account$/) do
     fill_in 'accountName', :with => 'mynewaccount'
     click_button 'addAccount'
-    first(:css,'tr', text: "mynewaccount").click_button('removeAccount')
+    click_button('removeAccount', match: :first)
 end
 
 Then(/^I should not see that account$/) do

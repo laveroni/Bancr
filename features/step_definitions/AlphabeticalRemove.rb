@@ -8,7 +8,7 @@ end
 When(/^I remove an account from the list$/) do
     fill_in 'accountName', :with => 'mynewaccount'
     click_button 'addAccount'
-    first(:css,'tr', text: "mynewaccount").click_button('removeAccount')
+    click_button('removeAccount', match: :first)
 end
 
 Then /^I should see the accounts in order1:$/ do |table|
