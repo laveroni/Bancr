@@ -6,7 +6,9 @@ Given(/^I am on the login page of Bancrs$/) do
 end
 
 When(/^I upload csv$/) do
-  
+   all('removeAccount').each do |i|
+	click_button(i)
+   end
 end
 
 
