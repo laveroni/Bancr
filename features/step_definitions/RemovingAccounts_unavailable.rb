@@ -10,6 +10,6 @@ Given (/^I am on the index page2$/) do
 end
 
 Then(/^I should not see a remove account button$/) do
-    expect(page).to have_no_content 'removeAccount'
+    expect(page).to have_no_content 'Remove'
 end
 

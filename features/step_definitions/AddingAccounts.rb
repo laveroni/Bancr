@@ -36,5 +36,5 @@ end
 
 Then (/^I should get an error$/)do
 	expect(page).to have_content 'Error: Account Name Already Exists'
-    first(:css,'tr', text: "mynewaccount").click_button('removeAccount')
+    click_button('removeButton', match: :first)
 end

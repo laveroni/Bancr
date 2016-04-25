@@ -9,5 +9,5 @@ When(/^I login to an account1$/) do
 end
 
 Then(/^I should not see a remove button for assets$/) do
-    first(:css, 'tr', text: "Assets").should have_no_content('Remove')
+    page.should have_no_content('Remove')
 end

@@ -9,5 +9,5 @@ When(/^I login to an account2$/) do
 end
 
 Then(/^I should not see a remove button for net$/) do
-    first(:css, 'tr', text: "Net").should have_no_content('Remove')
+    page.should have_no_content('Remove')
 end

@@ -21,5 +21,8 @@ end
 
 Then(/^I should see the transactions$/)do
 	page.should have_content 'A'
+  click_button('removeButton', match: :first)
+  click_button('removeButton', match: :first)
+  click_button('removeButton', match: :first)
 end
 

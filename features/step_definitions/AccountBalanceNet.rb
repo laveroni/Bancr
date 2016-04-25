@@ -11,7 +11,7 @@
 
 #-------------------------------------------------------------------------------------------------
 
-Given (/^Given I am on the main page and trying to find balance1$/) do
+Given (/^I am on the main page and trying to find balance1$/) do
     visit('http://localhost/Bancr/index.php')
     #within('#logForm') do
          fill_in 'email', :with => 'bancr@usc.edu'
@@ -31,7 +31,7 @@ end
 
 Then (/^I should see correct balance for net account$/)do
 	first(:css, 'tr', text: "Net").should have_content('748.06')
-    first(:css,'tr', text: "A").click_button('removeAccount')
-    first(:css,'tr', text: "B").click_button('removeAccount')
-    first(:css,'tr', text: "C").click_button('removeAccount')
+  click_button('removeButton', match: :first)
+  click_button('removeButton', match: :first)
+  click_button('removeButton', match: :first)
 end

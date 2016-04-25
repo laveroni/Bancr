@@ -14,9 +14,9 @@ end
 
 When(/^I remove them$/) do
   page.driver.browser.switch_to.alert.accept
-	first(:css,'tr', text: "A").click_button('removeAccount')
-	first(:css,'tr', text: "B").click_button('removeAccount')
-	first(:css,'tr', text: "C").click_button('removeAccount')
+  click_button('removeButton', match: :first)
+  click_button('removeButton', match: :first)
+  click_button('removeButton', match: :first)
 end
 
 Then(/^I should see no transactions$/)do
