@@ -11,3 +11,4 @@ Then I should see the accounts ordered:
   | C |
   | Liabilities |
   | Net |
+Then Remove Accounts
