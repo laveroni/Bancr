@@ -17,7 +17,7 @@ When(/^I click the upload button3$/) do
 end
 
 Then (/^I should see correct balance for assets account$/)do
-	  first(:css, 'tr', text: "Assets").should have_content('860.70')
+	expect(page).should have_content('860.70')
   click_button('removeAccount', match: :first)
   click_button('removeAccount', match: :first)
   click_button('removeAccount', match: :first)

@@ -30,7 +30,7 @@ When(/^I click the upload button2$/) do
 end
 
 Then (/^I should see correct balance for net account$/)do
-	first(:css, 'tr', text: "Net").should have_content('748.06')
+	expect(page).should have_content('748.06')
   click_button('removeAccount', match: :first)
   click_button('removeAccount', match: :first)
   click_button('removeAccount', match: :first)
