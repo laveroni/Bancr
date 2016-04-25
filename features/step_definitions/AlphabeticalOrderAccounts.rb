@@ -11,7 +11,13 @@ When(/^I log in to bancr$/)do
     click_button 'signInButton'
 end
 
-Then(/^I should see the accounts in order$/)do
-	
+Then /^I should see the accounts in order:$/ do |table|
+  expected_order = table.raw
+  actual = []
+  actual_order = page.all('#superRow').collect(&:text)
+  for number in actual_order
+     actual << [number]
+  end
+  expected_order.should == actual
 end
 
