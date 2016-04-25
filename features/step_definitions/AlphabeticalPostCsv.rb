@@ -24,8 +24,11 @@ Then /^I should see the accounts ordered:$/ do |table|
      actual << [number]
   end
   expected_order.should == actual
-  first(:css,'tr', text: "A").click_button('removeAccount')
-  first(:css,'tr', text: "B").click_button('removeAccount')
-  first(:css,'tr', text: "C").click_button('removeAccount')
+end
+
+Then (/^Remove Accounts$/) do
+  first('removeAccount').click_button
+  first('removeAccount').click_button
+  first('removeAccount').click_button
 end
 
