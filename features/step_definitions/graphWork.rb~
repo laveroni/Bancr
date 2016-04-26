@@ -17,7 +17,7 @@ When(/^I click on the button to graph an account1$/) do
 end
 
 Then(/^I should see it graphed on the page$/) do
-    page.should have_css('#graph')
+    page.should have_css('gContainer#graph')
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
