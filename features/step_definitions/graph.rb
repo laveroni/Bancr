@@ -10,5 +10,5 @@ When(/^I click on the button to graph an account$/) do
 end
 
 Then(/^I should see it graphed$/) do
-    page.should have_css('gContainer#graph')
+    page.should have_no_css('gContainer#graph')
 end
