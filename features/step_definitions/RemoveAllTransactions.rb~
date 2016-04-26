@@ -20,5 +20,5 @@ When(/^I remove them$/) do
 end
 
 Then(/^I should see no transactions$/)do
-	page.should have_content '0.00'
+	expect(page).to have_no_content 'C'
 end
