@@ -6,9 +6,9 @@ Given(/^I am on the login page for Bancr1$/) do
 end
 
 When(/^I click on the button to graph an account$/) do
-    first(:css, 'tr', text: "Assets").check('0')
+    check('0', match: :first)
 end
 
 Then(/^I should see it graphed$/) do
-    
+    page.should have_css('gContainer#graph')
 end
