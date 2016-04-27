@@ -12,11 +12,11 @@ When(/^I upload a good csv file2$/) do
 end
 
 When(/^I click on the button to graph A account$/) do
-    check('1', match: :first)
+    check('5', match: :first)
 end
 
 Then(/^I should see new account graphed$/) do
-    page.should have_content('08/31/2000')
+    page.should have_css('#graph')
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
