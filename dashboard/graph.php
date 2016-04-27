@@ -1,3 +1,6 @@
+
+
+
 <script type="text/javascript">
 
 var data = [];
@@ -15,6 +18,7 @@ function updateGraph(cb) {
 	// Get selected account numbers
 	var selected = [];
 	$('#accounts input:checked').each(function() {
+
 	    selected.push($(this).attr('id'));
 	});
 
@@ -69,5 +73,9 @@ function updateGraph(cb) {
 		data.push(data_set);
 	}
 	new Chart(ctx).Scatter(data, options);
+
 }
+
+
+
 </script>

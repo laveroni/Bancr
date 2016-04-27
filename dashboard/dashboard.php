@@ -15,6 +15,11 @@ if(!isset($_SESSION['addAccountError']))
 	$_SESSION['addAccountError'] = "";
 }
 
+if(!isset($_SESSION['displayTransactionsArray']))
+{
+	$_SESSION['displayTransactionsArray'] = array();
+}
+
 // Check whether user is logged in
 if($_SESSION['loggedIn'] == false || $_SESSION['loggedIn'] == null)
 {	
@@ -150,6 +155,60 @@ if(isset($_POST['addTransaction']))
 	}
 		
 }
+
+
+
+//check if radio button is set for display graph, then display transaction data
+if(isset($_POST["display"]))
+{
+	//set an array for the id for the checkbox for the transactions to display
+	//make it a global variable
+	//then in the actual portfolio page, display only the transactions in the accounts in the arrays in question
+
+	//id is the account number
+
+	foreach ($_POST['display'] as $acc)
+	{
+		if(in_array($acc, $_SESSION['displayTransactionsArray']))
+		{
+
+		}
+		else
+		{
+			array_push($_SESSION['displayTransactionsArray'], $_POST['display']);
+			// header("Location: index.php");
+			// exit();
+		}
+		// echo gettype($acc);
+		// exit();
+	}
+
+
+}
+else
+{
+	//otherwise unset the array and check for this in the portfolio page before displaying anything
+}
+
+
+// $display = $_POST["display[]"];
+// if(empty($display))
+// {
+// 	unset($_SESSION['displayTransactionsArray']);
+// 	$_SESSION['displayTransactionsArray'] = array();
+// }
+// else
+// {
+// 	$num = count($display);
+//     for($i=0; $i < $num; $i++)
+//     {
+//     	array_push($_SESSION['displayTransactionsArray'], $display[$i]);
+//     }
+// }
+
+
+
+
 
 
 

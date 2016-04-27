@@ -116,34 +116,42 @@
 											    return strcmp($a->getName(), $b->getName());
 											}
 											usort($accountsArray, "cmpTrans");
-										    foreach ($accountsArray as $key => $value)
+										    // foreach ($accountsArray as $key => $value)
+										    // {
+										    // 	if($value->getNumber() == 0 || $value->getNumber() == 1 || $value->getNumber() == 2)
+										    // 	{
+										    // 		//do nothing
+										    // 	}
+										    // 	else
+										    // 	{
+										    // 		$accountTransactionHistory = $value->getHistory();
+										    // 		foreach ($accountTransactionHistory as $transVal)
+										    // 		{
+										    // 			echo'<tr>'; 
+										    //     		echo'<td>' . $transVal->getAccount() . $value->getNumber() . '</td>';
+										    //     		echo'<td>' . $transVal->getAmount() . '</td>';
+										    //     		echo'<td>' . $transVal->getMerchant() . '</td>';
+										    //     		echo'<td>' . $transVal->getDate() . '</td>';
+										    //     		echo'</tr>';
+										    // 		}
+										    // 	}
+										    // }
+
+
+										    $displayTrans = $_SESSION['displayTransactionsArray'];
+										    foreach ($displayTrans as $accountNum => $val)
 										    {
-										    	if($value->getNumber() == 0 || $value->getNumber() == 1 || $value->getNumber() == 2)
+										    	$accountTransactionHistory = $accountsArray[$accountNum]->getHistory();
+										    	foreach ($accountTransactionHistory as $transVal)
 										    	{
-										    		// $accountTransactionHistory = $value->getHistory();
-										    		// foreach ($accountTransactionHistory as $transVal)
-										    		// {
-										    		// 	echo'<tr>'; 
-										      //   		echo'<td>' . $transVal->getAccount() . '</td>';
-										      //   		echo'<td>' . $transVal->getAmount() . '</td>';
-										      //   		echo'<td>' . $transVal->getMerchant() . '</td>';
-										      //   		echo'<td>' . $transVal->getDate() . '</td>';
-										      //   		echo'</tr>';
-										    		// }
+										    		echo'<tr>'; 
+										        	echo'<td>' . $transVal->getAccount() . '</td>';
+										        	echo'<td>' . $transVal->getAmount() . '</td>';
+										        	echo'<td>' . $transVal->getMerchant() . '</td>';
+										        	echo'<td>' . $transVal->getDate() . '</td>';
+										        	echo'</tr>';
 										    	}
-										    	else
-										    	{
-										    		$accountTransactionHistory = $value->getHistory();
-										    		foreach ($accountTransactionHistory as $transVal)
-										    		{
-										    			echo'<tr>'; 
-										        		echo'<td>' . $transVal->getAccount() . '</td>';
-										        		echo'<td>' . $transVal->getAmount() . '</td>';
-										        		echo'<td>' . $transVal->getMerchant() . '</td>';
-										        		echo'<td>' . $transVal->getDate() . '</td>';
-										        		echo'</tr>';
-										    		}
-										    	}
+										    	
 										    }
 										?>
 
@@ -218,12 +226,23 @@
 											usort($accountsArray, "cmp");
 										    foreach ($accountsArray as $key => $value)
 										    {
+										    	if( in_array($value->getNumber(), $_SESSION['displayTransactionsArray'])) 
+										    	{ 
+										    		$checked = "checked";
+										    		echo $checked;
+										    		exit();
+										    	}  
+										    	else
+										    	{
+										    		$checked = "unchecked";
+										    	}
+
 										        echo'<tr>'; 
 										        echo'<td id="superRow">' . $value->getName() . '</td>';
 										        echo'<td>' . $value->getBalance() . '</td>';
 										        echo'<td> 
 										        		<form action="" method="post" name="af" id="af">
-										        			<input type="checkbox" onclick="updateGraph();" name="display[]" id=' . $value->getNumber() . ' unchecked>
+										        			<input type="checkbox" onclick="updateGraph();" onchange="this.form.submit(); " name="display[]" id=' . $value->getNumber() . ' value=' . $value->getNumber() . ' ' . $checked . '>
 										        		</form>
 										        	</td>';
 										        if($value->getNumber() >= 0 && $value->getNumber() <= 2)
@@ -242,6 +261,22 @@
 										        
 										        echo'</tr>';
 										    }
+
+										    //' . array_push($_SESSION['displayTransactionsArray'], $key) . '
+										    
+											// if(!empty($_SESSION['displayTransactionsArray']))
+											// {
+											// 	var_dump($_SESSION['displayTransactionsArray']);
+											// 	exit();
+											// }
+
+											// if(isset($_POST['display']))
+											// {
+											// 	array_push($_SESSION['displayTransactionsArray'], $_POST['display']);
+											// 	var_dump($_SESSION['displayTransactionsArray']);
+											// 	exit();
+											// }
+
 										?>
 
 
@@ -271,15 +306,16 @@
 						<td style ="width: 100px; height: 80px; text-align:center; background-color:d3d3d3;">
 							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Budget</h2>
 							<form>
+								Select a Budget Category:<br>
 								<select>
-									<option value="food" name="food" id="food">food</option>
-									<option value="clothes" name="clothes" id="clothes">clothes</option>
-									<option value="transportation" name="transportation" id="transportation">transportation</option>
+									<option value="food" name="food" id="food">Food</option>
+									<option value="clothes" name="clothes" id="clothes">Entertainment</option>
+									<option value="transportation" name="transportation" id="transportation">Transportation</option>
 								</select>
-								Budget:
+								<br><br>Set a Budget Limit:<br>
 								<input type="text" name="budget" id="budget">
 								<input type="button" name="budgetButton" id="budgetButton" value="Submit">
-								<br>
+								<br><br>
 								<table border="1">
 								<tr>
 									<th style="width:100px">
@@ -309,6 +345,8 @@
 					</tr>
 				</tbody>
 		</table>
+
 		<?php require 'graph.php' ?>
+
 	</body>
 </html>
