@@ -171,7 +171,6 @@ if(isset($_POST["display"]))
 	{
 		if(in_array($acc, $_SESSION['displayTransactionsArray']))
 		{
-
 		}
 		else
 		{
@@ -179,10 +178,10 @@ if(isset($_POST["display"]))
 			// header("Location: index.php");
 			// exit();
 		}
-		// echo gettype($acc);
 		// exit();
 	}
-
+	header("Location: index.php");
+	exit();
 
 }
 else

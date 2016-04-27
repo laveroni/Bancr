@@ -141,6 +141,7 @@
 										    $displayTrans = $_SESSION['displayTransactionsArray'];
 										    foreach ($displayTrans as $accountNum => $val)
 										    {
+										    	echo 
 										    	$accountTransactionHistory = $accountsArray[$accountNum]->getHistory();
 										    	foreach ($accountTransactionHistory as $transVal)
 										    	{
