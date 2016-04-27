@@ -10,5 +10,5 @@ When(/^I click on the button to graph an account$/) do
 end
 
 Then(/^I should see it not graphed$/) do
-    page.should have_no_css('#graph')
+    page.should have_no_css('ab#graph')
 end

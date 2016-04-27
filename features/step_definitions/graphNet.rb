@@ -13,7 +13,6 @@ When(/^I upload a good csv file1$/) do
 end
 
 When(/^I click on the button to graph net$/) do
-    check('2', match: :first)
 end
 
 Then(/^I should see net graphed$/) do

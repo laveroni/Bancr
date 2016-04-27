@@ -1,5 +1,5 @@
 Given(/^I am on the login page of Bancr1$/) do
-    visit('http://localhost/Bancr/index.php')
+    visit('https://localhost/Bancr/index.php')
 end
 
 When(/^I login to an account1$/) do

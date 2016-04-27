@@ -1,11 +1,9 @@
 Given(/^I am on the login page1$/) do
-    visit('http://localhost/Bancr/index.php')
+    visit('https://localhost/Bancr/index.php')
 end
 When(/^I try to login without a valid email$/) do
-    #within('#logForm') do
-        fill_in 'email', :with => 'ban@usc.edu'
-        fill_in 'password', :with => 'password'
-    #end
+    fill_in 'email', :with => 'ban@usc.edu'
+    fill_in 'password', :with => 'password'
     click_button 'signInButton'
 end
 

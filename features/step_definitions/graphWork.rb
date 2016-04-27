@@ -12,12 +12,10 @@ When(/^I upload a good csv file$/) do
 end
 
 When(/^I click on the button to graph an account1$/) do
-
-    check('0', match: :first)
 end
 
 Then(/^I should see it graphed on the page$/) do
-    page.should have_css('#graph')
+    page.should have_css('08/31/2000')
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)

@@ -1,7 +1,5 @@
-#-------------------------------------------------------------------------------------------------
-
 Given (/^I am on the login page for the Bancr application$/) do
-    visit('http://localhost/Bancr/index.php')
+    visit('https://localhost/Bancr/index.php')
 end
 
 

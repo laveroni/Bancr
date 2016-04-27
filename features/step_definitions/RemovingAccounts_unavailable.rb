@@ -1,11 +1,7 @@
-#-------------------------------------------------------------------------------------------------
-
 Given (/^I am on the index page2$/) do
-    visit('http://localhost/Bancr/index.php')
-    #within('#logForm') do
-        fill_in 'email', :with => 'halfond@usc.edu'
-        fill_in 'password', :with => 'password'
-    #end
+    visit('https://localhost/Bancr/index.php')
+    fill_in 'email', :with => 'halfond@usc.edu'
+    fill_in 'password', :with => 'password'
     click_button 'signInButton'
 end
 
