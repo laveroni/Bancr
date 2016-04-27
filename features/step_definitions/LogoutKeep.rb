@@ -1,6 +1,6 @@
 Given(/^I am on the login page for Bancr$/) do
-    visit('http://localhost/Bancr/index.php')
-    fill_in 'email', :with => 'bancr@usc.edu'
+    visit('https://localhost/Bancr/index.php')
+    fill_in 'email', :with => 'halfond@usc.edu'
     fill_in 'password', :with => 'password'
     click_button 'signInButton'
 end
@@ -11,13 +11,11 @@ When(/^I add an account to keep$/) do
 end
 
 When(/^I logout of the account$/) do
-    fill_in 'email', :with => 'bancr@usc.edu'
-    fill_in 'password', :with => 'a'
-    click_button 'signInButton'
+    click_button 'logout'
 end
 
 When(/^I login again$/) do
-    fill_in 'email', :with => 'bancr@usc.edu'
+    fill_in 'email', :with => 'halfond@usc.edu'
     fill_in 'password', :with => 'password'
     click_button 'signInButton'
 end

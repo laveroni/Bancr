@@ -1,7 +1,7 @@
 Given(/^I am on the main page trying to upload a small csv file$/) do
-    visit('http://localhost/Bancr/index.php')
-    fill_in 'email', :with => ' '
-    fill_in 'password', :with => ' '
+    visit('https://localhost/Bancr/index.php')
+    fill_in 'email', :with => 'halfond@usc.edu'
+    fill_in 'password', :with => 'password'
     click_button 'signInButton'
 end
 
@@ -16,4 +16,6 @@ end
 
 Then(/^I should see the new transactions$/) do
     page.should have_content 'A'
+    click_button('removeAccount', match: :first)
+    click_button('removeAccount', match: :first)
 end

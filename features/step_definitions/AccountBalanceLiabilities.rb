@@ -1,22 +1,7 @@
-#require 'capybara/rspec'
-#require 'capybara/cucumber'
-
-#include Capybara::DSL
-
-#Capybara.app_host = ""
-#Capybara.default_driver = :selenium
-
-#session = Capybara::Session.new :selenium
-#session.visit()
-
-#-------------------------------------------------------------------------------------------------
-
 Given (/^I am on the main page and trying to find balance$/) do
-    visit('http://localhost/Bancr/index.php')
-    #within('#logForm') do
-         fill_in 'email', :with => 'bancr@usc.edu'
-        fill_in 'password', :with => 'password'
-    #end
+    visit('https://localhost/Bancr/index.php')
+    fill_in 'email', :with => 'halfond@usc.edu'
+    fill_in 'password', :with => 'password'
     click_button 'signInButton'
 end
 
@@ -30,8 +15,8 @@ When(/^I click the upload button1$/) do
 end
 
 Then (/^I should see correct balance for liabilities account$/)do
-	first(:css, 'tr', text: "Liabilities").should have_content('-112.64')
-    first(:css,'tr', text: "A").click_button('removeAccount')
-    first(:css,'tr', text: "B").click_button('removeAccount')
-    first(:css,'tr', text: "C").click_button('removeAccount')
+	page.should have_content('-112.64')
+  click_button('removeAccount', match: :first)
+  click_button('removeAccount', match: :first)
+  click_button('removeAccount', match: :first)
 end

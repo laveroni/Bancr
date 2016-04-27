@@ -228,8 +228,5 @@ foreach ($accounts as $key => $value)
 		$transactions_json[] = array('account' => $account, 'number' => $number, 'date' => $date, 'amount' => $amount, 'merchant' => $merchant);
 	}
 }
-
-
-
 // file_put_contents('php://stderr', print_r($transactions_json, TRUE));
 ?>

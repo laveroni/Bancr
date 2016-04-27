@@ -1,11 +1,9 @@
 Given(/^I am on the login page4$/) do
-    visit('http://localhost/Bancr/index.php')
+    visit('https://localhost/Bancr/index.php')
 end
 When(/^I try to login with empty fields$/) do
-    #within('#logForm') do
-        fill_in 'email', :with => ' '
-        fill_in 'password', :with => ' '
-    #end
+    fill_in 'email', :with => ' '
+    fill_in 'password', :with => ' '
     click_button 'signInButton'
 end
 

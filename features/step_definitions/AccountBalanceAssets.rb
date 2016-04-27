@@ -1,9 +1,7 @@
-Given (/^Given I am on the main page and trying to find balances$/) do
-    visit('http://localhost/Bancr/index.php')
-    #within('#logForm') do
-         fill_in 'email', :with => 'bancr@usc.edu'
-        fill_in 'password', :with => 'password'
-    #end
+Given (/^I am on the main page and trying to find balances$/) do
+    visit('https://localhost/Bancr/index.php')
+    fill_in 'email', :with => 'halfond@usc.edu'
+    fill_in 'password', :with => 'password'
     click_button 'signInButton'
 end
 
@@ -17,8 +15,8 @@ When(/^I click the upload button3$/) do
 end
 
 Then (/^I should see correct balance for assets account$/)do
-	first(:css, 'tr', text: "Assets").should have_content('860.70')
-    first(:css,'tr', text: "A").click_button('removeAccount')
-    first(:css,'tr', text: "B").click_button('removeAccount')
-    first(:css,'tr', text: "C").click_button('removeAccount')
+  page.should have_content('860.70')
+  click_button('removeAccount', match: :first)
+  click_button('removeAccount', match: :first)
+  click_button('removeAccount', match: :first)
 end

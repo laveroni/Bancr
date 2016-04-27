@@ -1,9 +1,9 @@
 Given(/^I am on the main login page$/) do
-    visit('http://localhost/Bancr/index.php')
+    visit('https://localhost/Bancr/index.php')
 end
 
 When(/^successfully login to an user account$/) do
-    fill_in 'email', :with => 'bancr@usc.edu'
+    fill_in 'email', :with => 'halfond@usc.edu'
     fill_in 'password', :with => 'password'
     click_button 'signInButton'
 end
