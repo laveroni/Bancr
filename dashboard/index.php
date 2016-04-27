@@ -190,7 +190,7 @@
 							<div id="gContainer" style="max-width:500px; min-width: 500px; max-height:300px; min-height:300px;">
 		                    	<canvas id="graph" width="500px" height="300px" style="max-width:500px; max-height:300px; min-height:300px; position:absolute;"></canvas>
 		                    </div>		
-		                    <div style="text-align:center;">
+		                    <div style="text-align:center;"> 
 			                    From: <input type="text" id="from_date_text" name="from_date_text" size="11" placeholder="mm/dd/yyyy">
 			                    To: <input type="text" id="to_date_text" name="to_date_text" size="11" placeholder="mm/dd/yyyy">
 			                    <button type="submit" id="range_button" name="range_button" onclick="updateGraph()"class="btn btn-default">Update</button>
@@ -263,6 +263,7 @@
 										        	</td>
 										        	</tr>';
 										        }
+
 										    }
 										?>
 
