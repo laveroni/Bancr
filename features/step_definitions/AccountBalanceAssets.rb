@@ -15,7 +15,7 @@ When(/^I click the upload button3$/) do
 end
 
 Then (/^I should see correct balance for assets account$/)do
-  page.should have_content('860.70')
+  page.should have_content('795.46')
   click_button('removeAccount', match: :first)
   click_button('removeAccount', match: :first)
   click_button('removeAccount', match: :first)
