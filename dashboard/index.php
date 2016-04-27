@@ -7,11 +7,13 @@
         <link rel="stylesheet" type="text/css" href="../styles/portfolio.css">
         <link rel="stylesheet" type="text/css" href="../styles/styles.css">
         <link rel="stylesheet" href="../vendors/font-awesome-4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="../vendors/jquery-ui-1.11.4.custom/jquery-ui.css">
         <script src="../vendors/jquery-1.12.1.min.js"></script>
 	    <script src="../vendors/moment.js"></script>
 	    <script src="../vendors/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 		<script src="../vendors/chart.min.js"></script>
 		<script src="../vendors/Chart.Scatter.min.js"></script>
+      	<script src="../vendors/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
 
 		<script type="text/javascript">
 			var timer;
@@ -45,6 +47,70 @@
     			clearTimeout(timer);
     			timer=setTimeout(mouseStopped,300);
 			});
+
+			// User transactions encoded in JSON
+			var json_transactions = <?php echo json_encode($transactions_json); ?>;
+			/*
+			$(function () 
+			{   
+			    $('#from_date_text, #to_date_text').datepicker (
+			    	{
+				        showOn: "both",
+				        beforeShow: customRange,
+				        dateFormat: "dd M yy",
+				        firstDay: 1, 
+				        changeFirstDay: false
+			    	}
+			    );
+			});
+			
+			function customRange(input) 
+			{ 
+				// Get min. and max. transaction date
+			    var min = new Date(2008, 11 - 1, 1); //Set this to your absolute minimum date
+				var dateMin = min;
+				var dateMax = null;
+				var dayRange = 6; // Set this to the range of days you want to restrict to
+
+			    if(input.id === "from_date_text") 
+			    {
+			        if($("#to_date_text").datepicker("getDate") != null) 
+			        {
+			            dateMax = $("#to_date_text").datepicker("getDate");
+			            dateMin = $("#to_date_text").datepicker("getDate");
+			            dateMin.setDate(dateMin.getDate() - dayRange);
+			            if(dateMin < min) 
+			            {
+			                dateMin = min;
+			            }
+			        }
+			        else 
+			        {
+			            dateMax = new Date; //Set this to your absolute maximum date
+			        }                      
+			    }
+			    else if(input.id === "to_date_text") 
+			    {
+			        dateMax = new Date; //Set this to your absolute maximum date
+			        if($("#from_date_text").datepicker("getDate") != null) 
+			        {
+			            dateMin = $("#from_date_text").datepicker("getDate");
+			            var rangeMax = new Date(dateMin.getFullYear(), dateMin.getMonth(), dateMin.getDate() + dayRange);
+
+			            if(rangeMax < dateMax) 
+			            {
+			                dateMax = rangeMax; 
+			            }
+			        }
+			    }
+
+			    return 
+			    {
+			        minDate: dateMin, 
+			        maxDate: dateMax
+			    };     
+			}
+			*/
 		</script>
 
 	</head>
@@ -177,9 +243,15 @@
 
 						<!-- Graph -->
 						<td class="graphTD" style="background-color:d3d3d3;">
-							<div id="gContainer" style="max-width:500px; min-width: 500px; max-height:300px; min-height:300px; ">
-		                    	<canvas id="graph" width = "500px" height = "300px" style="max-width:500px; max-height:300px; min-height:300px; position: absolute;"></canvas>
+							<div id="gContainer" style="max-width:500px; min-width: 500px; max-height:300px; min-height:300px;">
+		                    	<canvas id="graph" width="500px" height="300px" style="max-width:500px; max-height:300px; min-height:300px; position:absolute;"></canvas>
 		                    </div>		
+		                    <div style="text-align:center;">	
+			                    <p>
+				                    From: <input type="text" id="from_date_text" name="from_date_text" size="10">
+				                    To: <input type="text" id="to_date_text" name="to_date_text" size="10">
+			                    </p>
+		                    </div>
 						</td>
 
 						<!-- Account list -->
@@ -206,9 +278,6 @@
 											</th>
 										</tr>
 
-
-
-
 										<?php 
 											$accountsArray = $_SESSION['userObject']->getAccountsArray();
 											function cmp($a, $b)
@@ -218,32 +287,41 @@
 											usort($accountsArray, "cmp");
 										    foreach ($accountsArray as $key => $value)
 										    {
-										        echo'<tr>'; 
-										        echo'<td id="superRow">' . $value->getName() . '</td>';
-										        echo'<td>' . $value->getBalance() . '</td>';
-										        echo'<td> 
-										        		<form action="" method="post" name="af" id="af">
-										        			<input type="checkbox" onclick="updateGraph();" name="display[]" id=' . $value->getNumber() . ' unchecked>
-										        		</form>
-										        	</td>';
 										        if($value->getNumber() >= 0 && $value->getNumber() <= 2)
 										        {
-										        	echo '<td></td>';
+										        	echo 
+											        '<tr> 
+										        	<td id="superRow">' . $value->getName() . '</td>
+										        	<td>' . $value->getBalance() . '</td> 
+										        	<td> 
+										        		<form action="" method="post" name="af" id="af">
+										        			<input type="checkbox" onclick="updateGraph();" name="display[]" id=' . $value->getNumber() . ' checked>
+										        		</form>
+										        	</td>
+										        	<td></td>
+										        	</tr>';
 										        }
 										        else
 										        {
-										        	echo'<td>' . 
-										        		'<form action="" method="post">' . 
-										        			'<input type="submit" name="removeAccount" value="Remove" id="removeAccount">' . 
-										        			'<input type="hidden" name="id" value="' . $value->getNumber() . '" />' . 
-										        		'</form>' . 
-										        	'</td>';
+										        	echo
+										        	'<tr> 
+										        	<td id="superRow">' . $value->getName() . '</td>
+										        	<td>' . $value->getBalance() . '</td> 
+										        	<td> 
+										        		<form action="" method="post" name="af" id="af">
+										        			<input type="checkbox" onclick="updateGraph();" name="display[]" id=' . $value->getNumber() . ' unchecked>
+										        		</form>
+										        	</td>
+										        	<td> 
+										        		<form action="" method="post"> 
+										        			<input type="submit" name="removeAccount" value="Remove" id="removeAccount"> 
+										        			<input type="hidden" name="id" value="' . $value->getNumber() . '" /> 
+										        		</form> 
+										        	</td>
+										        	</tr>';
 										        }
-										        
-										        echo'</tr>';
 										    }
 										?>
-
 
 									</tbody>
 								</table>
