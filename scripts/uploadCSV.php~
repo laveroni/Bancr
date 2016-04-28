@@ -108,7 +108,7 @@ if(isset($_POST['submit']))
                     VALUES ('$email', '$account', '$date', '$amount', '$merchant', '$budget')";
             $db->queryRequest($log);
 
-            $user->addTransaction($account, $date, $amount, $merchant, $budget);
+            $user->addTransaction($account, $date, $amount, $merchant);
         }
     }
 

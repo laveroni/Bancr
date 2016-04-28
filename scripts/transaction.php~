@@ -61,10 +61,6 @@ class Transaction
 	{
 		return $this->merchant;
 	}
-	public function getBudget()
-	{
-		return $this->budget;
-	}
 }
 
 ?>
