@@ -149,20 +149,44 @@
 
 
 										    $displayTrans = $_SESSION['displayTransactionsArray'];
+										    var_dump($displayTrans);
+										    // echo'<br><br><br>';
+										    // print_r($_SESSION['userObject']->getAccountsArray());
+
+
+ 										 	
+
 										    foreach ($displayTrans as $accountNum => $val)
 										    {
-										    	echo 
-										    	$accountTransactionHistory = $accountsArray[$accountNum]->getHistory();
-										    	foreach ($accountTransactionHistory as $transVal)
+										    	echo '<br>' . $accountNum . ' => ' . $val . '<br>';
+
+										    	foreach($accountsArray as $key => $value)
 										    	{
-										    		echo'<tr>'; 
-										        	echo'<td>' . $transVal->getAccount() . '</td>';
-										        	echo'<td>' . $transVal->getAmount() . '</td>';
-										        	echo'<td>' . $transVal->getMerchant() . '</td>';
-										        	echo'<td>' . $transVal->getDate() . '</td>';
-										        	echo'</tr>';
+										    		if($value->getNumber() == $val)
+										    		{
+										    			$keyForArray = $key;
+										    		}
 										    	}
-										    	
+
+
+										    	if($val >=0 && $val <=2)
+										    	{
+										    		//do nothing
+										    	}
+										    	else
+										    	{
+										    		$accountTransactionHistory = $accountsArray[$keyForArray]->getHistory();
+										    		foreach ($accountTransactionHistory as $transVal)
+										    		{
+										    			echo'<tr>'; 
+										        		echo'<td>' . $transVal->getAccount() . '</td>';
+										        		echo'<td>' . $transVal->getAmount() . '</td>';
+										        		echo'<td>' . $transVal->getMerchant() . '</td>';
+										        		echo'<td>' . $transVal->getDate() . '</td>';
+										        		echo'</tr>';
+										    		}
+										    	}
+
 										    }
 										?>
 
@@ -256,11 +280,11 @@
 										        }
 										        else
 										        {
+										        	
 										        	if( in_array($value->getNumber(), $_SESSION['displayTransactionsArray'])) 
 										    		{ 
 										    			$checked = "checked";
-										    			echo $checked;
-										    			exit();
+										
 										    		}  
 										    		else
 										    		{
@@ -275,6 +299,12 @@
 										        				<input type="checkbox" onclick="updateGraph();" onchange="this.form.submit(); " name="display[]" id=' . $value->getNumber() . ' value=' . $value->getNumber() . ' ' . $checked . '>
 										        			</form>
 										        		</td>';
+										        	echo'<td>' . 
+										        		'<form action="" method="post">' . 
+										        			'<input type="submit" name="removeAccount" value="Remove" id="removeAccount">' . 
+										        			'<input type="hidden" name="id" value="' . $value->getNumber() . '" />' . 
+										        		'</form>' . 
+										        	'</td>';
 										        }
 
 										    }

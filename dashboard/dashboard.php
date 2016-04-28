@@ -174,7 +174,7 @@ if(isset($_POST["display"]))
 		}
 		else
 		{
-			array_push($_SESSION['displayTransactionsArray'], $_POST['display']);
+			$_SESSION['displayTransactionsArray'][] = (int)$acc;
 			// header("Location: index.php");
 			// exit();
 		}
@@ -187,6 +187,7 @@ if(isset($_POST["display"]))
 else
 {
 	//otherwise unset the array and check for this in the portfolio page before displaying anything
+
 }
 
 
