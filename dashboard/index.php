@@ -292,16 +292,33 @@
 					<tr>
 						<td style ="width: 100px; height: 80px; text-align:center; background-color:d3d3d3;">
 							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Budget</h2>
-							<form>
-								<select>
-									<option value="food" name="food" id="food">food</option>
-									<option value="clothes" name="clothes" id="clothes">clothes</option>
-									<option value="transportation" name="transportation" id="transportation">transportation</option>
+							Select a Budget Category:<br>
+								<select name="category" id="category">
+									<option value="food" name="food" id="food">Food</option>
+									<option value="clothes" name="clothes" id="clothes">Entertainment</option>
+									<option value="transportation" name="transportation" id="transportation">Transportation</option>
 								</select>
-								Budget:
-								<input type="text" name="budget" id="budget">
+								
+								<br><br>Select a Month:<br>
+								<select name="month" id="month" size="1">
+    								<option value="01">January</option>
+    								<option value="02">February</option>
+    								<option value="03">March</option>
+    								<option value="04">April</option>
+    								<option value="05">May</option>
+    								<option value="06">June</option>
+    								<option value="07">July</option>
+    								<option value="08">August</option>
+    								<option value="09">September</option>
+    								<option value="10">October</option>
+    								<option value="11">November</option>
+    								<option value="12">December</option>
+								</select>
+								<br><br>Set a Budget Limit:<br>
+								<input type="number" name="budget" id="budget" min="0" max="1000000">
+
 								<input type="button" name="budgetButton" id="budgetButton" value="Submit">
-								<br>
+								<br><br>
 								<table border="1">
 								<tr>
 									<th style="width:100px">
