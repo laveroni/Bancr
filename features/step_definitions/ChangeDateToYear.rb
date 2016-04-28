@@ -1,7 +1,7 @@
 Given(/^I am on the login page and login$/) do
     visit('https://localhost/Bancr/index.php')
     fill_in 'email', :with => 'halfond@usc.edu'
-    fill_in 'password', :with => 'a'
+    fill_in 'password', :with => 'password'
     click_button 'signInButton'
 end
 
