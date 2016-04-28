@@ -8,30 +8,8 @@ class TranactionTest extends PHPUnit_Framework_TestCase{
 	protected $transaction;
 
 	protected function setUp(){
-		$this->transaction = new Transaction("Saves","01/01/16", 100, "Ted");
+		$this->transaction = new Transaction("Saves","01/01/16", 100, "Ted", "Food");
 	}
-
-	/*public function testSetAccount(){
-		$this->transaction->setAccount($this->acc);
-		$this->assertEquals($this->acc, $this->transaction->$account);
-	}*/
-
-/*	public function testSetDate(){
-		$this->transaction->setDate("03/23/10");
-		$this->assertEquals("03/23/10", $this->transaction->$date);
-	}
-*/
-/*	public function testSetMerchant(){
-		$this->transaction->setMerchant("John");
-		$this->assertEquals("John",$this->transaction->$merchant);
-	}
-*/
-
-/*	public function testSetAmount(){
-		$this->transaction->setAmount(100);
-		$this->assertEquals(100, $this->transaction->$amount);
-	}
-*/
 	
 	public function testGetAccount(){
 		$expected = "Saves";
@@ -56,8 +34,11 @@ class TranactionTest extends PHPUnit_Framework_TestCase{
 		$actual = $this->transaction->getMerchant();
 		$this->assertEquals($expected, $actual);
 	}
+
+	public function testGetBudget(){
+		$expected = "Food";
+		$actual = $this->transaction->getBudget();
+		$this->assertEquals($expected, $actual);
+	}
 }
-
-
-
 ?>

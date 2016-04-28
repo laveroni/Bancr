@@ -38,7 +38,7 @@ class AccountTest extends PHPUnit_Framework_TestCase{
 	}
 
 	public function testGetLastTransaction(){
-		$tran = new Transaction("savings", 2/31/23, 59, "tom");
+		$tran = new Transaction("savings", 2/31/23, 59, "tom", "Food");
 		$this->account->addTransaction($tran);
 		$tranHist = $this->account->getLastTransaction();
 		$this->assertEquals($tran, $tranHist);
@@ -47,7 +47,7 @@ class AccountTest extends PHPUnit_Framework_TestCase{
 	public function testAddTransaction(){
 		$tranPrior = $this->account->getHistory();
 		$prior = count($tranPrior);
-		$tran = new Transaction("savings", 2/31/23, 59, "tom");
+		$tran = new Transaction("savings", 2/31/23, 59, "tom", "Food");
 		$this->account->addTransaction($tran);
 		$tranNow = $this->account->getHistory();
 		$now = count($tranNow);

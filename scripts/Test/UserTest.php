@@ -53,7 +53,7 @@ class UserTest extends PHPUnit_Framework_TestCase{
 
 	public function testAddTransactionFailure(){
 		$users = new User("ttrojan@usc.edu", "pass");
-		$this->invokeMethod($users, 'addTransaction', array("Johns", "1/01/01", 170, "Bob"));
+		$this->invokeMethod($users, 'addTransaction', array("Johns", "1/01/01", 170, "Bob", "Food"));
 		$accountNumber = 4;
 		$accs = $users->getAccountsArray();
 		$this->assertFalse(array_key_exists($accountNumber, $accs));
@@ -61,7 +61,7 @@ class UserTest extends PHPUnit_Framework_TestCase{
 
 	public function testAddTransactionSuccess(){
 		$users = new User("ttrojan@usc.edu", "pass");
-		$this->invokeMethod($users, 'addTransaction', array("Johns", "1/01/01", 170, "Bob"));
+		$this->invokeMethod($users, 'addTransaction', array("Johns", "1/01/01", 170, "Bob", "Food"));
 		$accs = $users->getAccountsArray();
 		$a = $accs[3];
 		$trans = $a -> getHistory();
@@ -79,16 +79,15 @@ class UserTest extends PHPUnit_Framework_TestCase{
 		$users = new User("ttrojan@usc.edu", "pass");
 		$acc = new Account("Billy", 3);
 		$users->addAccount($acc);
-		$this->invokeMethod($users, 'addTransaction', array("Billy", "1/01/01", 170, "Bob"));
-		$this->invokeMethod($users, 'addTransaction', array("Billy", "1/01/01", -170, "Bob"));
-		$this->invokeMethod($users, 'addTransaction', array("Billy", "1/01/01", 0, "Tom"));
+		$this->invokeMethod($users, 'addTransaction', array("Billy", "1/01/01", 170, "Bob", "Food"));
+		$this->invokeMethod($users, 'addTransaction', array("Billy", "1/01/01", -170, "Bob", "Entertainment"));
 		$users->removeAccount($acc);
 		$accountArray = $users->getAccountsArray();
 		$this->assertEquals(3, count($accountArray));
 	}
 	public function testAddTransactionSuccessAccountAlreadyExists(){
 		$users = new User("ttrojan@usc.edu", "pass");
-		$this->invokeMethod($users, 'addTransaction', array("Liabilities", "1/01/01", -170, "Bob"));
+		$this->invokeMethod($users, 'addTransaction', array("Liabilities", "1/01/01", -170, "Bob", "Transportation"));
 		$accs = $users->getAccountsArray();
 		$a = $accs[1];
 		$trans = $a -> getHistory();
