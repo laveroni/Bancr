@@ -38,10 +38,10 @@ function validate_input($db, $data)
     return $data;
 }
 
-function is_valid_transaction($account, $date, $amount, $merchant) 
+function is_valid_transaction($account, $date, $amount, $merchant, $budget) 
 {
     // Check whether fields are empty
-    if( empty($account) || empty($date) || empty($amount) || empty($merchant)) {
+    if( empty($account) || empty($date) || empty($amount) || empty($merchant) || empty($budget)) {
         return false;
     }
     // Check whether date valid
@@ -82,8 +82,9 @@ if(isset($_POST['submit']))
         $date = validate_input($db, $csv_array[$i][1]);
         $amount = validate_input($db, $csv_array[$i][2]);
         $merchant = validate_input($db, $csv_array[$i][3]);
+        $budget = validate_input($db, $csv_array[$i][4]);
 
-        if(!is_valid_transaction($account, $date, $amount, $merchant)) 
+        if(!is_valid_transaction($account, $date, $amount, $merchant, $budget)) 
         {
             $_SESSION['uploadSuccess'] = false;
         }
@@ -100,13 +101,14 @@ if(isset($_POST['submit']))
             $date = validate_input($db, $csv_array[$i][1]);
             $amount = validate_input($db, $csv_array[$i][2]);
             $merchant = validate_input($db, $csv_array[$i][3]);
+            $budget = validate_input($db, $csv_array[$i][4]);
             
             // Log transaction 
-            $log = "INSERT INTO transactions (user, account, date, amount, merchant)
-                    VALUES ('$email', '$account', '$date', '$amount', '$merchant')";
+            $log = "INSERT INTO transactions (user, account, date, amount, merchant, budget)
+                    VALUES ('$email', '$account', '$date', '$amount', '$merchant', '$budget')";
             $db->queryRequest($log);
 
-            $user->addTransaction($account, $date, $amount, $merchant);
+            $user->addTransaction($account, $date, $amount, $merchant, $budget);
         }
     }
 

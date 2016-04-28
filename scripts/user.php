@@ -122,10 +122,10 @@ class User
 		return $this->numAccounts;
 	}
 
-	public function addTransaction($account, $date, $amount, $merchant)
+	public function addTransaction($account, $date, $amount, $merchant, $budget)
 	{
 
-		$newTransaction = new Transaction($account, $date, $amount, $merchant);
+		$newTransaction = new Transaction($account, $date, $amount, $merchant, $budget);
 		//locate which account object by finding the key that is the account number
 		//assuming that the key exists
 

@@ -149,12 +149,7 @@
 
 
 										    $displayTrans = $_SESSION['displayTransactionsArray'];
-										    // var_dump($displayTrans);
-										    // echo'<br><br><br>';
-										    // print_r($_SESSION['userObject']->getAccountsArray());
-
-
- 										 	
+										   										 	
 
 										    foreach ($displayTrans as $accountNum => $val)
 										    {
@@ -359,7 +354,7 @@
 									<option value="transportation" name="transportation" id="transportation">Transportation</option>
 								</select>
 								<br><br>Set a Budget Limit:<br>
-								<input type="text" name="budget" id="budget">
+								<input type="number" name="quantity" min="0" max="1000000">
 								<input type="button" name="budgetButton" id="budgetButton" value="Submit">
 								<br><br>
 								<table border="1">
@@ -374,9 +369,11 @@
 									Balance
 									</th>
 								</tr>
+
+
 								<tr>
 									<td>
-									food
+									Food
 									</td>
 									<td>
 									300
@@ -385,6 +382,51 @@
 									250
 									</td>
 								</tr>
+
+
+
+
+								<?php
+								 $displayTrans = $_SESSION['displayTransactionsArray'];
+										   										 	
+
+										    foreach ($displayTrans as $accountNum => $val)
+										    {
+										    	// echo '<br>' . $accountNum . ' => ' . $val . '<br>';
+
+										    	foreach($accountsArray as $key => $value)
+										    	{
+										    		if($value->getNumber() == $val)
+										    		{
+										    			$keyForArray = $key;
+										    		}
+										    	}
+
+
+										    	if($val >=0 && $val <=2)
+										    	{
+										    		//do nothing
+										    	}
+										    	else
+										    	{
+										    		$accountTransactionHistory = $accountsArray[$keyForArray]->getHistory();
+										    		foreach ($accountTransactionHistory as $transVal)
+										    		{
+										    			echo'<tr>'; 
+										        		echo'<td>' . $transVal->getAccount() . '</td>';
+										        		echo'<td>' . $transVal->getAmount() . '</td>';
+										        		echo'<td>' . $transVal->getMerchant() . '</td>';
+										        		echo'<td>' . $transVal->getDate() . '</td>';
+										        		echo'</tr>';
+										    		}
+										    	}
+
+										    }
+										    ?>
+
+
+
+
 								</table>
 							</form>
 						</td>

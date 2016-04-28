@@ -11,13 +11,15 @@ class Transaction
 	private $date;
 	private $amount; 
 	private $merchant;
+	private $budget;
 
-	function __construct ($account, $date, $amount, $merchant)
+	function __construct ($account, $date, $amount, $merchant, $budget)
 	{
 		$this->account = $account;
 		$this->date = $date;
 		$this->amount = $amount;
 		$this->merchant = $merchant;
+		$this->budget = $budget;
 	}
 	/*
 	private function setAccount($account)
@@ -58,6 +60,11 @@ class Transaction
 	public function getMerchant()
 	{
 		return $this->merchant;
+	}
+
+	public function getBudget()
+	{
+		return $this->budget;
 	}
 }
 
