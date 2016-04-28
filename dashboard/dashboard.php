@@ -165,6 +165,7 @@ foreach ($accounts as $key => $value)
 		$date = $t->getDate();
 		$amount = (float) $t->getAmount();
 		$merchant = $t->getMerchant();
+		//$budget = $t->getBudget();
 		$transactions_json[] = array('account' => $account, 'number' => $number, 'date' => $date, 'amount' => $amount, 'merchant' => $merchant);
 	}
 }

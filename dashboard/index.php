@@ -117,8 +117,6 @@
 											</th>
 
 										</tr>
-
-
 										<?php 
 											$accountsArray = $_SESSION['userObject']->getAccountsArray();
 											function cmpTrans($a, $b)
@@ -156,8 +154,6 @@
 										    	}
 										    }
 										?>
-
-
 									</tbody>
 								</table>
 								</div>

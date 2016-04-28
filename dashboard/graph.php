@@ -3,6 +3,15 @@
 var json_transactions = <?php echo json_encode($transactions_json); ?>;
 var selected = [];
 var min_date, max_date, default_from_date, default_to_date;
+var colors = {};
+colors[0] = "#00FFFF";
+colors[1] = "#FF0000";
+colors[2] = "#8A2BE2";
+colors[3] = "#006400";
+colors[4] = "#FFD700";
+colors[5] = "#800000";
+colors[6] = "#8B4513";
+colors[7] = "#00FF00";
 
 function getRange() 
 {
@@ -44,6 +53,17 @@ function getRange()
 	}
 }
 
+function getRandomColor() 
+{
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) 
+    {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 function updateGraph(cb) 
 {
 	// Get selected account numbers
@@ -51,7 +71,6 @@ function updateGraph(cb)
 	$('#accounts input:checked').each(function() {
 	    selected.push($(this).attr('id'));
 	});
-
 
 	for(i = 0; i < json_transactions.length; i++)
 	{
@@ -106,8 +125,8 @@ function updateGraph(cb)
 		var number = selected[i];
 		var data_set = {
 			// label: number,
-		    strokeColor: '#01DF01',
-		    pointColor: '#01DF01',
+		    // strokeColor: getRandomColor(),
+		    // pointColor: '#01DF01',
 		    pointStrokeColor: '#fff',
 		    data: []
 		};
@@ -120,9 +139,21 @@ function updateGraph(cb)
 			if(number == json_transactions[j]['number']) 
 			{
 				$("."+number.toString()).show();
-				console.log("."+number.toString());
 
 				data_set.label = json_transactions[j]['account'];
+
+
+				if(number > 8)
+				{
+					data_set.strokeColor = getRandomColor();
+					data_set.pointColor = data_set.strokeColor;
+				}
+				else 
+				{
+					data_set.strokeColor = colors[number];
+					data_set.pointColor = colors[number];
+				}
+				
 				var date = new Date(json_transactions[j]['date']);
 				if(date >= from_date && date <= to_date) 
 				{
@@ -144,11 +175,13 @@ function updateGraph(cb)
 				return new Date(b.x) - new Date(a.x);
 			}
 		);
+		/*
 		if(balance < 0) 
 		{ 	// Change line color to red if balance negative
 			data_set.strokeColor = '#DF0101';
 			data_set.pointColor = '#DF0101';
 		}
+		*/
 		data.push(data_set);
 	}
 	var ctx = document.getElementById('graph').getContext('2d');
@@ -163,6 +196,28 @@ function updateGraph(cb)
 		scaleShowLabels: true,
 	});
 }
+/*
+function updateBudget()
+{
+	var selected_month = $('#').attr('value');
+	var selected_budget = $('#').attr('value');
+	var limit = $('#').attr('value');
+	var balance = 0;
+	for(i = 0; i < json_transactions.length; i++)
+	{
+		var date = new Date(json_transactions[i]['date']);
+		var month = date.getMonth();
+		var year = date.getFullYear();
+		var today = new Date();
+		var budget = json_transactions[i]['budget'];
 
+		if(selected_month == month && year == today.getFullYear() && selected_budget == budget)
+		{
+			balance += parseFloat(json_transactions[i]['amount']);
+		}
+	}
+}
+*/
 updateGraph();
+
 </script>
