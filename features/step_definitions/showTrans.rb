@@ -1,23 +1,23 @@
-Given(/^I am on the login page for Bancr2$/) do
+Given(/^I am on the login page for main Bancr application$/) do
     visit('http://localhost/Bancr/index.php')
     fill_in 'email', :with => 'halfond@usc.edu'
     fill_in 'password', :with => 'password'
     click_button 'signInButton'
 end
 
-When(/^I upload a good csv file$/) do
+
+When(/^I upload a good csv file1$/) do
   attach_file('csv-file', File.absolute_path('transactions.csv'))
   click_on('upload')
   page.driver.browser.switch_to.alert.accept
 end
 
-When(/^I click on the button to graph an account1$/) do
-
-    check('0', match: :first)
+When(/^I click on the button to graph net$/) do
+     click('A', match: :first)
 end
 
-Then(/^I should see it graphed on the page$/) do
-    page.should have_css('gContainer#graph')
+Then(/^I should see net graphed$/) do
+    page.should have_css('#graph')
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)

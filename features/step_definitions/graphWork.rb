@@ -15,7 +15,7 @@ When(/^I click on the button to graph an account1$/) do
 end
 
 Then(/^I should see it graphed on the page$/) do
-    page.should have_css('08/31/2000')
+    page.should have_content('08/31/2000')
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
     click_button('removeAccount', match: :first)
