@@ -52,6 +52,18 @@ function updateGraph(cb)
 	    selected.push($(this).attr('id'));
 	});
 
+
+	for(i = 0; i < json_transactions.length; i++)
+	{
+		var number = json_transactions[i]['number'];
+		if(number != 0 && number != 1 && number != 2)
+		{
+			$('.' + number.toString()).hide();
+			console.log(number);
+		}
+		
+	}
+
 	// Update range of dates
 	getRange();
 
@@ -104,8 +116,12 @@ function updateGraph(cb)
 		// Get selected transaction data
 		for(j = 0; j < json_transactions.length; j++)
 		{
+
 			if(number == json_transactions[j]['number']) 
 			{
+				$("."+number.toString()).show();
+				console.log("."+number.toString());
+
 				data_set.label = json_transactions[j]['account'];
 				var date = new Date(json_transactions[j]['date']);
 				if(date >= from_date && date <= to_date) 

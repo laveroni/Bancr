@@ -146,7 +146,7 @@
 										    		$accountTransactionHistory = $value->getHistory();
 										    		foreach ($accountTransactionHistory as $transVal)
 										    		{
-										    			echo'<tr>'; 
+										    			echo'<tr class="' . $value->getNumber() . '">'; 
 										        		echo'<td>' . $transVal->getAccount() . '</td>';
 										        		echo'<td>' . $transVal->getAmount() . '</td>';
 										        		echo'<td>' . $transVal->getMerchant() . '</td>';
