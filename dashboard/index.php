@@ -290,9 +290,9 @@
 							<h2 style="padding-bottom:10px; margin-top:0px; text-align:center; vertical-align:middle">Budget</h2>
 							Select a Budget Category:<br>
 								<select name="category" id="category">
-									<option value="food" name="food" id="food">Food</option>
-									<option value="clothes" name="clothes" id="clothes">Entertainment</option>
-									<option value="transportation" name="transportation" id="transportation">Transportation</option>
+									<option value="Food" name="Food" id="Food">Food</option>
+									<option value="Clothes" name="Clothes" id="Clothes">Clothes</option>
+									<option value="Transportation" name="Transportation" id="transportation">Transportation</option>
 								</select>
 								
 								<br><br>Select a Month:<br>
@@ -313,7 +313,7 @@
 								<br><br>Set a Budget Limit:<br>
 								<input type="number" name="budget" id="budget" min="0" max="1000000">
 
-								<input type="button" name="budgetButton" id="budgetButton" value="Submit">
+								<input type="button" name="budgetButton" id="budgetButton" value="Submit" onclick=updateBudget()>
 								<br><br>
 								<table border="1">
 								<tr>

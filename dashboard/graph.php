@@ -78,7 +78,7 @@ function updateGraph(cb)
 		if(number != 0 && number != 1 && number != 2)
 		{
 			$('.' + number.toString()).hide();
-			console.log(number);
+			// console.log(number);
 		}
 		
 	}
@@ -196,28 +196,39 @@ function updateGraph(cb)
 		scaleShowLabels: true,
 	});
 }
-/*
+
 function updateBudget()
 {
-	var selected_month = $('#').attr('value');
-	var selected_budget = $('#').attr('value');
-	var limit = $('#').attr('value');
+	//console.log("here");
+	var selected_month = parseInt($('#month').val());
+	var selected_category = $('#category').val();
+	var budget = $('#budget').val();
+
+	//console.log(selected_month);
+	//console.log(selected_category);
+	//console.log(budget);
+
 	var balance = 0;
 	for(i = 0; i < json_transactions.length; i++)
 	{
 		var date = new Date(json_transactions[i]['date']);
-		var month = date.getMonth();
+		var month = date.getMonth() + 1;
 		var year = date.getFullYear();
 		var today = new Date();
-		var budget = json_transactions[i]['budget'];
+		var category = json_transactions[i]['budget'];
 
-		if(selected_month == month && year == today.getFullYear() && selected_budget == budget)
+		//console.log(month);
+		//console.log(category);
+
+		if(selected_month == month /*&& year == today.getFullYear()*/ && selected_category == category)
 		{
+			console.log("here");
 			balance += parseFloat(json_transactions[i]['amount']);
 		}
 	}
+	//console.log(balance);
 }
-*/
+
 updateGraph();
 
 </script>
