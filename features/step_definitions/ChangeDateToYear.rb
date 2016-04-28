@@ -14,6 +14,7 @@ end
 When(/I change the dates for the calendar$/) do
     fill_in 'from_date_text', :with => '1/1/2003'
     fill_in 'to_date_text', :with => '4/1/2003'
+    click_on('update')
 end
 
 Then(/^I should see the dates change on the graph$/) do

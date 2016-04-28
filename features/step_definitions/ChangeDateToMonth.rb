@@ -14,6 +14,7 @@ end
 When(/^I change the dates for the graph$/) do
     fill_in 'from_date_text', :with => '1/1/1999'
     fill_in 'to_date_text', :with => '2/1/1999'
+    click_on('update')
 end
 
 Then(/^I should see the new dates on the graph$/) do
