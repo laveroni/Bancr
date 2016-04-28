@@ -149,7 +149,7 @@
 
 
 										    $displayTrans = $_SESSION['displayTransactionsArray'];
-										    var_dump($displayTrans);
+										    // var_dump($displayTrans);
 										    // echo'<br><br><br>';
 										    // print_r($_SESSION['userObject']->getAccountsArray());
 
@@ -158,7 +158,7 @@
 
 										    foreach ($displayTrans as $accountNum => $val)
 										    {
-										    	echo '<br>' . $accountNum . ' => ' . $val . '<br>';
+										    	// echo '<br>' . $accountNum . ' => ' . $val . '<br>';
 
 										    	foreach($accountsArray as $key => $value)
 										    	{
